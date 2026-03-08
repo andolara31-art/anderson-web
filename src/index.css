@@ -1,0 +1,54 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@theme {
+  --font-sans: "Outfit", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --color-bg-deep: #030303;
+  --color-bg-card: #0a0a0a;
+  --color-platinum: #e5e5e5;
+  --color-graphite: #262626;
+  --color-accent: #ffffff;
+}
+
+@layer base {
+  body {
+    @apply bg-bg-deep text-platinum font-sans antialiased selection:bg-white selection:text-black;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .glass-premium {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10;
+  }
+  
+  .text-gradient {
+    @apply bg-gradient-to-br from-white via-white/80 to-white/40 bg-clip-text text-transparent;
+  }
+  
+  .btn-primary {
+    @apply px-6 py-3 bg-white text-black font-medium rounded-full hover:bg-platinum transition-all duration-300 flex items-center gap-2;
+  }
+  
+  .btn-secondary {
+    @apply px-6 py-3 bg-transparent text-white border border-white/20 font-medium rounded-full hover:bg-white/5 transition-all duration-300 flex items-center gap-2;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-bg-deep;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-graphite rounded-full hover:bg-neutral-700 transition-colors;
+}
