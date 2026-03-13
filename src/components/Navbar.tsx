@@ -7,16 +7,16 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const navLinks = [
     { name: 'Inicio', href: '#home' },
     { name: 'Sobre mí', href: '#about' },
-    { name: 'Servicios', href: '#services' },
-    { name: 'Ecosistema', href: '#ecosystem' },
     { name: 'Proyectos', href: '#projects' },
     { name: 'Contacto', href: '#contact' },
   ];
@@ -24,8 +24,11 @@ export default function Navbar() {
   return (
     <nav 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? 'py-4 bg-bg-deep/80 backdrop-blur-md border-b border-white/5' : 'py-6 bg-transparent'
+        scrolled ? 'py-4 bg-[#0a0a0a]/80 backdrop-blur-xl border-b border-white/5 shadow-[0_4px_30px_rgba(0,0,0,0.1)]' : 'py-6 bg-transparent'
       }`}
+      style={{
+        WebkitBackdropFilter: scrolled ? 'blur(20px)' : 'none',
+      }}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         <motion.a 
@@ -55,7 +58,8 @@ export default function Navbar() {
             href="#contact"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="px-5 py-2 bg-white text-black text-sm font-semibold rounded-full hover:bg-platinum transition-all"
+            className="px-5 py-2 text-black text-sm font-semibold rounded-full hover:scale-105 transition-all duration-300"
+            style={{ background: 'linear-gradient(135deg, #ffffff, #e0e0e0)' }}
           >
             Contratar
           </motion.a>
@@ -77,7 +81,7 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-bg-deep border-b border-white/5 overflow-hidden"
+            className="md:hidden bg-[#0a0a0a] border-b border-white/5 overflow-hidden"
           >
             <div className="flex flex-col p-6 gap-4">
               {navLinks.map((link) => (

@@ -1,64 +1,65 @@
 import React from 'react';
-import { motion } from 'motion/react';
+import ScrollReveal from './ScrollReveal';
 
 export default function About() {
+  const stats = [
+    { value: '+10', label: 'Proyectos entregados' },
+    { value: '3', label: 'Productos en producción' },
+    { value: 'CR', label: 'Base de operaciones' },
+    { value: '∞', label: 'Obsesión por el detalle' },
+  ];
+
   return (
     <section id="about" className="py-24 md:py-32 px-6">
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
+          <ScrollReveal>
             <h2 className="text-4xl md:text-5xl font-bold mb-8 tracking-tight">
-              Construyendo el <br />
-              <span className="text-white/40">futuro digital.</span>
+              Construyendo <br />
+              <span className="text-white/40">herramientas.</span>
             </h2>
             <div className="w-20 h-1 bg-white mb-8" />
             
-            <div className="space-y-6 text-lg text-white/60 leading-relaxed font-light">
+            <div className="space-y-6 text-lg text-white/50 leading-relaxed font-light">
               <p>
-                Soy Anderson Agüero Lara, un desarrollador de 21 años radicado en Costa Rica, enfocado en la creación de experiencias digitales de alto impacto.
+                Soy Anderson Agüero Lara, desarrollador web enfocado en la creación de productos digitales y experiencias interactivas.
               </p>
               <p>
-                Mi enfoque no es solo escribir código, sino construir herramientas que resuelvan problemas reales. Me especializo en transformar ideas complejas en interfaces limpias, rápidas y profesionales.
+                Mi enfoque no es solo escribir código, sino construir herramientas que resuelven problemas reales. Me especializo en transformar ideas complejas en interfaces limpias, rápidas y profesionales.
               </p>
               <p>
-                Desde landing pages optimizadas para conversión hasta MVPs escalables para startups, cada proyecto que emprendo lleva un sello de calidad premium y atención al detalle.
+                Además de mi trabajo independiente, soy el fundador de Nuvro Engineer, donde lidero el desarrollo de soluciones digitales para negocios.
               </p>
             </div>
-          </motion.div>
+          </ScrollReveal>
 
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="grid grid-cols-2 gap-4"
-          >
-            <div className="space-y-4">
-              <div className="glass-premium p-8 rounded-3xl aspect-square flex flex-col justify-center items-center text-center">
-                <span className="text-4xl font-bold mb-2">21</span>
-                <span className="text-xs uppercase tracking-widest text-white/40">Años de edad</span>
-              </div>
-              <div className="bg-white text-black p-8 rounded-3xl aspect-square flex flex-col justify-center items-center text-center">
-                <span className="text-4xl font-bold mb-2">100%</span>
-                <span className="text-xs uppercase tracking-widest opacity-60">Compromiso</span>
-              </div>
-            </div>
-            <div className="space-y-4 pt-8">
-              <div className="bg-graphite p-8 rounded-3xl aspect-square flex flex-col justify-center items-center text-center">
-                <span className="text-4xl font-bold mb-2">CR</span>
-                <span className="text-xs uppercase tracking-widest text-white/40">Ubicación</span>
-              </div>
-              <div className="glass-premium p-8 rounded-3xl aspect-square flex flex-col justify-center items-center text-center">
-                <span className="text-4xl font-bold mb-2">+10</span>
-                <span className="text-xs uppercase tracking-widest text-white/40">Proyectos</span>
-              </div>
-            </div>
-          </motion.div>
+          <div className="grid grid-cols-2 gap-4">
+            {stats.map((stat, index) => (
+              <ScrollReveal key={index} delay={index * 0.1}>
+                <div 
+                  className="rounded-2xl p-7 text-center flex flex-col justify-center items-center aspect-square"
+                  style={{ 
+                    background: 'rgba(255,255,255,0.03)', 
+                    border: '1px solid rgba(255,255,255,0.06)' 
+                  }}
+                >
+                  <span 
+                    className="text-[36px] font-[800] tracking-[-1px] mb-2 leading-none"
+                    style={{
+                      background: 'linear-gradient(180deg, #ffffff, rgba(255,255,255,0.6))',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent'
+                    }}
+                  >
+                    {stat.value}
+                  </span>
+                  <span className="text-[11px] text-[rgba(255,255,255,0.4)] tracking-[1px] uppercase font-medium">
+                    {stat.label}
+                  </span>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
         </div>
       </div>
     </section>
