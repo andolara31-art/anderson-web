@@ -1,5 +1,6 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { ArrowUpRight } from 'lucide-react';
+import { useInView } from 'motion/react';
 
 interface Card3DProps {
   project: {
@@ -17,6 +18,18 @@ export default function Card3D({ project }: Card3DProps) {
   const cardRef = useRef<HTMLAnchorElement>(null);
   const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
   const [isHovered, setIsHovered] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.matchMedia("(pointer: coarse)").matches);
+  }, []);
+
+  const isInView = useInView(cardRef, { 
+    margin: "-30% 0px -30% 0px", // Activa cuando está en el área central de la pantalla
+    once: false 
+  });
+
+  const active = isHovered || (isMobile && isInView);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (!cardRef.current) return;
@@ -28,12 +41,10 @@ export default function Card3D({ project }: Card3DProps) {
     setMousePos({ x, y });
   };
 
-  const isMobile = typeof window !== 'undefined' && window.matchMedia("(pointer: coarse)").matches;
-
   const transformStyle = isHovered && !isMobile
     ? `perspective(600px) rotateX(${(mousePos.y - 0.5) * -15}deg) rotateY(${(mousePos.x - 0.5) * 15}deg) scale3d(1.03, 1.03, 1.03)`
-    : isHovered && isMobile 
-    ? `scale3d(1.03, 1.03, 1.03)`
+    : active && isMobile 
+    ? `scale3d(1.02, 1.02, 1.02)`
     : `perspective(600px) rotateX(0) rotateY(0) scale3d(1, 1, 1)`;
 
   // Convert hex to rgba for the border
@@ -78,7 +89,7 @@ export default function Card3D({ project }: Card3DProps) {
 
       {/* Top Accent Line */}
       <div 
-        className="absolute top-0 left-0 right-0 h-[2px] z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        className={`absolute top-0 left-0 right-0 h-[2px] z-20 transition-opacity duration-300 ${active ? 'opacity-100' : 'opacity-0'}`}
         style={{ background: project.accentColor }}
       />
 
@@ -86,7 +97,7 @@ export default function Card3D({ project }: Card3DProps) {
         <img 
           src={project.image} 
           alt={project.title}
-          className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+          className={`w-full h-full object-cover transition-all duration-700 ${active ? 'grayscale-0' : 'grayscale'}`}
           referrerPolicy="no-referrer"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-80" />
@@ -103,7 +114,7 @@ export default function Card3D({ project }: Card3DProps) {
             </span>
             <h3 className="text-[32px] font-[700] text-white leading-tight">{project.title}</h3>
           </div>
-          <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-colors">
+          <div className={`w-10 h-10 rounded-full border border-white/10 flex items-center justify-center transition-colors ${active ? 'bg-white text-black' : ''}`}>
             <ArrowUpRight size={20} />
           </div>
         </div>
