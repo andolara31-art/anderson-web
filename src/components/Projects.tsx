@@ -5,21 +5,21 @@ import Card3D from './Card3D';
 export default function Projects() {
   const mainProjects = [
     {
-      title: 'Last Signal',
-      category: 'Experiencia Interactiva',
-      description: 'Demo interactiva con enfoque narrativo que explora mecánicas de storytelling en el navegador.',
-      tags: ['React', 'Three.js', 'Framer Motion'],
-      link: '#',
-      image: 'https://picsum.photos/seed/lastsignal/800/600',
-      accentColor: '#00d4ff'
+      title: 'NUVRO FIT',
+      category: 'Performance Brand',
+      description: 'Marca fitness premium enfocada en suplementación, rendimiento, disciplina y progreso físico real.',
+      tags: ['E-commerce', 'Fitness Brand', 'Suplementos'],
+      link: 'https://www.nuvro.shop/',
+      image: 'https://fwjdikkenbolqnyadgyq.supabase.co/storage/v1/object/sign/ima/image.webp?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jNTU1MzE4Ny1lNWQ2LTQyN2ItYjQzZi1kZjVlZWE4MzAwZGEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJpbWEvaW1hZ2Uud2VicCIsImlhdCI6MTc3MzYwNjU5MiwiZXhwIjoxODA1MTQyNTkyfQ.SpYXvZzRKYd0xfyR7NRPtVj_TLug_bQTpfKHGm0atr8',
+      accentColor: '#00FF87'
     },
     {
       title: 'LeadPilot CRM',
       category: 'Mini SaaS B2B',
       description: 'Plataforma CRM diseñada para organizar prospectos y automatizar flujos de seguimiento comercial.',
       tags: ['Next.js', 'TypeScript', 'Supabase'],
-      link: '#',
-      image: 'https://picsum.photos/seed/leadpilot/800/600',
+      link: 'https://leadpilot-pi.vercel.app/',
+      image: 'https://fwjdikkenbolqnyadgyq.supabase.co/storage/v1/object/sign/ima/hf_20260315_144821_292329d5-191d-46bd-a75f-d73a0598a277%20(1).png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jNTU1MzE4Ny1lNWQ2LTQyN2ItYjQzZi1kZjVlZWE4MzAwZGEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJpbWEvaGZfMjAyNjAzMTVfMTQ0ODIxXzI5MjMyOWQ1LTE5MWQtNDZiZC1hNzVmLWQ3M2EwNTk4YTI3NyAoMSkucG5nIiwiaWF0IjoxNzczNTkyNjIwLCJleHAiOjE4MDUxMjg2MjB9.gtFos3VqGtj9tnp9mWDrETztCnJFvngAMRKkND4vdyc',
       accentColor: '#f97316'
     },
     {
@@ -27,8 +27,8 @@ export default function Projects() {
       category: 'Web Corporativa',
       description: 'Web corporativa premium para firma de consultoría, enfocada en rendimiento y diseño editorial.',
       tags: ['React', 'Tailwind', 'TypeScript', 'Framer Motion'],
-      link: '#',
-      image: 'https://picsum.photos/seed/clario/800/600',
+      link: 'https://clario-advisory.vercel.app/',
+      image: 'https://fwjdikkenbolqnyadgyq.supabase.co/storage/v1/object/sign/ima/WhatsApp%20Image%202026-03-15%20at%209.33.12%20AM.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jNTU1MzE4Ny1lNWQ2LTQyN2ItYjQzZi1kZjVlZWE4MzAwZGEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJpbWEvV2hhdHNBcHAgSW1hZ2UgMjAyNi0wMy0xNSBhdCA5LjMzLjEyIEFNLmpwZWciLCJpYXQiOjE3NzM1OTI3MTMsImV4cCI6MTgwNTEyODcxM30.oaw1yt9z6sVfCjS-wEh8zDtK6lr0K-Y1ScZ5T6E8B3I',
       accentColor: '#a78bfa'
     }
   ];
