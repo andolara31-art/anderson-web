@@ -49,7 +49,7 @@ export default function Projects() {
       description: 'Sitio web premium para la única cafetería de Costa Rica entre las 100 mejores del mundo (#76). Diseño editorial con animaciones de scroll y mapa de regiones cafetaleras.',
       tags: ['React', 'TypeScript', 'Tailwind CSS'],
       link: 'https://cafeoteca-website.vercel.app',
-      image: 'https://fwjdikkenbolqnyadgyq.supabase.co/storage/v1/object/sign/ima/WhatsApp%20Image%202026-03-19%20at%209.39.15%20PM.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jNTU1MzE4Ny1lNWQ2LTQyN2ItYjQzZi1kZjVlZWE4MzAwZGEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJpbWEvV2hhdHNBcHAgSW1hZ2UgMjAyNi0wMy0xOSBhdCA5LjM5LjE1IFBNLmpwZWciLCJpYXQiOjE3NzM5NzgwODksImV4cCI6MTgwNTUxNDA4OX0.Rk9UQoW4XifEhxJ9lWclmUTrWr1D8Jhn1emj7oZuE4c',
+      image: 'https://fwjdikkenbolqnyadgyq.supabase.co/storage/v1/object/sign/ima/WhatsApp%20Image%202026-03-19%20at%2010.01.37%20PM.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jNTU1MzE4Ny1lNWQ2LTQyN2ItYjQzZi1kZjVlZWE4MzAwZGEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJpbWEvV2hhdHNBcHAgSW1hZ2UgMjAyNi0wMy0xOSBhdCAxMC4wMS4zNyBQTS5qcGVnIiwiaWF0IjoxNzczOTc5OTUxLCJleHAiOjE4MDU1MTU5NTF9.3BrfjuPPPM8n4g_jueS3KqpYOF_1UGYHB_3DF-pMiIg',
       accentColor: '#00FF87'
     }
   ];
