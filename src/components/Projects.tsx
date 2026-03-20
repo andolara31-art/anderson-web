@@ -35,22 +35,22 @@ export default function Projects() {
 
   const secondaryProjects = [
     {
-      title: 'Auto-Lead System',
-      category: 'Automatización',
-      description: 'Flujo automático de captura y seguimiento de prospectos para negocios locales.',
-      tags: ['n8n', 'Zapier', 'Webhooks'],
-      link: '#',
-      image: 'https://picsum.photos/seed/autolead/800/600',
-      accentColor: '#22c55e'
+      title: "El Barbero Gentlemen's Shop",
+      category: 'DISEÑO WEB',
+      description: 'Rediseño web completo para barbería premium con 3 sucursales en Costa Rica. Diseño dark luxury con animaciones cinematográficas.',
+      tags: ['React', 'Tailwind CSS', 'Framer Motion'],
+      link: 'https://elbarbero-website.vercel.app',
+      image: 'https://fwjdikkenbolqnyadgyq.supabase.co/storage/v1/object/sign/ima/WhatsApp%20Image%202026-03-19%20at%209.50.49%20PM.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jNTU1MzE4Ny1lNWQ2LTQyN2ItYjQzZi1kZjVlZWE4MzAwZGEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJpbWEvV2hhdHNBcHAgSW1hZ2UgMjAyNi0wMy0xOSBhdCA5LjUwLjQ5IFBNLmpwZWciLCJpYXQiOjE3NzM5Nzg2NzgsImV4cCI6MTgwNTUxNDY3OH0.cGHr_QsNngnQ29QxpCK8ZthOISkpV9bfY4mErLehL2A',
+      accentColor: '#c5a059'
     },
     {
-      title: 'Cyber Runner',
-      category: 'Experimental',
-      description: 'Mini juego interactivo desarrollado para explorar mecánicas de juego en el navegador.',
-      tags: ['Canvas', 'JavaScript', 'Audio API'],
-      link: '#',
-      image: 'https://picsum.photos/seed/game/800/600',
-      accentColor: '#ec4899'
+      title: 'Cafeoteca Costa Rica',
+      category: 'DISEÑO WEB',
+      description: 'Sitio web premium para la única cafetería de Costa Rica entre las 100 mejores del mundo (#76). Diseño editorial con animaciones de scroll y mapa de regiones cafetaleras.',
+      tags: ['React', 'TypeScript', 'Tailwind CSS'],
+      link: 'https://cafeoteca-website.vercel.app',
+      image: 'https://fwjdikkenbolqnyadgyq.supabase.co/storage/v1/object/sign/ima/WhatsApp%20Image%202026-03-19%20at%209.39.15%20PM.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jNTU1MzE4Ny1lNWQ2LTQyN2ItYjQzZi1kZjVlZWE4MzAwZGEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJpbWEvV2hhdHNBcHAgSW1hZ2UgMjAyNi0wMy0xOSBhdCA5LjM5LjE1IFBNLmpwZWciLCJpYXQiOjE3NzM5NzgwODksImV4cCI6MTgwNTUxNDA4OX0.Rk9UQoW4XifEhxJ9lWclmUTrWr1D8Jhn1emj7oZuE4c',
+      accentColor: '#00FF87'
     }
   ];
 
