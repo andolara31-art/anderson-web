@@ -3,8 +3,8 @@ import ScrollReveal from './ScrollReveal';
 
 export default function About() {
   const stats = [
-    { value: '+10', label: 'Proyectos entregados' },
-    { value: '3', label: 'Productos en producción' },
+    { value: '+18', label: 'Proyectos entregados' },
+    { value: '7', label: 'Productos en producción' },
     { value: 'CR', label: 'Base de operaciones' },
     { value: '∞', label: 'Obsesión por el detalle' },
   ];

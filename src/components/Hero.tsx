@@ -147,7 +147,7 @@ export default function Hero() {
         >
           <div className="relative z-10 w-full aspect-[4/5] rounded-2xl overflow-hidden border border-white/5 shadow-2xl group">
             <img 
-              src="https://fwjdikkenbolqnyadgyq.supabase.co/storage/v1/object/sign/ima/63ce2d3b-5e26-48ba-962e-d5c656921f0d.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jNTU1MzE4Ny1lNWQ2LTQyN2ItYjQzZi1kZjVlZWE4MzAwZGEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJpbWEvNjNjZTJkM2ItNWUyNi00OGJhLTk2MmUtZDVjNjU2OTIxZjBkLmpwZWciLCJpYXQiOjE3NzI5ODAwNjMsImV4cCI6MTgwNDUxNjA2M30.GVD0QQyFFpkwYlykW5dst9mETkoufZfyPWA1QYhQMDs" 
+              src="https://fwjdikkenbolqnyadgyq.supabase.co/storage/v1/object/sign/ima/hf_20260326_192810_29431f91-08f5-4a98-952e-964a99307e80%20(1).png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jNTU1MzE4Ny1lNWQ2LTQyN2ItYjQzZi1kZjVlZWE4MzAwZGEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJpbWEvaGZfMjAyNjAzMjZfMTkyODEwXzI5NDMxZjkxLTA4ZjUtNGE5OC05NTJlLTk2NGE5OTMwN2U4MCAoMSkucG5nIiwiaWF0IjoxNzc0NTU5MjU4LCJleHAiOjE4MDYwOTUyNTh9.ej3gtYE1To8xpk3aWllkXA0Gbcmbgc36u34JF4zwZGQ" 
               alt="Anderson Agüero Lara - Premium Web Developer" 
               className="w-full h-full object-cover grayscale brightness-110 contrast-125 opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000 ease-out"
               referrerPolicy="no-referrer"
