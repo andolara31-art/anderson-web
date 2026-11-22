@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'motion/react';
+import { motion, useReducedMotion } from 'motion/react';
 
 interface ScrollRevealProps {
   children: React.ReactNode;
@@ -8,26 +8,27 @@ interface ScrollRevealProps {
   key?: React.Key;
 }
 
-export default function ScrollReveal({ children, delay = 0, className = "" }: ScrollRevealProps) {
-  const scrollRevealVariants = {
-    hidden: { y: 50, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        delay: delay,
-        duration: 0.9,
-        ease: [0.16, 1, 0.3, 1],
-      },
-    },
-  };
+export default function ScrollReveal({
+  children,
+  delay = 0,
+  className = '',
+}: ScrollRevealProps) {
+  const prefersReduced = useReducedMotion();
+
+  if (prefersReduced) {
+    return <div className={className}>{children}</div>;
+  }
 
   return (
     <motion.div
-      variants={scrollRevealVariants}
-      initial="hidden"
-      whileInView="visible"
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.12 }}
+      transition={{
+        delay,
+        duration: 0.55,
+        ease: [0.16, 1, 0.3, 1],
+      }}
       className={className}
     >
       {children}
