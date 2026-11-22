@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import { ArrowUpRight, Code2, MapPin, Layers } from 'lucide-react';
+import { ArrowUpRight, Code2, Layers, MapPin } from 'lucide-react';
 import ScrollReveal from './ScrollReveal';
 import TornEdge from './TornEdge';
-import BatmanPeek from './BatmanPeek';
+import { useLanguage } from '../context/LanguageContext';
+import { PROFILE_LINKS } from '../data/profile';
 
 const PORTRAIT_URL =
   'https://fwjdikkenbolqnyadgyq.supabase.co/storage/v1/object/sign/nv/hf_20260326_192810_29431f91-08f5-4a98-952e-964a99307e80%20(1).png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jNTU1MzE4Ny1lNWQ2LTQyN2ItYjQzZi1kZjVlZWE4MzAwZGEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJudi9oZl8yMDI2MDMyNl8xOTI4MTBfMjk0MzFmOTEtMDhmNS00YTk4LTk1MmUtOTY0YTk5MzA3ZTgwICgxKS5wbmciLCJpYXQiOjE3NzU5ODYxODIsImV4cCI6MTgwNzUyMjE4Mn0.nmCRljTgHh-PAtusyBD_IlaKjMEn3TiEUc6Ul7y7S7I';
 
 export default function About() {
   const [imgError, setImgError] = useState(false);
+  const { lang } = useLanguage();
 
   return (
     <section
@@ -20,34 +22,72 @@ export default function About() {
           {/* Editorial Copy Column */}
           <div className="lg:col-span-7 min-w-0">
             <ScrollReveal>
-              <p className="nuvro-kicker text-[#2046F0] mb-5">Sobre mí</p>
+              <p className="nuvro-kicker text-[#2046F0] mb-5">
+                {lang === 'es' ? 'Sobre mí' : 'About me'}
+              </p>
               <h2 className="font-display-nuvro text-[clamp(2.6rem,5.5vw,4.7rem)] text-[#121212] mb-6 max-w-2xl">
-                NO SOLO DISEÑO WEBS.{' '}
-                <span className="text-[#2046F0]">CONSTRUYO SISTEMAS.</span>
+                {lang === 'es' ? (
+                  <>
+                    NO SOLO DISEÑO WEBS.{' '}
+                    <span className="text-[#2046F0]">CONSTRUYO SISTEMAS.</span>
+                  </>
+                ) : (
+                  <>
+                    NOT JUST WEBSITES.{' '}
+                    <span className="text-[#2046F0]">PRODUCTION SYSTEMS.</span>
+                  </>
+                )}
               </h2>
 
               <div className="space-y-5 text-base sm:text-lg text-[#2C2C28] leading-relaxed max-w-2xl">
-                <p>
-                  Soy Anderson Agüero Lara, desarrollador enfocado en crear
-                  productos digitales, aplicaciones web y soluciones
-                  tecnológicas para problemas reales.
-                </p>
-                <p>
-                  Me interesa especialmente conectar desarrollo de software,
-                  experiencia de usuario, inteligencia artificial y
-                  automatización.
-                </p>
-                <p>
-                  También soy fundador de{' '}
-                  <strong className="font-bold text-[#121212]">
-                    NUVRO ENGINEER
-                  </strong>
-                  , un proyecto desde el que desarrollo soluciones digitales
-                  para negocios en Costa Rica.
-                </p>
+                {lang === 'es' ? (
+                  <>
+                    <p>
+                      Soy Anderson Agüero Lara, desarrollador de software
+                      enfocado en crear productos digitales, aplicaciones web en
+                      producción y herramientas prácticas para problemas reales.
+                    </p>
+                    <p>
+                      Trabajo en la intersección entre ingeniería frontend,
+                      servicios backend con APIs/Docker/Python, experiencia de
+                      usuario, automatización e inteligencia artificial
+                      aplicada.
+                    </p>
+                    <p>
+                      También soy fundador de{' '}
+                      <strong className="font-bold text-[#121212]">
+                        NUVRO ENGINEER
+                      </strong>
+                      , estudio desde el cual diseño y despliego soluciones
+                      digitales para negocios y productos propios desde Costa
+                      Rica.
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <p>
+                      I am Anderson Agüero Lara, a full-stack software developer
+                      focused on shipping production web products, media
+                      utilities, and practical commercial systems.
+                    </p>
+                    <p>
+                      My work connects clean frontend architecture with Python
+                      FastAPI &amp; Docker backends, serverless APIs, UX
+                      clarity, and applied AI workflows.
+                    </p>
+                    <p>
+                      I am also the founder of{' '}
+                      <strong className="font-bold text-[#121212]">
+                        NUVRO ENGINEER
+                      </strong>
+                      , building digital products and business web solutions
+                      from Costa Rica for local and international clients.
+                    </p>
+                  </>
+                )}
               </div>
 
-              {/* Technical Pillars — Zero fake metrics */}
+              {/* Technical Pillars */}
               <div className="mt-10 grid sm:grid-cols-3 gap-5 sm:gap-4">
                 <div className="bg-[#FFFFFF] border-3 border-[#121212] shadow-[4px_4px_0_#121212] p-4">
                   <Code2
@@ -56,30 +96,32 @@ export default function About() {
                     aria-hidden="true"
                   />
                   <h3 className="font-bold text-sm text-[#121212] mb-1">
-                    Ingeniería Frontend &amp; Full-Stack
+                    {lang === 'es'
+                      ? 'Ingeniería Frontend & Full-Stack'
+                      : 'Frontend & Full-Stack Engineering'}
                   </h3>
                   <p className="text-xs text-[#4A4A46] leading-relaxed">
-                    Código modular en React y TypeScript pensado para escalar.
+                    {lang === 'es'
+                      ? 'Código modular en React, TypeScript y servicios Docker/FastAPI.'
+                      : 'Modular React, TypeScript, and containerized FastAPI services.'}
                   </p>
                 </div>
 
-                <div className="relative bg-[#FFFFFF] border-3 border-[#121212] shadow-[4px_4px_0_#121212] p-4">
-                  <BatmanPeek
-                    edge="top-right"
-                    tone="dark"
-                    lines={['Hecho para operar', 'Orden y claridad']}
-                    delay={0.14}
-                  />
+                <div className="bg-[#FFFFFF] border-3 border-[#121212] shadow-[4px_4px_0_#121212] p-4">
                   <Layers
                     size={20}
                     className="text-[#2046F0] mb-2"
                     aria-hidden="true"
                   />
                   <h3 className="font-bold text-sm text-[#121212] mb-1">
-                    Producto, CRM &amp; Flujos
+                    {lang === 'es'
+                      ? 'Producto, CRM & Flujos'
+                      : 'Product, CRM & Automation'}
                   </h3>
                   <p className="text-xs text-[#4A4A46] leading-relaxed">
-                    Herramientas para ordenar prospectos, catálogos y operación.
+                    {lang === 'es'
+                      ? 'Herramientas reales para prospectos, medios y operación diaria.'
+                      : 'Practical tools for lead pipelines, media prep, and operations.'}
                   </p>
                 </div>
 
@@ -90,10 +132,14 @@ export default function About() {
                     aria-hidden="true"
                   />
                   <h3 className="font-bold text-sm text-[#121212] mb-1">
-                    Desde Costa Rica
+                    {lang === 'es'
+                      ? 'Desde Costa Rica'
+                      : 'Based in Costa Rica'}
                   </h3>
                   <p className="text-xs text-[#4A4A46] leading-relaxed">
-                    Palmares, Alajuela · Colaboración local y remota.
+                    {lang === 'es'
+                      ? 'Palmares, Alajuela · Disponible para trabajo remoto.'
+                      : 'UTC-6 timezone · Available for remote engineering teams.'}
                   </p>
                 </div>
               </div>
@@ -103,18 +149,13 @@ export default function About() {
           {/* Right Column: Editorial Profile Card + Code Spec */}
           <div className="lg:col-span-5 min-w-0">
             <ScrollReveal delay={0.1}>
-              <div className="relative">
-                <BatmanPeek
-                  edge="top-right"
-                  tone="yellow"
-                  lines={['Sin código relleno', 'Palmares, Alajuela']}
-                  delay={0.2}
-                />
-                <div className="comic-panel-light bg-[#F7F7F4] overflow-hidden">
+              <div className="comic-panel-light bg-[#F7F7F4] overflow-hidden">
                 {/* Top Strip */}
                 <div className="bg-[#121212] text-[#F7F7F4] px-5 py-3 flex items-center justify-between gap-3">
                   <span className="font-mono text-xs font-bold tracking-wider uppercase text-[#FFC83D]">
-                    Perfil de Ingeniería
+                    {lang === 'es'
+                      ? 'Perfil de Ingeniería'
+                      : 'Engineering Profile'}
                   </span>
                   <span className="font-mono text-[11px] text-[#C9CDD8]">
                     ANDERSON.AL
@@ -128,32 +169,41 @@ export default function About() {
                       {!imgError ? (
                         <img
                           src={PORTRAIT_URL}
-                          alt="Anderson Agüero Lara, desarrollador de software y fundador de NUVRO ENGINEER"
+                          alt={
+                            lang === 'es'
+                              ? 'Anderson Agüero Lara, desarrollador de software y fundador de NUVRO ENGINEER'
+                              : 'Anderson Agüero Lara, software developer and founder of NUVRO ENGINEER'
+                          }
                           className="w-full h-full object-cover"
                           loading="lazy"
                           referrerPolicy="no-referrer"
                           onError={() => setImgError(true)}
                         />
                       ) : (
-                        <div className="w-full h-full flex items-center justify-center bg-[#121212] text-[#FFC83D] font-display-nuvro text-4xl">
-                          AL
+                        <div className="w-full h-full flex flex-col items-center justify-center bg-[#121212] text-[#FFC83D] p-3 text-center">
+                          <span className="font-display-nuvro text-5xl leading-none">
+                            AL
+                          </span>
+                          <span className="font-mono text-[10px] text-[#AEB5C4] mt-1">
+                            COSTA RICA
+                          </span>
                         </div>
                       )}
                     </div>
 
                     <div className="sm:col-span-7 space-y-2 min-w-0">
                       <span className="inline-block px-2 py-0.5 bg-[#FFC83D] text-[#121212] border-2 border-[#121212] font-mono text-[11px] font-bold uppercase">
-                        Fundador · NUVRO
+                        {lang === 'es' ? 'Fundador · NUVRO' : 'Founder · NUVRO'}
                       </span>
                       <h3 className="font-display-nuvro text-3xl text-[#121212]">
                         Anderson Agüero Lara
                       </h3>
                       <p className="text-sm text-[#4A4A46] leading-snug">
-                        Software Developer &amp; Digital Product Builder en
-                        Costa Rica.
+                        Software Developer &amp; Digital Product Builder · Costa
+                        Rica (UTC-6).
                       </p>
                       <a
-                        href="https://www.nuvroenginer.site"
+                        href={PROFILE_LINKS.nuvroSite}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-1 text-xs font-bold text-[#2046F0] hover:underline pt-1"
@@ -170,19 +220,31 @@ export default function About() {
                       profile.manifest.json
                     </div>
                     <pre>
-                      <code>{`{
+                      <code>
+                        {lang === 'es'
+                          ? `{
   "nombre": "Anderson Agüero Lara",
   "empresa": "NUVRO ENGINEER",
-  "ubicacion": "Costa Rica",
+  "ubicacion": "Costa Rica (UTC-6)",
   "foco": [
-    "Desarrollo web moderno",
-    "CRM & herramientas comerciales",
-    "APIs, automatización e IA"
+    "Aplicaciones web React & TypeScript",
+    "Servicios Python (FastAPI) & Docker",
+    "CRM, automatización e IA aplicada"
   ]
-}`}</code>
+}`
+                          : `{
+  "name": "Anderson Agüero Lara",
+  "company": "NUVRO ENGINEER",
+  "location": "Costa Rica (UTC-6)",
+  "focus": [
+    "React & TypeScript web applications",
+    "Python (FastAPI) & Docker backends",
+    "CRM tooling, automation & applied AI"
+  ]
+}`}
+                      </code>
                     </pre>
                   </div>
-                </div>
                 </div>
               </div>
             </ScrollReveal>

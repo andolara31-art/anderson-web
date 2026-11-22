@@ -1,6 +1,9 @@
 import React from 'react';
+import { useLanguage } from '../context/LanguageContext';
+import { PROFILE_LINKS } from '../data/profile';
 
 export default function Footer() {
+  const { lang } = useLanguage();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -13,26 +16,27 @@ export default function Footer() {
           <span aria-hidden="true" className="text-white/25">
             ·
           </span>
-          <span className="text-xs text-[#AEB5C4]">
-            Costa Rica
-          </span>
+          <span className="text-xs text-[#AEB5C4]">Costa Rica (UTC-6)</span>
         </div>
 
         <p className="text-xs text-[#AEB5C4] text-center">
-          &copy; {currentYear} Anderson Agüero Lara · The Engineer Behind NUVRO
+          &copy; {currentYear} Anderson Agüero Lara ·{' '}
+          {lang === 'es'
+            ? 'The Engineer Behind NUVRO'
+            : 'Full-Stack Software Developer'}
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-5 text-xs font-mono font-bold uppercase tracking-wider">
           <a
-            href="https://www.nuvroenginer.site"
+            href={PROFILE_LINKS.linkedin}
             target="_blank"
             rel="noopener noreferrer"
             className="text-[#FFC83D] hover:text-[#FFFFFF] transition-colors"
           >
-            NUVRO ENGINEER
+            LinkedIn
           </a>
           <a
-            href="https://github.com/andolara31-art"
+            href={PROFILE_LINKS.github}
             target="_blank"
             rel="noopener noreferrer"
             className="text-[#D6D8DF] hover:text-[#FFC83D] transition-colors"
@@ -40,7 +44,15 @@ export default function Footer() {
             GitHub
           </a>
           <a
-            href="https://wa.me/50671757171"
+            href={PROFILE_LINKS.nuvroSite}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[#D6D8DF] hover:text-[#FFC83D] transition-colors"
+          >
+            NUVRO ENGINEER
+          </a>
+          <a
+            href={PROFILE_LINKS.whatsapp}
             target="_blank"
             rel="noopener noreferrer"
             className="text-[#D6D8DF] hover:text-[#FFC83D] transition-colors"

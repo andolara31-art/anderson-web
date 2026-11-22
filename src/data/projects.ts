@@ -2,223 +2,239 @@ import type { ProjectItem } from '../types';
 
 export const PROJECTS: ProjectItem[] = [
   {
-    id: 'nuvro-engineer',
-    title: 'NUVRO ENGINEER',
-    category: 'Plataforma empresarial / Desarrollo web',
-    filterGroup: 'productos',
-    nature: 'empresa',
-    natureLabel: 'Empresa fundada',
-    shortDescription:
-      'Ecosistema web y plataforma comercial de soluciones digitales, automatización e inteligencia artificial para negocios en Costa Rica.',
-    problem:
-      'Muchos negocios locales dependen únicamente de redes sociales sin una estructura web clara para explicar sus servicios, capturar consultas y presentar demostraciones interactivas.',
-    solution:
-      'Diseño y desarrollo de una plataforma multipágina con identidad cómic tecnológica propia, demostraciones interactivas de menús y webs, buscador interno, casos reales y flujo directo a WhatsApp.',
-    stack: ['React', 'TypeScript', 'Tailwind CSS', 'Vite'],
-    image: 'https://www.nuvroenginer.site/assets/brand/nuvro-og-marca-v2.jpg',
-    imageAlt: 'Identidad visual y plataforma web de NUVRO ENGINEER',
-    liveUrl: 'https://www.nuvroenginer.site',
-    repoUrl: 'https://github.com/andolara31-art/nuvroengineer-',
-    featured: true,
-    accentTone: 'blue',
-  },
-  {
-    id: 'leadpilot-crm',
-    title: 'LeadPilot',
-    category: 'Aplicación comercial / CRM',
+    id: 'nuvro-asset-studio',
+    title: 'NUVRO ASSET STUDIO',
+    category: {
+      es: 'App web en vivo / Video Engine 3.0',
+      en: 'Live Web App / Video Engine 3.0',
+    },
     filterGroup: 'productos',
     nature: 'producto',
-    natureLabel: 'Producto en vivo',
-    shortDescription:
-      'Herramienta web orientada a organizar prospectos y dar seguimiento estructurado a procesos comerciales.',
-    problem:
-      'El seguimiento manual de prospectos en chats y hojas dispersas provoca pérdida de contexto y oportunidades comerciales.',
-    solution:
-      'Interfaz centralizada para registrar prospectos, visualizar estados de seguimiento y ordenar el flujo comercial en un entorno web ágil.',
-    stack: ['Next.js', 'TypeScript', 'Supabase'],
-    image:
-      'https://fwjdikkenbolqnyadgyq.supabase.co/storage/v1/object/sign/ima/hf_20260315_144821_292329d5-191d-46bd-a75f-d73a0598a277%20(1).png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jNTU1MzE4Ny1lNWQ2LTQyN2ItYjQzZi1kZjVlZWE4MzAwZGEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJpbWEvaGZfMjAyNjAzMTVfMTQ0ODIxXzI5MjMyOWQ1LTE5MWQtNDZiZC1hNzVmLWQ3M2EwNTk4YTI3NyAoMSkucG5nIiwiaWF0IjoxNzczNTkyNjIwLCJleHAiOjE4MDUxMjg2MjB9.gtFos3VqGtj9tnp9mWDrETztCnJFvngAMRKkND4vdyc',
-    imageAlt: 'Interfaz de LeadPilot para gestión de prospectos',
-    liveUrl: 'https://leadpilot-pi.vercel.app/',
+    natureLabel: {
+      es: 'Producto en vivo',
+      en: 'Live Product',
+    },
+    shortDescription: {
+      es: 'Aplicación web en producción con Video Engine 3.0 para preparar imágenes de producto por lotes y descargar videos públicos en MP4 compatible con iPhone.',
+      en: 'Production web app powered by Video Engine 3.0 for batch product image preparation and downloading public videos in iPhone-compatible MP4.',
+    },
+    problem: {
+      es: 'Equipos digitales pierden tiempo preparando imágenes por lote y lidiando con descargas de video incompatibles con iOS o utilidades sin validación de seguridad.',
+      en: 'Digital teams waste time preparing product image batches and dealing with iOS-incompatible video downloads or unvalidated utilities.',
+    },
+    solution: {
+      es: 'Frontend en React/TypeScript conectado a Vercel Serverless y un servicio Docker en Python (FastAPI) con yt-dlp, FFmpeg/ffprobe, protección SSRF y módulo de preparación de imágenes.',
+      en: 'React/TypeScript frontend wired to Vercel Serverless and a Dockerized Python (FastAPI) backend with yt-dlp, FFmpeg/ffprobe, SSRF security guards, and a batch image prep module.',
+    },
+    stack: {
+      es: [
+        'React',
+        'TypeScript',
+        'Vite',
+        'Vercel Serverless',
+        'Docker',
+        'Python (FastAPI)',
+        'yt-dlp',
+        'FFmpeg/ffprobe',
+        'Seguridad SSRF',
+        'Preparación de imágenes',
+      ],
+      en: [
+        'React',
+        'TypeScript',
+        'Vite',
+        'Vercel Serverless',
+        'Docker',
+        'Python (FastAPI)',
+        'yt-dlp',
+        'FFmpeg/ffprobe',
+        'SSRF Security',
+        'Batch Image Prep',
+      ],
+    },
+    previewId: 'nuvro-asset-studio',
+    liveUrl: 'https://nuvro-asset-studio.vercel.app',
     featured: true,
     accentTone: 'yellow',
   },
   {
-    id: 'nuvro-fit',
-    title: 'NUVRO FIT',
-    category: 'Comercio digital / Experiencia web',
+    id: 'leadpilot-crm',
+    title: 'LEADPILOT',
+    category: {
+      es: 'CRM Web SaaS / En vivo',
+      en: 'Live SaaS CRM',
+    },
     filterGroup: 'productos',
     nature: 'producto',
-    natureLabel: 'Proyecto de marca',
-    shortDescription:
-      'Plataforma digital de marca enfocada en suplementación deportiva, rendimiento físico y experiencia visual directa.',
-    problem:
-      'Comunicar una propuesta fitness con identidad propia y navegación clara para presentar catálogo y posicionamiento de marca.',
-    solution:
-      'Experiencia web de alto contraste orientada a producto, jerarquía tipográfica directa y presentación enfocada en conversión.',
-    stack: ['React', 'TypeScript', 'Tailwind CSS'],
-    image:
-      'https://fwjdikkenbolqnyadgyq.supabase.co/storage/v1/object/sign/ima/image.webp?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jNTU1MzE4Ny1lNWQ2LTQyN2ItYjQzZi1kZjVlZWE4MzAwZGEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJpbWEvaW1hZ2Uud2VicCIsImlhdCI6MTc3MzYwNjU5MiwiZXhwIjoxODA1MTQyNTkyfQ.SpYXvZzRKYd0xfyR7NRPtVj_TLug_bQTpfKHGm0atr8',
-    imageAlt: 'Vista principal de la marca NUVRO FIT',
-    liveUrl: 'https://www.nuvro.shop/',
+    natureLabel: {
+      es: 'SaaS en vivo',
+      en: 'Live SaaS',
+    },
+    shortDescription: {
+      es: 'CRM web SaaS en vivo para gestión de prospectos, control de seguimiento y organización comercial en tiempo real.',
+      en: 'Live SaaS CRM web application for lead management, pipeline tracking, and structured sales follow-ups.',
+    },
+    problem: {
+      es: 'El seguimiento manual de prospectos en chats y hojas dispersas provoca pérdida de contexto y oportunidades comerciales.',
+      en: 'Tracking leads manually across scattered chats and spreadsheets causes lost context and missed commercial opportunities.',
+    },
+    solution: {
+      es: 'Plataforma web centralizada construida con React/Next.js, TypeScript y Supabase para registrar prospectos, visualizar estados y ordenar el pipeline comercial.',
+      en: 'Centralized web workspace built with React/Next.js, TypeScript, and Supabase to capture leads, monitor stages, and execute commercial follow-up.',
+    },
+    stack: {
+      es: ['React', 'Next.js', 'TypeScript', 'Supabase'],
+      en: ['React', 'Next.js', 'TypeScript', 'Supabase'],
+    },
+    previewId: 'leadpilot-crm',
+    liveUrl: 'https://leadpilot-pi.vercel.app',
+    featured: true,
     accentTone: 'mint',
-  },
-  {
-    id: 'kiss-by-may',
-    title: 'Kiss by May',
-    category: 'Identidad & Catálogo digital',
-    filterGroup: 'casos',
-    nature: 'caso-real',
-    natureLabel: 'Caso real · cliente',
-    shortDescription:
-      'Renovación de identidad visual, piezas para redes y catálogo digital de 656 perfumes con precios en colones para envío por WhatsApp.',
-    problem:
-      'La tienda contaba con buen inventario pero carecía de consistencia visual, logotipo nítido y un catálogo ordenado para atender consultas rápidas.',
-    solution:
-      'Definición de sistema visual de marca, rediseño de historias informativas (pagos SINPE y entregas) y estructuración de catálogo digital listo para compartir.',
-    stack: ['Sistema de Marca', 'Catálogo Digital', 'Figma'],
-    image:
-      'https://www.nuvroenginer.site/trabajos/kiss-by-may/catalogo-pagina-600.webp',
-    imageAlt: 'Página de catálogo digital de perfumes Kiss by May',
-    liveUrl: 'https://www.nuvroenginer.site/casos/kiss-by-may',
-    accentTone: 'coral',
   },
   {
     id: 'nuvro-crm',
     title: 'NUVRO CRM',
-    category: 'CRM / Herramientas comerciales',
+    category: {
+      es: 'Arquitectura interna / Flujos CRM',
+      en: 'Internal Architecture / CRM Workflows',
+    },
     filterGroup: 'productos',
-    nature: 'en-construccion',
-    natureLabel: 'En desarrollo · arquitectura interna',
-    shortDescription:
-      'Iniciativa interna orientada a centralizar prospectos y procesos comerciales de NUVRO ENGINEER. Módulo en evolución junto a LeadPilot.',
-    problem:
-      'Integrar la captura desde formularios web, seguimiento comercial y trazabilidad de cada consulta en un flujo único adaptado a operación local.',
-    solution:
-      'Diseño de arquitectura modular centrada en estados de prospectos, historial de contacto y conexión futura con automatizaciones. No se publican funciones sin verificar en producción.',
-    stack: ['TypeScript', 'React', 'APIs / Webhooks'],
+    nature: 'arquitectura',
+    natureLabel: {
+      es: 'Arquitectura interna',
+      en: 'Internal Architecture',
+    },
+    shortDescription: {
+      es: 'Arquitectura interna de gestión de prospectos y flujos comerciales diseñada para unificar captura web, calificación y automatización.',
+      en: 'Internal lead-management architecture and commercial workflow system engineered to unify web intake, qualification, and automation.',
+    },
+    problem: {
+      es: 'Unificar la captura desde formularios web, reglas de calificación y trazabilidad operativa bajo contratos de datos estrictos.',
+      en: 'Unifying multi-channel web form capture, lead scoring rules, and operational traceability under strict typed contracts.',
+    },
+    solution: {
+      es: 'Diseño modular orientado a eventos con esquemas TypeScript, estados de seguimiento y conectores webhook preparados para integrarse con herramientas operativas.',
+      en: 'Event-driven modular architecture featuring typed TypeScript schemas, pipeline state machines, and webhook connectors.',
+    },
+    stack: {
+      es: ['TypeScript', 'React', 'PostgreSQL', 'Webhooks / APIs'],
+      en: ['TypeScript', 'React', 'PostgreSQL', 'Webhooks / APIs'],
+    },
+    previewId: 'nuvro-crm',
     accentTone: 'blue',
-    note: 'Proyecto en desarrollo interno. Se muestra representación estructural de módulos sin atribuir funciones productivas no verificadas.',
+    note: {
+      es: 'Sistema de arquitectura interna de NUVRO ENGINEER documentado a nivel de módulos y flujo de datos.',
+      en: 'Internal NUVRO ENGINEER system architecture documented at the module and data-flow level.',
+    },
   },
   {
-    id: 'cafeoteca',
-    title: 'Cafeoteca Costa Rica',
-    category: 'Diseño web editorial',
-    filterGroup: 'webs',
-    nature: 'propuesta',
-    natureLabel: 'Propuesta de diseño',
-    shortDescription:
-      'Propuesta de sitio web editorial para cafetería de especialidad en Costa Rica, con animaciones de scroll y mapa de regiones cafetaleras.',
-    problem:
-      'Transmitir el origen del café costarricense y el reconocimiento internacional del espacio mediante una narrativa visual inmersiva.',
-    solution:
-      'Desarrollo de interfaz editorial con recorrido por regiones cafetaleras, ritmo tipográfico cuidado y transiciones fluidas al hacer scroll.',
-    stack: ['React', 'TypeScript', 'Tailwind CSS'],
-    image:
-      'https://fwjdikkenbolqnyadgyq.supabase.co/storage/v1/object/sign/ima/WhatsApp%20Image%202026-03-19%20at%2010.01.37%20PM.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jNTU1MzE4Ny1lNWQ2LTQyN2ItYjQzZi1kZjVlZWE4MzAwZGEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJpbWEvV2hhdHNBcHAgSW1hZ2UgMjAyNi0wMy0xOSBhdCAxMC4wMS4zNyBQTS5qcGVnIiwiaWF0IjoxNzczOTc5OTUxLCJleHAiOjE4MDU1MTU5NTF9.3BrfjuPPPM8n4g_jueS3KqpYOF_1UGYHB_3DF-pMiIg',
-    imageAlt: 'Captura de la propuesta web Cafeoteca Costa Rica',
-    liveUrl: 'https://cafeoteca-website.vercel.app',
+    id: 'nuvro-fit',
+    title: 'NUVRO FIT',
+    category: {
+      es: 'E-commerce de marca / Dominio propio',
+      en: 'Brand E-Commerce / Custom Domain',
+    },
+    filterGroup: 'productos',
+    nature: 'producto',
+    natureLabel: {
+      es: 'Plataforma en vivo',
+      en: 'Live Storefront',
+    },
+    shortDescription: {
+      es: 'Plataforma e-commerce de marca con dominio propio enfocada en suplementación deportiva, ropa fitness y experiencia de compra directa.',
+      en: 'Custom-domain brand e-commerce platform focused on sports supplementation, fitness apparel, and direct product navigation.',
+    },
+    problem: {
+      es: 'Presentar una línea fitness con identidad visual propia, catálogo claro y conversión directa sin plantillas genéricas.',
+      en: 'Launching a fitness brand with a distinct identity, clear catalog browsing, and direct conversion without generic templates.',
+    },
+    solution: {
+      es: 'Tienda web responsive de alto contraste con jerarquía orientada a producto, despliegue en dominio propio y flujo ágil de consultas.',
+      en: 'High-contrast responsive storefront deployed on a custom domain with product-first hierarchy and fast inquiry routing.',
+    },
+    stack: {
+      es: ['React', 'TypeScript', 'Tailwind CSS', 'Vercel'],
+      en: ['React', 'TypeScript', 'Tailwind CSS', 'Vercel'],
+    },
+    previewId: 'nuvro-fit',
+    liveUrl: 'https://www.nuvro.shop',
     accentTone: 'mint',
   },
   {
-    id: 'cantaritos',
-    title: 'Cantaritos',
-    category: 'Web & Menú digital',
-    filterGroup: 'webs',
-    nature: 'propuesta',
-    natureLabel: 'Propuesta de diseño',
-    shortDescription:
-      'Propuesta web y menú digital pensada para restaurante y pub, optimizada para consulta rápida desde el teléfono.',
-    problem:
-      'Facilitar la lectura del menú y la identidad del local en dispositivos móviles sin archivos PDF pesados.',
-    solution:
-      'Maquetación móvil directa por secciones, navegación táctil y despliegue rápido en Vercel.',
-    stack: ['React', 'Tailwind CSS', 'Vercel'],
-    image:
-      'https://www.nuvroenginer.site/trabajos/webs/cantaritos_arriba.webp',
-    imageAlt: 'Captura móvil de la propuesta web Cantaritos',
-    liveUrl: 'https://cantaritos-xi.vercel.app',
-    accentTone: 'yellow',
-  },
-  {
-    id: 'clandestino',
-    title: 'Clandestino',
-    category: 'Web & Menú digital',
-    filterGroup: 'webs',
-    nature: 'propuesta',
-    natureLabel: 'Propuesta de diseño',
-    shortDescription:
-      'Propuesta de diseño web y carta digital enfocada en cocina peruana, con jerarquía visual clara para platillos y bebidas.',
-    problem:
-      'Presentar una propuesta gastronómica especializada de forma ordenada y atractiva desde cualquier celular.',
-    solution:
-      'Estructura web limpia centrada en fotografía gastronómica, categorías accesibles y carga ligera.',
-    stack: ['React', 'Tailwind CSS', 'Vercel'],
-    image:
-      'https://www.nuvroenginer.site/trabajos/webs/clandestino_arriba.webp',
-    imageAlt: 'Captura móvil de la propuesta web Clandestino',
-    liveUrl: 'https://clandestino-beta.vercel.app',
+    id: 'fumigadora-dds',
+    title: 'FUMIGADORA DDS',
+    category: {
+      es: 'Cliente real / Producción 24/7',
+      en: 'Real Client / Production Site',
+    },
+    filterGroup: 'casos',
+    nature: 'caso-real',
+    natureLabel: {
+      es: 'Cliente en producción',
+      en: 'Client Production',
+    },
+    shortDescription: {
+      es: 'Sitio comercial en producción para cliente real con dominio propio, enfocado en servicios de control de plagas en las 7 provincias de Costa Rica.',
+      en: 'Production commercial website for a real client on a custom domain, serving pest-control operations across all 7 provinces of Costa Rica.',
+    },
+    problem: {
+      es: 'El negocio necesitaba presencia digital confiable, respaldo de certificación sanitaria y captura rápida de solicitudes de servicio 24/7.',
+      en: 'The company needed a trustworthy web presence highlighting regulatory certification and fast 24/7 service lead capture.',
+    },
+    solution: {
+      es: 'Sitio web comercial optimizado para SEO local, velocidad móvil, detalle claro de cobertura nacional y canal directo de cotización.',
+      en: 'Commercial web platform optimized for local SEO, mobile speed, nationwide coverage clarity, and direct quote conversion.',
+    },
+    stack: {
+      es: ['React', 'TypeScript', 'Tailwind CSS', 'SEO Local'],
+      en: ['React', 'TypeScript', 'Tailwind CSS', 'Local SEO'],
+    },
+    previewId: 'fumigadora-dds',
+    liveUrl: 'https://www.fumigadoradds.com',
     accentTone: 'coral',
   },
   {
-    id: 'la-catrina-azul',
-    title: 'La Catrina Azul',
-    category: 'Web & Menú digital',
-    filterGroup: 'webs',
-    nature: 'propuesta',
-    natureLabel: 'Propuesta de diseño',
-    shortDescription:
-      'Sitio web y carta digital de cocina mexicana en Palmares, Alajuela, con código abierto verificable en GitHub.',
-    problem:
-      'Dar presencia digital estructurada a la propuesta gastronómica y facilitar el acceso a su menú y ubicación.',
-    solution:
-      'Web responsive construida con React y Tailwind CSS, optimizada para navegación móvil en restaurante.',
-    stack: ['React', 'TypeScript', 'Tailwind CSS'],
-    image:
-      'https://www.nuvroenginer.site/trabajos/webs/lacatrina-azul-website_arriba.webp',
-    imageAlt: 'Captura móvil de La Catrina Azul',
-    liveUrl: 'https://lacatrina-azul-website.vercel.app',
-    repoUrl: 'https://github.com/andolara31-art/lacatrina-azul-website',
+    id: 'nuvro-engineer-kiss-by-may',
+    title: 'NUVRO ENGINEER + KISS BY MAY',
+    category: {
+      es: 'Agencia fundada & Caso real (656 SKUs)',
+      en: 'Founded Studio & Client Case (656 SKUs)',
+    },
+    filterGroup: 'casos',
+    nature: 'empresa',
+    natureLabel: {
+      es: 'Agencia & Caso real',
+      en: 'Agency & Case Study',
+    },
+    shortDescription: {
+      es: 'Agencia de desarrollo fundada en Costa Rica y caso real de presencia comercial junto al catálogo digital estructurado de 656 productos para Kiss by May.',
+      en: 'Founded software studio in Costa Rica paired with a real commercial case study featuring a structured 656-product digital catalog for Kiss by May.',
+    },
+    problem: {
+      es: 'Negocios locales requerían una presencia web profesional y catálogos extensos (656 ítems con precios en colones) fáciles de consultar desde móvil.',
+      en: 'Local businesses needed professional web architecture and large inventories (656 priced SKUs) formatted for instant mobile browsing.',
+    },
+    solution: {
+      es: 'Plataforma web de NUVRO ENGINEER con identidad propia, demostraciones interactivas y despliegue del caso real de catálogo e identidad comercial Kiss by May.',
+      en: 'Custom NUVRO ENGINEER platform with interactive demos plus delivery of the Kiss by May visual system and 656-item digital catalog.',
+    },
+    stack: {
+      es: ['React', 'TypeScript', 'Tailwind CSS', 'Vite', 'Arquitectura UI'],
+      en: ['React', 'TypeScript', 'Tailwind CSS', 'Vite', 'UI Architecture'],
+    },
+    image: 'https://www.nuvroenginer.site/assets/brand/nuvro-og-marca-v2.jpg',
+    imageFit: 'contain',
+    imageAlt: {
+      es: 'NUVRO ENGINEER — Agencia fundada y caso real Kiss by May',
+      en: 'NUVRO ENGINEER — Founded studio and Kiss by May case study',
+    },
+    liveUrl: 'https://www.nuvroenginer.site',
+    repoUrl: 'https://github.com/andolara31-art/nuvroengineer-',
+    featured: true,
     accentTone: 'blue',
-  },
-  {
-    id: 'el-barbero',
-    title: "El Barbero Gentlemen's Shop",
-    category: 'Diseño web / Dark luxury',
-    filterGroup: 'webs',
-    nature: 'propuesta',
-    natureLabel: 'Propuesta de diseño',
-    shortDescription:
-      'Propuesta de rediseño web para barbería con tres sucursales en Costa Rica, estética dark luxury y transiciones suaves.',
-    problem:
-      'Unificar la presencia digital de múltiples sucursales bajo una identidad visual de mayor nivel.',
-    solution:
-      'Interfaz oscura de alto contraste con animaciones fluidas con Motion y estructura pensada para reservas y ubicación.',
-    stack: ['React', 'Tailwind CSS', 'Motion'],
-    image:
-      'https://fwjdikkenbolqnyadgyq.supabase.co/storage/v1/object/sign/ima/WhatsApp%20Image%202026-03-19%20at%209.50.49%20PM.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jNTU1MzE4Ny1lNWQ2LTQyN2ItYjQzZi1kZjVlZWE4MzAwZGEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJpbWEvV2hhdHNBcHAgSW1hZ2UgMjAyNi0wMy0xOSBhdCA5LjUwLjQ5IFBNLmpwZWciLCJpYXQiOjE3NzM5Nzg2NzgsImV4cCI6MTgwNTUxNDY3OH0.cGHr_QsNngnQ29QxpCK8ZthOISkpV9bfY4mErLehL2A',
-    imageAlt: "Captura de la propuesta web El Barbero Gentlemen's Shop",
-    liveUrl: 'https://elbarbero-website.vercel.app',
-    accentTone: 'yellow',
-  },
-  {
-    id: 'clario-advisory',
-    title: 'Clario Advisory',
-    category: 'Web corporativa',
-    filterGroup: 'webs',
-    nature: 'propuesta',
-    natureLabel: 'Propuesta de diseño',
-    shortDescription:
-      'Propuesta web corporativa para firma de consultoría, enfocada en claridad editorial, tipografía limpia y velocidad.',
-    problem:
-      'Comunicar servicios de asesoría estratégica sin saturación visual ni plantillas pesadas.',
-    solution:
-      'Arquitectura modular con React, TypeScript y Tailwind CSS orientada a lectura ejecutiva.',
-    stack: ['React', 'TypeScript', 'Tailwind CSS', 'Motion'],
-    image:
-      'https://fwjdikkenbolqnyadgyq.supabase.co/storage/v1/object/sign/ima/WhatsApp%20Image%202026-03-15%20at%209.33.12%20AM.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jNTU1MzE4Ny1lNWQ2LTQyN2ItYjQzZi1kZjVlZWE4MzAwZGEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJpbWEvV2hhdHNBcHAgSW1hZ2UgMjAyNi0wMy0xNSBhdCA5LjMzLjEyIEFNLmpwZWciLCJpYXQiOjE3NzM1OTI3MTMsImV4cCI6MTgwNTEyODcxM30.oaw1yt9z6sVfCjS-wEh8zDtK6lr0K-Y1ScZ5T6E8B3I',
-    imageAlt: 'Captura de la propuesta web Clario Advisory',
-    liveUrl: 'https://clario-advisory.vercel.app/',
-    accentTone: 'blue',
+    note: {
+      es: 'Incluye el caso publicado en nuvroenginer.site/casos/kiss-by-may con catálogo digital de 656 productos.',
+      en: 'Includes the published case study at nuvroenginer.site/casos/kiss-by-may featuring a 656-product digital catalog.',
+    },
   },
 ];

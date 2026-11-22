@@ -1,27 +1,25 @@
 import React, { useState } from 'react';
-import {
-  Bot,
-  Code2,
-  Database,
-  Palette,
-} from 'lucide-react';
+import { Bot, Code2, Database, Palette } from 'lucide-react';
 import { TECH_CATEGORIES } from '../data/stackAndLab';
-import type { ExperienceLevel, TechCategory } from '../types';
+import type { ExperienceLevelKey, TechCategory } from '../types';
 import ScrollReveal from './ScrollReveal';
 import TornEdge from './TornEdge';
-import BatmanPeek from './BatmanPeek';
+import { useLanguage } from '../context/LanguageContext';
 
-const LEVEL_OPTIONS: ('Todas' | ExperienceLevel)[] = [
-  'Todas',
-  'Uso profesional',
-  'Uso en proyectos',
-  'Exploración',
-];
+const LEVEL_STYLES: Record<ExperienceLevelKey, string> = {
+  professional: 'bg-[#2046F0] text-[#FFFFFF] border-[#121212]',
+  projects: 'bg-[#FFC83D] text-[#121212] border-[#121212]',
+  exploring: 'bg-[#5EDBB0] text-[#121212] border-[#121212]',
+};
 
-const LEVEL_STYLES: Record<ExperienceLevel, string> = {
-  'Uso profesional': 'bg-[#2046F0] text-[#FFFFFF] border-[#121212]',
-  'Uso en proyectos': 'bg-[#FFC83D] text-[#121212] border-[#121212]',
-  Exploración: 'bg-[#5EDBB0] text-[#121212] border-[#121212]',
+const LEVEL_LABELS: Record<
+  'all' | ExperienceLevelKey,
+  { es: string; en: string }
+> = {
+  all: { es: 'Todas', en: 'All' },
+  professional: { es: 'Uso profesional', en: 'Production use' },
+  projects: { es: 'Uso en proyectos', en: 'Project stack' },
+  exploring: { es: 'Exploración', en: 'Exploring' },
 };
 
 function getCategoryIcon(id: string) {
@@ -45,38 +43,61 @@ const ACCENT_BG: Record<TechCategory['accent'], string> = {
 };
 
 export default function Stack() {
-  const [levelFilter, setLevelFilter] = useState<'Todas' | ExperienceLevel>('Todas');
+  const { lang, pick } = useLanguage();
+  const [levelFilter, setLevelFilter] = useState<'all' | ExperienceLevelKey>(
+    'all',
+  );
+
+  const levelOptions: ('all' | ExperienceLevelKey)[] = [
+    'all',
+    'professional',
+    'projects',
+    'exploring',
+  ];
 
   return (
     <section
       id="stack"
-      className="relative bg-paper-grain py-20 md:py-28 px-4 sm:px-6 lg:px-8"
+      className="relative scroll-mt-20 bg-paper-grain py-20 md:py-28 px-4 sm:px-6 lg:px-8"
     >
       <div className="max-w-7xl mx-auto">
         <ScrollReveal>
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-12">
             <div>
               <p className="nuvro-kicker text-[#2046F0] mb-4">
-                Stack tecnológico
+                {lang === 'es' ? 'Stack tecnológico' : 'Technical Stack'}
               </p>
               <h2 className="font-display-nuvro text-[clamp(2.6rem,5.5vw,4.8rem)] text-[#121212] mb-3">
-                LAS HERRAMIENTAS DETRÁS{' '}
-                <span className="text-[#2046F0]">DEL CÓDIGO.</span>
+                {lang === 'es' ? (
+                  <>
+                    LAS HERRAMIENTAS DETRÁS{' '}
+                    <span className="text-[#2046F0]">DEL CÓDIGO.</span>
+                  </>
+                ) : (
+                  <>
+                    THE TOOLS BEHIND{' '}
+                    <span className="text-[#2046F0]">THE CODE.</span>
+                  </>
+                )}
               </h2>
               <p className="text-base sm:text-lg text-[#4A4A46] max-w-2xl leading-relaxed">
-                Organizado por área técnica y nivel real de aplicación: uso
-                profesional diario, implementación en proyectos y áreas de
-                exploración continua.
+                {lang === 'es'
+                  ? 'Organizado por área técnica y nivel real de aplicación: uso profesional diario, implementación en proyectos y exploración continua.'
+                  : 'Organized by engineering discipline and hands-on depth across production apps, deployed projects, and continuous R&D.'}
               </p>
             </div>
 
             {/* Interactive Level Filter */}
             <div
               role="group"
-              aria-label="Filtrar tecnologías por nivel de experiencia"
+              aria-label={
+                lang === 'es'
+                  ? 'Filtrar tecnologías por nivel de experiencia'
+                  : 'Filter technologies by experience level'
+              }
               className="flex flex-wrap gap-2"
             >
-              {LEVEL_OPTIONS.map((option) => {
+              {levelOptions.map((option) => {
                 const active = levelFilter === option;
                 return (
                   <button
@@ -90,7 +111,7 @@ export default function Stack() {
                         : 'bg-[#FFFFFF] text-[#121212] hover:bg-[#F7F7F4]'
                     }`}
                   >
-                    {option}
+                    {LEVEL_LABELS[option][lang]}
                   </button>
                 );
               })}
@@ -101,40 +122,25 @@ export default function Stack() {
         <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
           {TECH_CATEGORIES.map((category, idx) => {
             const filteredItems =
-              levelFilter === 'Todas'
+              levelFilter === 'all'
                 ? category.items
-                : category.items.filter((item) => item.level === levelFilter);
+                : category.items.filter(
+                    (item) => item.levelKey === levelFilter,
+                  );
 
             if (filteredItems.length === 0) return null;
 
             return (
               <ScrollReveal key={category.id} delay={idx * 0.06}>
-                <div className="relative h-full flex flex-col">
-                  {category.id === 'backend' && (
-                    <BatmanPeek
-                      edge="top-right"
-                      tone="dark"
-                      lines={['Datos vigilados', 'SQL y rutas limpias']}
-                      delay={0.12}
-                    />
-                  )}
-                  {category.id === 'ai-automation' && (
-                    <BatmanPeek
-                      edge="top-right"
-                      tone="yellow"
-                      lines={['IA aplicada real', 'Claude + Gemini']}
-                      delay={0.18}
-                    />
-                  )}
-                  <div className="comic-panel-light h-full flex flex-col flex-1">
+                <div className="comic-panel-light h-full flex flex-col">
                   {/* Category Header */}
                   <div className="p-5 sm:p-6 border-b-3 border-[#121212] bg-[#F7F7F4] flex items-start justify-between gap-4">
                     <div>
                       <h3 className="font-display-nuvro text-3xl text-[#121212] mb-1">
-                        {category.title}
+                        {pick(category.title)}
                       </h3>
                       <p className="text-xs sm:text-sm text-[#4A4A46]">
-                        {category.subtitle}
+                        {pick(category.subtitle)}
                       </p>
                     </div>
                     <span
@@ -143,7 +149,9 @@ export default function Stack() {
                     >
                       <span
                         className={
-                          category.accent === 'blue' ? 'text-[#FFFFFF]' : 'text-[#121212]'
+                          category.accent === 'blue'
+                            ? 'text-[#FFFFFF]'
+                            : 'text-[#121212]'
                         }
                       >
                         {getCategoryIcon(category.id)}
@@ -163,18 +171,17 @@ export default function Stack() {
                             {item.name}
                           </div>
                           <div className="text-xs text-[#4A4A46] leading-relaxed">
-                            {item.context}
+                            {pick(item.context)}
                           </div>
                         </div>
                         <span
-                          className={`self-start sm:self-center shrink-0 px-2.5 py-1 text-[11px] font-mono font-bold border-2 whitespace-nowrap ${LEVEL_STYLES[item.level]}`}
+                          className={`self-start sm:self-center shrink-0 px-2.5 py-1 text-[11px] font-mono font-bold border-2 whitespace-nowrap ${LEVEL_STYLES[item.levelKey]}`}
                         >
-                          {item.level}
+                          {LEVEL_LABELS[item.levelKey][lang]}
                         </span>
                       </li>
                     ))}
                   </ul>
-                  </div>
                 </div>
               </ScrollReveal>
             );

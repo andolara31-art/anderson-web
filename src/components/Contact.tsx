@@ -3,14 +3,17 @@ import {
   ArrowUpRight,
   Building2,
   Github,
+  Linkedin,
   Mail,
   MessageSquare,
   Send,
 } from 'lucide-react';
 import ScrollReveal from './ScrollReveal';
-import BatmanPeek from './BatmanPeek';
+import { useLanguage } from '../context/LanguageContext';
+import { PROFILE_LINKS } from '../data/profile';
 
 export default function Contact() {
+  const { lang } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -67,31 +70,34 @@ export default function Contact() {
 
   const channels = [
     {
-      label: 'Correo profesional',
-      value: 'anderson@nuvroenginer.site',
-      href: 'mailto:anderson@nuvroenginer.site',
+      label: lang === 'es' ? 'Correo profesional' : 'Professional Email',
+      value: PROFILE_LINKS.email,
+      href: `mailto:${PROFILE_LINKS.email}`,
       icon: <Mail size={20} aria-hidden="true" />,
       tone: '#FFC83D',
     },
     {
+      label: 'LinkedIn',
+      value:
+        lang === 'es'
+          ? 'Perfil profesional · Anderson Agüero Lara'
+          : 'Professional Profile · Anderson Agüero Lara',
+      href: PROFILE_LINKS.linkedin,
+      icon: <Linkedin size={20} aria-hidden="true" />,
+      tone: '#2046F0',
+    },
+    {
       label: 'GitHub',
       value: 'github.com/andolara31-art',
-      href: 'https://github.com/andolara31-art',
+      href: PROFILE_LINKS.github,
       icon: <Github size={20} aria-hidden="true" />,
       tone: '#5EDBB0',
     },
     {
-      label: 'WhatsApp directo',
-      value: '+506 7175 7171',
-      href: 'https://wa.me/50671757171',
+      label: lang === 'es' ? 'WhatsApp directo' : 'Direct WhatsApp',
+      value: PROFILE_LINKS.whatsappDisplay,
+      href: PROFILE_LINKS.whatsapp,
       icon: <MessageSquare size={20} aria-hidden="true" />,
-      tone: '#2046F0',
-    },
-    {
-      label: 'Empresa fundada',
-      value: 'NUVRO ENGINEER',
-      href: 'https://www.nuvroenginer.site',
-      icon: <Building2 size={20} aria-hidden="true" />,
       tone: '#FF5A4E',
     },
   ];
@@ -99,21 +105,33 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="bg-paper-grain py-20 md:py-28 px-4 sm:px-6 lg:px-8"
+      className="scroll-mt-20 bg-paper-grain py-20 md:py-28 px-4 sm:px-6 lg:px-8"
     >
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-start">
           {/* Left Column: Channels */}
           <div className="lg:col-span-6 min-w-0">
             <ScrollReveal>
-              <p className="nuvro-kicker text-[#2046F0] mb-4">Contacto</p>
+              <p className="nuvro-kicker text-[#2046F0] mb-4">
+                {lang === 'es' ? 'Contacto' : 'Contact'}
+              </p>
               <h2 className="font-display-nuvro text-[clamp(2.8rem,6vw,5rem)] text-[#121212] mb-5">
-                ¿CONSTRUIMOS ALGO{' '}
-                <span className="text-[#2046F0]">INTERESANTE?</span>
+                {lang === 'es' ? (
+                  <>
+                    ¿CONSTRUIMOS ALGO{' '}
+                    <span className="text-[#2046F0]">INTERESANTE?</span>
+                  </>
+                ) : (
+                  <>
+                    LET&apos;S BUILD SOMETHING{' '}
+                    <span className="text-[#2046F0]">IMPACTFUL.</span>
+                  </>
+                )}
               </h2>
               <p className="text-base sm:text-lg text-[#2C2C28] leading-relaxed max-w-lg mb-8">
-                Si tenés una idea, un proyecto o una oportunidad de
-                colaboración, conversemos.
+                {lang === 'es'
+                  ? 'Disponible para trabajo remoto full-stack / frontend y proyectos técnicos con clientes. Conversemos por el canal que prefirás.'
+                  : 'Available for remote full-stack / frontend roles and technical client engagements. Reach out via your preferred channel.'}
               </p>
 
               <div className="grid sm:grid-cols-2 gap-4">
@@ -121,11 +139,11 @@ export default function Contact() {
                   <a
                     key={channel.label}
                     href={channel.href}
-                    target={channel.href.startsWith('http') ? '_blank' : undefined}
+                    target={channel.href.startsWith('mailto:') ? undefined : '_blank'}
                     rel={
-                      channel.href.startsWith('http')
-                        ? 'noopener noreferrer'
-                        : undefined
+                      channel.href.startsWith('mailto:')
+                        ? undefined
+                        : 'noopener noreferrer'
                     }
                     className="comic-panel-light p-5 flex flex-col justify-between gap-4 group"
                   >
@@ -134,7 +152,8 @@ export default function Contact() {
                         className="w-10 h-10 border-2 border-[#121212] flex items-center justify-center"
                         style={{
                           backgroundColor: channel.tone,
-                          color: channel.tone === '#2046F0' ? '#FFFFFF' : '#121212',
+                          color:
+                            channel.tone === '#2046F0' ? '#FFFFFF' : '#121212',
                         }}
                       >
                         {channel.icon}
@@ -149,12 +168,29 @@ export default function Contact() {
                       <div className="font-mono text-[11px] font-bold uppercase tracking-wider text-[#4A4A46] mb-1">
                         {channel.label}
                       </div>
-                      <div className="font-bold text-sm sm:text-base text-[#121212] break-all">
+                      <div className="font-bold text-sm sm:text-base text-[#121212] break-words">
                         {channel.value}
                       </div>
                     </div>
                   </a>
                 ))}
+              </div>
+
+              <div className="mt-4">
+                <a
+                  href={PROFILE_LINKS.nuvroSite}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 font-mono text-xs font-bold text-[#121212] hover:text-[#2046F0] transition-colors"
+                >
+                  <Building2 size={15} aria-hidden="true" />
+                  <span>
+                    {lang === 'es'
+                      ? 'Estudio fundado: NUVRO ENGINEER (nuvroenginer.site)'
+                      : 'Founded Studio: NUVRO ENGINEER (nuvroenginer.site)'}
+                  </span>
+                  <ArrowUpRight size={14} aria-hidden="true" />
+                </a>
               </div>
             </ScrollReveal>
           </div>
@@ -162,19 +198,13 @@ export default function Contact() {
           {/* Right Column: Working Web3Forms Form */}
           <div className="lg:col-span-6 min-w-0">
             <ScrollReveal delay={0.1}>
-              <div className="relative comic-panel-light bg-[#FFFFFF] p-6 sm:p-8">
-                <BatmanPeek
-                  edge="top-right"
-                  tone="dark"
-                  lines={['Directo a Anderson', 'WhatsApp o correo']}
-                  delay={0.15}
-                />
+              <div className="comic-panel-light bg-[#FFFFFF] p-6 sm:p-8">
                 <div className="flex items-center justify-between gap-4 pb-4 mb-6 border-b-3 border-[#121212]">
                   <h3 className="font-display-nuvro text-3xl text-[#121212]">
-                    Enviame un mensaje
+                    {lang === 'es' ? 'Enviame un mensaje' : 'Send a message'}
                   </h3>
                   <span className="font-mono text-xs font-bold text-[#2046F0]">
-                    Respuesta directa
+                    {lang === 'es' ? 'Respuesta directa' : 'Direct reply'}
                   </span>
                 </div>
 
@@ -184,7 +214,7 @@ export default function Contact() {
                       htmlFor="contact-name"
                       className="block font-mono text-xs font-bold uppercase tracking-wider text-[#121212] mb-2"
                     >
-                      Nombre
+                      {lang === 'es' ? 'Nombre' : 'Name'}
                     </label>
                     <input
                       id="contact-name"
@@ -193,7 +223,7 @@ export default function Contact() {
                       required
                       value={formData.name}
                       onChange={handleChange}
-                      placeholder="Tu nombre"
+                      placeholder={lang === 'es' ? 'Tu nombre' : 'Your name'}
                       className="w-full min-h-[46px] px-4 py-2.5 bg-[#F7F7F4] text-[#121212] border-3 border-[#121212] placeholder-[#4A4A46]/60 focus:bg-[#FFFFFF]"
                     />
                   </div>
@@ -203,7 +233,7 @@ export default function Contact() {
                       htmlFor="contact-email"
                       className="block font-mono text-xs font-bold uppercase tracking-wider text-[#121212] mb-2"
                     >
-                      Correo electrónico
+                      {lang === 'es' ? 'Correo electrónico' : 'Email address'}
                     </label>
                     <input
                       id="contact-email"
@@ -212,7 +242,9 @@ export default function Contact() {
                       required
                       value={formData.email}
                       onChange={handleChange}
-                      placeholder="tu@correo.com"
+                      placeholder={
+                        lang === 'es' ? 'tu@correo.com' : 'you@company.com'
+                      }
                       className="w-full min-h-[46px] px-4 py-2.5 bg-[#F7F7F4] text-[#121212] border-3 border-[#121212] placeholder-[#4A4A46]/60 focus:bg-[#FFFFFF]"
                     />
                   </div>
@@ -222,7 +254,7 @@ export default function Contact() {
                       htmlFor="contact-message"
                       className="block font-mono text-xs font-bold uppercase tracking-wider text-[#121212] mb-2"
                     >
-                      Mensaje
+                      {lang === 'es' ? 'Mensaje' : 'Message'}
                     </label>
                     <textarea
                       id="contact-message"
@@ -231,7 +263,11 @@ export default function Contact() {
                       rows={4}
                       value={formData.message}
                       onChange={handleChange}
-                      placeholder="Contame sobre tu proyecto, rol o idea..."
+                      placeholder={
+                        lang === 'es'
+                          ? 'Contame sobre tu equipo, rol remoto o proyecto...'
+                          : 'Tell me about your team, remote role, or technical project...'
+                      }
                       className="w-full px-4 py-3 bg-[#F7F7F4] text-[#121212] border-3 border-[#121212] placeholder-[#4A4A46]/60 focus:bg-[#FFFFFF] resize-y"
                     />
                   </div>
@@ -241,7 +277,13 @@ export default function Contact() {
                     disabled={isSubmitting}
                     className="brand-btn brand-btn-yellow w-full disabled:opacity-60 disabled:cursor-not-allowed"
                   >
-                    {isSubmitting ? 'Enviando mensaje...' : 'Enviar mensaje'}
+                    {isSubmitting
+                      ? lang === 'es'
+                        ? 'Enviando mensaje...'
+                        : 'Sending message...'
+                      : lang === 'es'
+                        ? 'Enviar mensaje'
+                        : 'Send message'}
                     {!isSubmitting && <Send size={17} aria-hidden="true" />}
                   </button>
 
@@ -250,7 +292,9 @@ export default function Contact() {
                       role="status"
                       className="p-3 bg-[#5EDBB0] text-[#121212] border-2 border-[#121212] font-mono text-xs font-bold text-center"
                     >
-                      Mensaje enviado correctamente. Te responderé pronto.
+                      {lang === 'es'
+                        ? 'Mensaje enviado correctamente. Te responderé pronto.'
+                        : 'Message sent successfully. I will reply shortly.'}
                     </p>
                   )}
 
@@ -259,8 +303,9 @@ export default function Contact() {
                       role="status"
                       className="p-3 bg-[#FF5A4E] text-[#121212] border-2 border-[#121212] font-mono text-xs font-bold text-center"
                     >
-                      No se pudo enviar el formulario. Podés escribirme directo
-                      por WhatsApp o correo.
+                      {lang === 'es'
+                        ? 'No se pudo enviar el formulario. Podés escribirme directo por WhatsApp o correo.'
+                        : 'Could not submit the form. Feel free to reach out via email or LinkedIn.'}
                     </p>
                   )}
                 </form>

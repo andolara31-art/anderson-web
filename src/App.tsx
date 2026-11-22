@@ -9,14 +9,11 @@ import Certifications from './components/Certifications';
 import NuvroBridge from './components/NuvroBridge';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import CharacterInteraction from './components/CharacterInteraction';
-import CharacterParticleTrail from './components/CharacterParticleTrail';
-import DeveloperTerminal from './components/DeveloperTerminal';
-import { CharacterConfigProvider } from './context/CharacterConfigContext';
+import { LanguageProvider } from './context/LanguageContext';
 
 export default function App() {
   return (
-    <CharacterConfigProvider>
+    <LanguageProvider>
       <div className="min-h-screen flex flex-col">
         <Navbar />
         <main id="main-content" className="flex-1">
@@ -30,10 +27,7 @@ export default function App() {
           <Contact />
         </main>
         <Footer />
-        <CharacterInteraction />
-        <CharacterParticleTrail />
-        <DeveloperTerminal />
       </div>
-    </CharacterConfigProvider>
+    </LanguageProvider>
   );
 }

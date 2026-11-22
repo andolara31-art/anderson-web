@@ -3,9 +3,12 @@ import { ArrowUpRight } from 'lucide-react';
 import Nuvi from './Nuvi';
 import ScrollReveal from './ScrollReveal';
 import TornEdge from './TornEdge';
-import BatmanPeek from './BatmanPeek';
+import { useLanguage } from '../context/LanguageContext';
+import { PROFILE_LINKS } from '../data/profile';
 
 export default function NuvroBridge() {
+  const { lang } = useLanguage();
+
   return (
     <section
       id="nuvro"
@@ -19,37 +22,43 @@ export default function NuvroBridge() {
       <div className="max-w-7xl mx-auto relative z-10">
         <ScrollReveal>
           <div className="relative bg-[#121212] border-4 border-[#121212] shadow-[10px_10px_0_#FFC83D] p-6 sm:p-10 md:p-14 grid lg:grid-cols-12 gap-8 items-center">
-            <BatmanPeek
-              edge="top-left"
-              tone="yellow"
-              lines={['Mismo ADN NUVRO', 'Ingeniería + cómic']}
-              delay={0.14}
-            />
             <div className="lg:col-span-8 min-w-0">
               <div className="mb-4">
                 <span className="brand-sticker">
-                  Empresa fundada · NUVRO ENGINEER
+                  {lang === 'es'
+                    ? 'Empresa fundada · NUVRO ENGINEER'
+                    : 'Founded Studio · NUVRO ENGINEER'}
                 </span>
               </div>
 
               <h2 className="font-display-nuvro text-[clamp(2.6rem,5.5vw,4.8rem)] text-[#F7F7F4] mb-5">
-                DE LA IDEA <span className="text-[#FFC83D]">AL PRODUCTO.</span>
+                {lang === 'es' ? (
+                  <>
+                    DE LA IDEA <span className="text-[#FFC83D]">AL PRODUCTO.</span>
+                  </>
+                ) : (
+                  <>
+                    FROM IDEA <span className="text-[#FFC83D]">TO PRODUCT.</span>
+                  </>
+                )}
               </h2>
 
               <p className="text-base sm:text-xl text-[#D6D8DF] leading-relaxed max-w-2xl mb-8">
-                NUVRO ENGINEER es mi iniciativa de desarrollo tecnológico para
-                negocios, donde aplico diseño, software e inteligencia
-                artificial para construir soluciones digitales útiles.
+                {lang === 'es'
+                  ? 'NUVRO ENGINEER es mi iniciativa de desarrollo tecnológico donde aplico ingeniería web, diseño y automatización para construir herramientas y productos digitales en producción.'
+                  : 'NUVRO ENGINEER is my software studio where I combine frontend engineering, backend tooling, and applied AI to ship real digital products.'}
               </p>
 
               <div className="flex flex-wrap items-center gap-4">
                 <a
-                  href="https://www.nuvroenginer.site"
+                  href={PROFILE_LINKS.nuvroSite}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="brand-btn brand-btn-yellow"
                 >
-                  Conocer NUVRO ENGINEER
+                  {lang === 'es'
+                    ? 'Conocer NUVRO ENGINEER'
+                    : 'Visit NUVRO ENGINEER'}
                   <ArrowUpRight size={18} aria-hidden="true" />
                 </a>
                 <span className="font-mono text-xs text-[#AEB5C4]">
@@ -63,10 +72,16 @@ export default function NuvroBridge() {
               <Nuvi
                 pose="present"
                 width={150}
-                title="Nuvi, mascota cómic oficial de NUVRO ENGINEER"
+                title={
+                  lang === 'es'
+                    ? 'Nuvi, mascota oficial de NUVRO ENGINEER'
+                    : 'Nuvi, official mascot of NUVRO ENGINEER'
+                }
               />
               <p className="font-hand-nuvro text-2xl text-[#2046F0] mt-2 -rotate-1 text-center">
-                El mismo código, la misma firma.
+                {lang === 'es'
+                  ? 'El mismo código, la misma firma.'
+                  : 'Same engineering, same signature.'}
               </p>
             </div>
           </div>

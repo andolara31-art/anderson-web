@@ -6,85 +6,138 @@ import {
   Cpu,
   Database,
   Globe,
+  Linkedin,
   Terminal,
   Webhook,
 } from 'lucide-react';
-import { PixelSprite } from './PixelCrew';
 import TornEdge from './TornEdge';
-import BatmanPeek from './BatmanPeek';
+import { useLanguage } from '../context/LanguageContext';
+import { PROFILE_LINKS } from '../data/profile';
+import type { LocalizedText } from '../types';
 
 interface SystemNode {
   id: string;
-  label: string;
-  role: string;
+  label: LocalizedText;
+  role: LocalizedText;
   tech: string;
-  detail: string;
-  payload: string;
+  detail: LocalizedText;
+  payload: LocalizedText;
   tone: string;
 }
 
 const SYSTEM_NODES: SystemNode[] = [
   {
     id: 'frontend',
-    label: '01. Frontend & UI',
-    role: 'Interfaz y experiencia de usuario',
+    label: { es: '01. Frontend & UI', en: '01. Frontend & UI' },
+    role: {
+      es: 'Interfaz y experiencia de usuario',
+      en: 'Interfaces & user experience',
+    },
     tech: 'React · TypeScript · Tailwind CSS',
-    detail:
-      'Componentes accesibles, diseño editorial responsive y sistemas visuales propios como NUVRO ENGINEER.',
-    payload: `{
+    detail: {
+      es: 'Componentes accesibles, diseño editorial responsive y sistemas visuales propios como NUVRO ENGINEER y NUVRO ASSET STUDIO.',
+      en: 'Accessible components, responsive editorial layouts, and custom design systems powering NUVRO ENGINEER and NUVRO ASSET STUDIO.',
+    },
+    payload: {
+      es: `{
   "modulo": "frontend-system",
   "stack": ["React 19", "TypeScript", "Tailwind"],
   "enfoque": "velocidad, claridad y mobile-first"
 }`,
+      en: `{
+  "module": "frontend-system",
+  "stack": ["React 19", "TypeScript", "Tailwind"],
+  "focus": "speed, clarity, and mobile-first"
+}`,
+    },
     tone: '#2046F0',
   },
   {
     id: 'api',
-    label: '02. APIs & Flujos',
-    role: 'Conectores y automatización',
-    tech: 'REST APIs · Webhooks · Python',
-    detail:
-      'Conexión entre formularios web, webhooks, procesamiento de datos y rutas directas hacia WhatsApp.',
-    payload: `{
-  "modulo": "automation-bridge",
-  "entradas": ["Web Forms", "Webhooks"],
-  "salidas": ["CRM Pipeline", "WhatsApp Struct"]
+    label: { es: '02. Media & APIs', en: '02. Media & APIs' },
+    role: {
+      es: 'Serverless, Docker & Python FastAPI',
+      en: 'Serverless, Docker & Python FastAPI',
+    },
+    tech: 'FastAPI · FFmpeg · Vercel Serverless',
+    detail: {
+      es: 'Motor Video Engine 3.0 en NUVRO ASSET STUDIO con yt-dlp, FFmpeg/ffprobe, protección SSRF y procesamiento por lotes.',
+      en: 'Video Engine 3.0 in NUVRO ASSET STUDIO combining yt-dlp, FFmpeg/ffprobe, SSRF protection, and batch asset prep.',
+    },
+    payload: {
+      es: `{
+  "modulo": "nuvro-asset-studio",
+  "runtime": ["Vercel Serverless", "Docker", "Python FastAPI"],
+  "seguridad": "validación anti-SSRF + procesamiento por lotes"
 }`,
+      en: `{
+  "module": "nuvro-asset-studio",
+  "runtime": ["Vercel Serverless", "Docker", "Python FastAPI"],
+  "security": "SSRF protection + batch processing"
+}`,
+    },
     tone: '#FFC83D',
   },
   {
     id: 'crm',
-    label: '03. CRM & Datos',
-    role: 'Organización comercial',
-    tech: 'Supabase · SQL · LeadPilot',
-    detail:
-      'Estructuración de prospectos, catálogos comerciales y seguimiento operativo ordenado.',
-    payload: `{
+    label: { es: '03. CRM & Datos', en: '03. CRM & Data' },
+    role: {
+      es: 'Organización comercial',
+      en: 'Commercial operations',
+    },
+    tech: 'Next.js · Supabase · SQL · LeadPilot',
+    detail: {
+      es: 'Estructuración de prospectos, catálogos comerciales y seguimiento operativo ordenado en aplicaciones web en vivo.',
+      en: 'Structured prospect tracking, commercial catalogs, and operational workflows deployed in live web applications.',
+    },
+    payload: {
+      es: `{
   "modulo": "commercial-data",
-  "proyectos": ["LeadPilot", "NUVRO CRM (arch)"],
+  "producto": "https://leadpilot-pi.vercel.app",
   "persistencia": "PostgreSQL / Supabase"
 }`,
+      en: `{
+  "module": "commercial-data",
+  "product": "https://leadpilot-pi.vercel.app",
+  "persistence": "PostgreSQL / Supabase"
+}`,
+    },
     tone: '#5EDBB0',
   },
   {
     id: 'ai',
-    label: '04. IA Aplicada',
-    role: 'Asistencia y flujos inteligentes',
-    tech: 'Claude · Gemini · RAG (estudio)',
-    detail:
-      'Integración práctica de modelos de lenguaje para automatizar tareas, contenido y prototipos funcionales.',
-    payload: `{
+    label: { es: '04. IA Aplicada', en: '04. Applied AI' },
+    role: {
+      es: 'Asistencia y flujos inteligentes',
+      en: 'Intelligent workflows & RAG',
+    },
+    tech: 'Claude · Gemini · RAG',
+    detail: {
+      es: 'Integración práctica de modelos de lenguaje para automatizar tareas, contenido estructurado y prototipos funcionales.',
+      en: 'Practical LLM integration for task automation, structured generation, and reliable engineering workflows.',
+    },
+    payload: {
+      es: `{
   "modulo": "ai-integration",
   "modelos": ["Claude", "Gemini", "ChatGPT"],
   "foco": "RAG, agentes y productividad real"
 }`,
+      en: `{
+  "module": "ai-integration",
+  "models": ["Claude", "Gemini", "ChatGPT"],
+  "focus": "RAG, agents, and real productivity"
+}`,
+    },
     tone: '#FF5A4E',
   },
 ];
 
 export default function Hero() {
   const prefersReduced = useReducedMotion();
-  const [activeTab, setActiveTab] = useState<'nodos' | 'codigo' | 'terminal'>('nodos');
+  const { lang, pick } = useLanguage();
+  const [activeTab, setActiveTab] = useState<'nodos' | 'codigo' | 'terminal'>(
+    'nodos',
+  );
   const [activeNodeId, setActiveNodeId] = useState<string>('frontend');
 
   const activeNode =
@@ -108,7 +161,6 @@ export default function Hero() {
       id="home"
       className="relative bg-ink-canvas tech-grid-dark overflow-hidden pt-10 md:pt-16 pb-20 md:pb-24"
     >
-      {/* Subtle blueprint glow & halftone corner */}
       <div
         aria-hidden="true"
         className="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-[#2046F0]/15 blur-[110px] pointer-events-none"
@@ -129,7 +181,9 @@ export default function Hero() {
           >
             <div className="mb-6 flex flex-wrap items-center gap-3">
               <span className="brand-sticker">
-                Costa Rica · The Engineer Behind NUVRO
+                {lang === 'es'
+                  ? 'Costa Rica · Remoto & Proyectos Técnicos'
+                  : 'Costa Rica · Remote Engineering & Product Builder'}
               </span>
             </div>
 
@@ -145,37 +199,54 @@ export default function Hero() {
             </h1>
 
             <p className="text-lg sm:text-xl md:text-2xl font-semibold text-[#FFC83D] mb-4 max-w-xl leading-snug">
-              Desarrollo software. Construyo productos. Integro inteligencia artificial.
+              {lang === 'es'
+                ? 'Desarrollo software. Construyo productos. Integro inteligencia artificial.'
+                : 'Full-stack software developer building production web apps, media tools & applied AI.'}
             </p>
 
             <p className="text-base sm:text-lg text-[#C9CDD8] mb-8 max-w-xl leading-relaxed">
-              Creo aplicaciones web, herramientas comerciales y automatizaciones que
-              transforman ideas en soluciones digitales funcionales.
+              {lang === 'es'
+                ? 'Creo aplicaciones web en producción, herramientas comerciales, servicios con Docker/FastAPI y automatizaciones listas para resolver problemas reales.'
+                : 'I ship production React & TypeScript applications, commercial tools, Docker/FastAPI backends, and practical automation workflows.'}
             </p>
 
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+            <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3.5">
               <a
                 href="#projects"
                 className="brand-btn brand-btn-yellow w-full sm:w-auto"
               >
-                Explorar proyectos
+                {lang === 'es' ? 'Explorar proyectos' : 'Explore projects'}
                 <ArrowDown size={18} aria-hidden="true" />
               </a>
               <a
                 href="#contact"
                 className="brand-btn brand-btn-dark w-full sm:w-auto"
               >
-                Hablemos
+                {lang === 'es' ? 'Hablemos' : "Let's talk"}
                 <ArrowUpRight size={18} aria-hidden="true" />
+              </a>
+              <a
+                href={PROFILE_LINKS.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 min-h-[48px] px-4 py-2.5 border-2 border-white/25 bg-[#171B24] hover:border-[#FFC83D] hover:text-[#FFC83D] text-[#F7F7F4] text-sm font-mono font-bold transition-colors w-full sm:w-auto"
+              >
+                <Linkedin size={17} aria-hidden="true" />
+                LinkedIn
+                <ArrowUpRight size={15} aria-hidden="true" />
               </a>
             </div>
 
-            <div className="mt-8 pt-6 border-t border-white/15 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs font-mono text-[#AEB5C4]">
+            <div className="mt-8 pt-6 border-t border-white/15 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-mono text-[#AEB5C4]">
               <span>ANDERSON.AL</span>
               <span aria-hidden="true">·</span>
-              <span>Fundador de NUVRO ENGINEER</span>
+              <span>
+                {lang === 'es'
+                  ? 'Fundador de NUVRO ENGINEER'
+                  : 'Founder of NUVRO ENGINEER'}
+              </span>
               <span aria-hidden="true">·</span>
-              <span>React · TypeScript · APIs · IA</span>
+              <span>React · TypeScript · FastAPI · Docker</span>
             </div>
           </motion.div>
 
@@ -186,18 +257,12 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
           >
-            {/* Subtle integrated pixel-art sprites perched naturally on top edge */}
-            <div
-              aria-hidden="true"
-              className="flex items-end justify-between px-3 sm:px-4 -mb-1 relative z-20 pointer-events-none"
-            >
-              <span className="font-hand-nuvro text-lg sm:text-xl text-[#FFC83D] -rotate-2">
-                Tocá un nodo del sistema
+            <div className="flex items-center justify-between px-1 mb-2">
+              <span className="font-mono text-xs text-[#FFC83D]">
+                {lang === 'es'
+                  ? '→ Seleccioná un módulo para inspeccionar el stack'
+                  : '→ Select a module to inspect architecture'}
               </span>
-              <div className="flex items-end gap-3 mr-2 sm:mr-4">
-                <PixelSprite spriteName="flash" scale={3} className="px-speed" />
-                <PixelSprite spriteName="dev" scale={3} />
-              </div>
             </div>
 
             <div className="relative bg-[#141822] border-4 border-[#121212] shadow-[10px_10px_0_#2046F0] overflow-hidden">
@@ -215,13 +280,23 @@ export default function Hero() {
                 {/* Switchable Workspace Views */}
                 <div
                   role="tablist"
-                  aria-label="Vistas del entorno de desarrollo"
+                  aria-label={
+                    lang === 'es'
+                      ? 'Vistas del entorno de desarrollo'
+                      : 'Developer workspace views'
+                  }
                   className="flex items-center gap-1.5"
                 >
                   {(
                     [
-                      { id: 'nodos', label: 'Nodos API' },
-                      { id: 'codigo', label: 'sistema.ts' },
+                      {
+                        id: 'nodos',
+                        label: lang === 'es' ? 'Nodos API' : 'API Nodes',
+                      },
+                      {
+                        id: 'codigo',
+                        label: lang === 'es' ? 'sistema.ts' : 'system.ts',
+                      },
                       { id: 'terminal', label: 'Terminal' },
                     ] as const
                   ).map((tab) => (
@@ -246,92 +321,67 @@ export default function Hero() {
               {/* Workspace Body */}
               <div className="p-4 sm:p-6">
                 {activeTab === 'nodos' && (
-                  <div className="space-y-6">
-                    {/* Connected Nodes Grid */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-4">
+                  <div className="space-y-5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       {SYSTEM_NODES.map((node) => {
                         const isSelected = node.id === activeNode.id;
                         return (
-                          <div key={node.id} className="relative">
-                            <button
-                              type="button"
-                              onClick={() => setActiveNodeId(node.id)}
-                              aria-pressed={isSelected}
-                              className={`w-full h-full text-left p-3.5 border-3 transition-all cursor-pointer ${
-                                isSelected
-                                  ? 'bg-[#F7F7F4] text-[#121212] border-[#121212] shadow-[4px_4px_0_#FFC83D]'
-                                  : 'bg-[#1B202C] text-[#F7F7F4] border-[#2A3142] hover:border-[#2046F0]'
+                          <button
+                            key={node.id}
+                            type="button"
+                            onClick={() => setActiveNodeId(node.id)}
+                            aria-pressed={isSelected}
+                            className={`w-full h-full text-left p-3.5 border-3 transition-all cursor-pointer ${
+                              isSelected
+                                ? 'bg-[#F7F7F4] text-[#121212] border-[#121212] shadow-[4px_4px_0_#FFC83D]'
+                                : 'bg-[#1B202C] text-[#F7F7F4] border-[#2A3142] hover:border-[#2046F0]'
+                            }`}
+                          >
+                            <div className="flex items-center justify-between gap-2 mb-1.5">
+                              <span
+                                className="inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider"
+                                style={{
+                                  color: isSelected ? '#2046F0' : node.tone,
+                                }}
+                              >
+                                {getNodeIcon(node.id)}
+                                {pick(node.label)}
+                              </span>
+                            </div>
+                            <p
+                              className={`text-sm font-bold leading-snug ${
+                                isSelected ? 'text-[#121212]' : 'text-[#F7F7F4]'
                               }`}
                             >
-                              <div className="flex items-center justify-between gap-2 mb-1.5">
-                                <span
-                                  className="inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider"
-                                  style={{
-                                    color: isSelected ? '#2046F0' : node.tone,
-                                  }}
-                                >
-                                  {getNodeIcon(node.id)}
-                                  {node.label}
-                                </span>
-                              </div>
-                              <p
-                                className={`text-sm font-bold leading-snug ${
-                                  isSelected ? 'text-[#121212]' : 'text-[#F7F7F4]'
-                                }`}
-                              >
-                                {node.role}
-                              </p>
-                              <p
-                                className={`font-mono text-[11px] mt-1 ${
-                                  isSelected ? 'text-[#4A4A46]' : 'text-[#9AA2B4]'
-                                }`}
-                              >
-                                {node.tech}
-                              </p>
-                            </button>
-
-                            {node.id === 'frontend' && (
-                              <BatmanPeek
-                                edge="bottom-right"
-                                tone="yellow"
-                                lines={['React + TS limpio', 'UI sin plantillas']}
-                                delay={0.18}
-                              />
-                            )}
-                            {node.id === 'crm' && (
-                              <BatmanPeek
-                                edge="left-border"
-                                tone="dark"
-                                lines={['Flujo comercial real', 'Supabase + SQL']}
-                                delay={0.32}
-                              />
-                            )}
-                          </div>
+                              {pick(node.role)}
+                            </p>
+                            <p
+                              className={`font-mono text-[11px] mt-1 ${
+                                isSelected ? 'text-[#4A4A46]' : 'text-[#9AA2B4]'
+                              }`}
+                            >
+                              {node.tech}
+                            </p>
+                          </button>
                         );
                       })}
                     </div>
 
-                    {/* Active Node Inspector */}
-                    <div className="relative bg-[#0B0E14] border-2 border-[#2A3142] p-4">
-                      <BatmanPeek
-                        edge="top-right"
-                        tone="dark"
-                        lines={[`Módulo: ${activeNode.id}`, 'Inspección en vivo']}
-                        delay={0.42}
-                      />
+                    <div className="bg-[#0B0E14] border-2 border-[#2A3142] p-4">
                       <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
                         <span className="font-mono text-xs font-bold text-[#5EDBB0] uppercase tracking-wider">
-                          Nodo activo: {activeNode.label}
+                          {lang === 'es' ? 'Nodo activo:' : 'Active node:'}{' '}
+                          {pick(activeNode.label)}
                         </span>
                         <span className="font-mono text-[11px] text-[#9AA2B4]">
                           {activeNode.tech}
                         </span>
                       </div>
                       <p className="text-sm text-[#D6D8DF] leading-relaxed mb-3">
-                        {activeNode.detail}
+                        {pick(activeNode.detail)}
                       </p>
                       <pre className="font-mono text-xs text-[#C9CDD8] bg-[#141822] p-3 border border-white/10 overflow-x-auto leading-relaxed">
-                        <code>{activeNode.payload}</code>
+                        <code>{pick(activeNode.payload)}</code>
                       </pre>
                     </div>
                   </div>
@@ -343,23 +393,43 @@ export default function Hero() {
                       src/architecture/anderson.ts
                     </div>
                     <pre className="text-[#F7F7F4]">
-                      <code>{`export const engineerProfile = {
+                      <code>
+                        {lang === 'es'
+                          ? `export const engineerProfile = {
   nombre: "Anderson Agüero Lara",
   marca: "ANDERSON.AL",
   empresaFundada: "NUVRO ENGINEER",
-  ubicacion: "Costa Rica",
+  ubicacion: "Costa Rica (Disponible remoto)",
   especialidad: [
-    "Aplicaciones web en React + TypeScript",
-    "Herramientas comerciales y CRM",
-    "Integración de APIs y automatización",
+    "React + TypeScript + Vite",
+    "Vercel Serverless + Docker + Python (FastAPI)",
+    "CRM, procesamiento media y automatización",
     "Inteligencia artificial aplicada",
   ],
-  proyectosEnVivo: [
+  enProduccion: [
+    "https://nuvro-asset-studio.vercel.app",
     "https://www.nuvroenginer.site",
     "https://leadpilot-pi.vercel.app",
-    "https://www.nuvro.shop",
   ],
-} as const;`}</code>
+} as const;`
+                          : `export const engineerProfile = {
+  name: "Anderson Agüero Lara",
+  brand: "ANDERSON.AL",
+  foundedStudio: "NUVRO ENGINEER",
+  location: "Costa Rica (Remote-ready)",
+  specialties: [
+    "React + TypeScript + Vite",
+    "Vercel Serverless + Docker + Python (FastAPI)",
+    "CRM tooling, media pipelines & automation",
+    "Applied AI engineering",
+  ],
+  liveProducts: [
+    "https://nuvro-asset-studio.vercel.app",
+    "https://www.nuvroenginer.site",
+    "https://leadpilot-pi.vercel.app",
+  ],
+} as const;`}
+                      </code>
                     </pre>
                   </div>
                 )}
@@ -371,22 +441,35 @@ export default function Hero() {
                       <span>anderson@nuvro:~/ecosistema</span>
                     </div>
                     <p className="text-[#F7F7F4]">
-                      $ inspect --ecosistema nuvro-engineer
+                      $ inspect --production nuvro-stack
                     </p>
                     <p className="text-[#C9CDD8]">
-                      → web-principal: <span className="text-[#FFC83D]">nuvroenginer.site</span> (React · Vite · CSS Comic System)
+                      → asset-studio:{' '}
+                      <span className="text-[#FFC83D]">
+                        nuvro-asset-studio.vercel.app
+                      </span>{' '}
+                      (React · FastAPI · Docker · FFmpeg)
                     </p>
                     <p className="text-[#C9CDD8]">
-                      → crm-prospectos: <span className="text-[#5EDBB0]">leadpilot-pi.vercel.app</span> (Next.js · Supabase)
+                      → flagship-site:{' '}
+                      <span className="text-[#5EDBB0]">nuvroenginer.site</span>{' '}
+                      (React · TypeScript · Tailwind)
                     </p>
                     <p className="text-[#C9CDD8]">
-                      → marca-digital: <span className="text-[#FFC83D]">nuvro.shop</span> (NUVRO FIT)
+                      → live-crm:{' '}
+                      <span className="text-[#FFC83D]">
+                        leadpilot-pi.vercel.app
+                      </span>{' '}
+                      (Next.js · Supabase)
                     </p>
                     <p className="text-[#C9CDD8]">
-                      → propuestas-web: Cafeoteca · Cantaritos · Clandestino · La Catrina Azul
+                      → brand-commerce:{' '}
+                      <span className="text-[#5EDBB0]">nuvro.shop</span> (NUVRO FIT)
                     </p>
                     <p className="text-[#5EDBB0]">
-                      Listo para construir el próximo producto.
+                      {lang === 'es'
+                        ? 'Listo para equipos remotos y proyectos técnicos.'
+                        : 'Ready for remote engineering roles & technical builds.'}
                     </p>
                   </div>
                 )}
@@ -397,10 +480,13 @@ export default function Hero() {
                     <span className="font-mono text-[#FFC83D] font-bold">
                       NUVRO ENGINEER
                     </span>{' '}
-                    · Empresa fundada en Costa Rica
+                    ·{' '}
+                    {lang === 'es'
+                      ? 'Empresa fundada en Costa Rica'
+                      : 'Founded in Costa Rica'}
                   </div>
                   <a
-                    href="https://www.nuvroenginer.site"
+                    href={PROFILE_LINKS.nuvroSite}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 font-mono text-xs font-bold text-[#F7F7F4] hover:text-[#FFC83D] transition-colors"

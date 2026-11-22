@@ -1,6 +1,8 @@
-import React, { useEffect } from 'react';
-import { ArrowUpRight, Github, Layers, X } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { ArrowUpRight, Github, X } from 'lucide-react';
 import type { ProjectItem } from '../types';
+import { useLanguage } from '../context/LanguageContext';
+import ProjectPreview from './ProjectPreview';
 
 interface ProjectModalProps {
   project: ProjectItem | null;
@@ -8,6 +10,13 @@ interface ProjectModalProps {
 }
 
 export default function ProjectModal({ project, onClose }: ProjectModalProps) {
+  const { lang, pick, pickList } = useLanguage();
+  const [imgFailed, setImgFailed] = useState(false);
+
+  useEffect(() => {
+    setImgFailed(false);
+  }, [project?.id]);
+
   useEffect(() => {
     if (!project) return;
 
@@ -26,6 +35,8 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
   if (!project) return null;
 
+  const stackItems = pickList(project.stack);
+
   return (
     <div
       className="fixed inset-0 z-[80] flex items-center justify-center p-4 sm:p-6 bg-[#0B0D12]/85 backdrop-blur-sm"
@@ -42,17 +53,21 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
         <div className="sticky top-0 z-20 bg-[#121212] text-[#F7F7F4] px-5 py-3.5 border-b-4 border-[#121212] flex items-center justify-between gap-4">
           <div className="flex flex-wrap items-center gap-2.5 min-w-0">
             <span className="px-2 py-0.5 bg-[#FFC83D] text-[#121212] font-mono text-[11px] font-bold uppercase">
-              {project.natureLabel}
+              {pick(project.natureLabel)}
             </span>
             <span className="font-mono text-xs text-[#C9CDD8] truncate">
-              {project.category}
+              {pick(project.category)}
             </span>
           </div>
 
           <button
             type="button"
             onClick={onClose}
-            aria-label="Cerrar ficha del proyecto"
+            aria-label={
+              lang === 'es'
+                ? 'Cerrar ficha del proyecto'
+                : 'Close project details'
+            }
             className="inline-flex items-center justify-center min-w-[44px] min-h-[44px] bg-[#1B202C] text-[#F7F7F4] border-2 border-[#F7F7F4] hover:bg-[#FFC83D] hover:text-[#121212] hover:border-[#121212] transition-colors cursor-pointer shrink-0"
           >
             <X size={20} aria-hidden="true" />
@@ -61,46 +76,27 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
         {/* Media / Visual Composition */}
         <div className="p-5 sm:p-8 space-y-6">
-          {project.image ? (
-            <div className="border-3 border-[#121212] bg-[#121212] overflow-hidden shadow-[5px_5px_0_#121212]">
+          {project.image && !imgFailed ? (
+            <div className="border-3 border-[#121212] bg-[#0E1117] overflow-hidden shadow-[5px_5px_0_#121212]">
               <img
                 src={project.image}
-                alt={project.imageAlt || project.title}
-                className="w-full max-h-[420px] object-cover object-top"
+                alt={project.imageAlt ? pick(project.imageAlt) : project.title}
+                onError={() => setImgFailed(true)}
+                className={`w-full max-h-[420px] ${
+                  project.imageFit === 'contain'
+                    ? 'object-contain p-4 mx-auto'
+                    : 'object-cover object-top'
+                }`}
                 referrerPolicy="no-referrer"
               />
             </div>
           ) : (
-            <div className="border-3 border-[#121212] bg-[#141822] text-[#F7F7F4] p-6 shadow-[5px_5px_0_#121212]">
-              <div className="flex items-center justify-between gap-2 mb-4 pb-3 border-b border-white/15">
-                <span className="inline-flex items-center gap-2 font-mono text-xs font-bold text-[#FFC83D]">
-                  <Layers size={15} aria-hidden="true" />
-                  Esquema estructural · Sin captura comercial publicada
-                </span>
-                <span className="font-mono text-[11px] text-[#9AA2B4]">
-                  {project.title}
-                </span>
-              </div>
-              <div className="grid sm:grid-cols-3 gap-3 font-mono text-xs">
-                <div className="p-3 bg-[#1B202C] border border-white/15">
-                  <div className="text-[#5EDBB0] font-bold mb-1">01. Captura</div>
-                  <div className="text-[#C9CDD8]">
-                    Entrada de prospectos desde formularios web y consultas.
-                  </div>
-                </div>
-                <div className="p-3 bg-[#1B202C] border border-white/15">
-                  <div className="text-[#FFC83D] font-bold mb-1">02. Seguimiento</div>
-                  <div className="text-[#C9CDD8]">
-                    Estados comerciales, notas internas y trazabilidad.
-                  </div>
-                </div>
-                <div className="p-3 bg-[#1B202C] border border-white/15">
-                  <div className="text-[#2046F0] font-bold mb-1">03. Conexión</div>
-                  <div className="text-[#C9CDD8]">
-                    Arquitectura preparada para automatizaciones y webhooks.
-                  </div>
-                </div>
-              </div>
+            <div className="border-3 border-[#121212] overflow-hidden shadow-[5px_5px_0_#121212] min-h-[220px]">
+              <ProjectPreview
+                previewId={project.previewId ?? 'nuvro-crm'}
+                lang={lang}
+                compact={false}
+              />
             </div>
           )}
 
@@ -113,7 +109,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               {project.title}
             </h3>
             <p className="text-base sm:text-lg text-[#2C2C28] leading-relaxed">
-              {project.shortDescription}
+              {pick(project.shortDescription)}
             </p>
           </div>
 
@@ -121,18 +117,18 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           <div className="grid md:grid-cols-2 gap-4">
             <div className="bg-[#FFFFFF] border-3 border-[#121212] p-5">
               <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-[#2046F0] mb-2">
-                Problema que aborda
+                {lang === 'es' ? 'Problema que aborda' : 'Problem addressed'}
               </h4>
               <p className="text-sm text-[#2C2C28] leading-relaxed">
-                {project.problem}
+                {pick(project.problem)}
               </p>
             </div>
             <div className="bg-[#FFFFFF] border-3 border-[#121212] p-5">
               <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-[#2046F0] mb-2">
-                Solución desarrollada
+                {lang === 'es' ? 'Solución desarrollada' : 'Built solution'}
               </h4>
               <p className="text-sm text-[#2C2C28] leading-relaxed">
-                {project.solution}
+                {pick(project.solution)}
               </p>
             </div>
           </div>
@@ -140,13 +136,15 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           {/* Stack & Transparency Note */}
           <div className="bg-[#ECECE8] border-3 border-[#121212] p-4 space-y-2">
             <div className="font-mono text-xs font-bold uppercase tracking-wider text-[#121212]">
-              Stack tecnológico verificado
+              {lang === 'es'
+                ? 'Stack tecnológico'
+                : 'Technical stack'}
             </div>
             <div className="flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-xs sm:text-sm text-[#2C2C28]">
-              {project.stack.map((tech, idx) => (
+              {stackItems.map((tech, idx) => (
                 <React.Fragment key={tech}>
                   <span className="font-semibold">{tech}</span>
-                  {idx < project.stack.length - 1 && (
+                  {idx < stackItems.length - 1 && (
                     <span aria-hidden="true" className="text-[#2046F0]">
                       ·
                     </span>
@@ -156,7 +154,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             </div>
             {project.note && (
               <p className="text-xs text-[#4A4A46] pt-2 border-t border-[#121212]/15">
-                {project.note}
+                {pick(project.note)}
               </p>
             )}
           </div>
@@ -170,7 +168,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                 rel="noopener noreferrer"
                 className="brand-btn brand-btn-yellow"
               >
-                Visitar sitio en vivo
+                {lang === 'es' ? 'Visitar sitio en vivo' : 'Open live site'}
                 <ArrowUpRight size={17} aria-hidden="true" />
               </a>
             )}
@@ -182,7 +180,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                 className="brand-btn"
               >
                 <Github size={17} aria-hidden="true" />
-                Ver repositorio
+                {lang === 'es' ? 'Ver repositorio' : 'View repository'}
               </a>
             )}
             <button
@@ -190,7 +188,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               onClick={onClose}
               className="ml-auto font-mono text-xs font-bold uppercase tracking-wider text-[#121212] hover:text-[#2046F0] underline underline-offset-4 py-2 px-1 cursor-pointer"
             >
-              Cerrar ficha
+              {lang === 'es' ? 'Cerrar ficha' : 'Close'}
             </button>
           </div>
         </div>
