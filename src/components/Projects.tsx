@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React, { Suspense, lazy, useState } from 'react';
 import { ArrowUpRight, Eye, Github, Lock } from 'lucide-react';
 import { PROJECTS } from '../data/projects';
 import type { ProjectCategoryFilter, ProjectItem } from '../types';
 import ScrollReveal from './ScrollReveal';
-import ProjectModal from './ProjectModal';
 import ProjectPreview from './ProjectPreview';
 import TornEdge from './TornEdge';
 import { useLanguage } from '../context/LanguageContext';
+
+const ProjectModal = lazy(() => import('./ProjectModal'));
+const preloadProjectModal = () => {
+  void import('./ProjectModal');
+};
 
 const ACCENT_HEX: Record<ProjectItem['accentTone'], string> = {
   blue: '#2046F0',
@@ -28,7 +32,7 @@ function ProjectCard({
   const { lang, pick, pickList } = useLanguage();
   const accent = ACCENT_HEX[project.accentTone];
   const stackItems = pickList(project.stack);
-  const isFirstFlagship = index === 0 && project.id === 'nuvro-asset-studio';
+  const isFirstFlagship = index === 0 && project.id === 'nuvro-crm-hacienda';
 
   return (
     <article
@@ -37,23 +41,24 @@ function ProjectCard({
       }`}
     >
       {/* Visual Frame */}
-      <div className="relative bg-[#121212] border-b-3 border-[#121212] overflow-hidden aspect-[16/10]">
+      <div className="relative bg-[var(--preview-bg)] border-b-3 border-[var(--card-border)] overflow-hidden aspect-[16/10]">
         {project.image && !imgFailed ? (
           <img
             src={project.image}
             alt={project.imageAlt ? pick(project.imageAlt) : project.title}
             loading="lazy"
+            decoding="async"
             referrerPolicy="no-referrer"
             onError={() => setImgFailed(true)}
             className={`w-full h-full transition-transform duration-500 ${
               project.imageFit === 'contain'
-                ? 'object-contain bg-[#0E1117] p-2.5'
+                ? 'object-contain bg-[var(--preview-img-frame)] p-2.5'
                 : 'object-cover object-top hover:scale-[1.03]'
             }`}
           />
         ) : (
           <ProjectPreview
-            previewId={project.previewId ?? 'nuvro-clips-ia'}
+            previewId={project.previewId ?? 'nuvro-crm-hacienda'}
             lang={lang}
           />
         )}
@@ -85,40 +90,43 @@ function ProjectCard({
                 {pick(project.natureLabel)}
               </span>
             </div>
-            <span className="font-mono text-xs text-[#4A4A46]">
+            <span className="font-mono text-xs text-[var(--paper-muted)]">
               {pick(project.category)}
             </span>
           </div>
 
-          <h3 className="font-display-nuvro text-3xl text-[#121212] mb-1">
+          <h3 className="font-display-nuvro text-3xl text-[var(--paper-text)] mb-1">
             {project.title}
           </h3>
 
           {project.subtitle && (
-            <p className="text-xs font-semibold text-[#2046F0] mb-2.5 leading-snug">
+            <p className="text-xs font-semibold text-[var(--card-accent-text)] mb-2.5 leading-snug">
               {pick(project.subtitle)}
             </p>
           )}
 
-          <p className="text-sm text-[#2C2C28] leading-relaxed mb-4">
+          <p className="text-sm text-[var(--paper-soft)] leading-relaxed mb-4">
             {pick(project.shortDescription)}
           </p>
 
-          {/* Compact Problem / Solution teaser */}
-          <div className="text-xs text-[#4A4A46] bg-[#ECECE8] border-2 border-[#121212]/20 p-3 mb-4 leading-relaxed">
-            <strong className="text-[#121212]">
+          {/* Compact Architecture teaser */}
+          <div className="text-xs text-[var(--paper-muted)] bg-[var(--card-muted-bg)] border-2 border-[var(--card-border)]/20 p-3 mb-4 leading-relaxed">
+            <strong className="text-[var(--paper-text)]">
               {lang === 'es' ? 'Arquitectura:' : 'Architecture:'}
             </strong>{' '}
             {pick(project.solution)}
           </div>
 
           {/* Unboxed clean stack metadata */}
-          <div className="flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-xs text-[#2046F0] font-semibold">
+          <div className="flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-xs text-[var(--card-accent-text)] font-semibold">
             {stackItems.map((tech, techIdx) => (
               <React.Fragment key={tech}>
                 <span>{tech}</span>
                 {techIdx < stackItems.length - 1 && (
-                  <span aria-hidden="true" className="text-[#121212]/40">
+                  <span
+                    aria-hidden="true"
+                    className="text-[var(--paper-muted)]/50"
+                  >
                     ·
                   </span>
                 )}
@@ -128,25 +136,31 @@ function ProjectCard({
         </div>
 
         {/* Actions */}
-        <div className="pt-4 border-t-2 border-[#121212]/10 flex flex-wrap items-center gap-3">
+        <div className="pt-4 border-t-2 border-[var(--card-divider)] flex flex-wrap items-center gap-2.5">
           <button
             type="button"
             onClick={() => onSelect(project)}
+            onMouseEnter={preloadProjectModal}
+            onFocus={preloadProjectModal}
             className="inline-flex items-center gap-1.5 px-3.5 py-2 min-h-[42px] bg-[#121212] text-[#F7F7F4] hover:bg-[#2046F0] text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer"
           >
             <Eye size={14} aria-hidden="true" />
             {lang === 'es' ? 'Ver ficha' : 'Case details'}
           </button>
 
-          {project.liveUrl && (
+          {project.liveUrl ? (
             <a
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3 py-2 min-h-[42px] border-2 border-[#121212] bg-[#FFFFFF] hover:bg-[#FFC83D] text-[#121212] text-xs font-bold transition-colors"
+              className="inline-flex items-center gap-1.5 px-3 py-2 min-h-[42px] border-2 border-[var(--card-border)] bg-[var(--card-bg)] hover:bg-[#FFC83D] text-[var(--paper-text)] hover:text-[#121212] text-xs font-bold transition-colors"
             >
               {project.passwordProtected && (
-                <Lock size={12} aria-hidden="true" className="text-[#4A4A46]" />
+                <Lock
+                  size={12}
+                  aria-hidden="true"
+                  className="text-[var(--paper-muted)]"
+                />
               )}
               {project.passwordProtected
                 ? lang === 'es'
@@ -156,6 +170,25 @@ function ProjectCard({
                   ? 'Ver en vivo'
                   : 'Live demo'}
               <ArrowUpRight size={14} aria-hidden="true" />
+            </a>
+          ) : (
+            project.accessLabel && (
+              <span className="inline-flex items-center gap-1.5 px-3 py-2 min-h-[42px] border-2 border-[var(--card-border)]/30 bg-[var(--card-muted-bg)] text-[var(--paper-muted)] text-xs font-mono font-bold">
+                <Lock size={12} aria-hidden="true" />
+                {pick(project.accessLabel)}
+              </span>
+            )
+          )}
+
+          {project.secondaryUrl && project.secondaryLabel && (
+            <a
+              href={project.secondaryUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 px-2.5 py-2 min-h-[42px] border-2 border-[var(--card-border)] bg-[var(--card-surface)] hover:bg-[#5EDBB0] text-[var(--paper-text)] hover:text-[#121212] text-xs font-bold transition-colors"
+            >
+              {pick(project.secondaryLabel)}
+              <ArrowUpRight size={13} aria-hidden="true" />
             </a>
           )}
 
@@ -169,7 +202,7 @@ function ProjectCard({
                   ? `Repositorio en GitHub de ${project.title}`
                   : `GitHub repository for ${project.title}`
               }
-              className="inline-flex items-center justify-center min-w-[42px] min-h-[42px] border-2 border-[#121212] bg-[#FFFFFF] hover:bg-[#ECECE8] text-[#121212] transition-colors ml-auto"
+              className="inline-flex items-center justify-center min-w-[42px] min-h-[42px] border-2 border-[var(--card-border)] bg-[var(--card-bg)] hover:bg-[var(--card-muted-bg)] text-[var(--paper-text)] transition-colors ml-auto"
             >
               <Github size={16} aria-hidden="true" />
             </a>
@@ -191,13 +224,13 @@ export default function Projects() {
     lang === 'es'
       ? [
           { id: 'todos', label: 'Todos (6)' },
-          { id: 'productos', label: 'Plataformas & IA' },
-          { id: 'casos', label: 'Clientes & Agencia' },
+          { id: 'productos', label: 'Sistemas, IA & SaaS' },
+          { id: 'casos', label: 'Clientes & E-commerce' },
         ]
       : [
           { id: 'todos', label: 'All (6)' },
-          { id: 'productos', label: 'Platforms & AI' },
-          { id: 'casos', label: 'Clients & Studio' },
+          { id: 'productos', label: 'Systems, AI & SaaS' },
+          { id: 'casos', label: 'Clients & E-Commerce' },
         ];
 
   const visibleProjects =
@@ -208,32 +241,32 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="relative scroll-mt-20 bg-paper-torn py-20 md:py-28 px-4 sm:px-6 lg:px-8"
+      className="relative scroll-mt-20 bg-paper-torn py-20 md:py-28 px-4 sm:px-6 lg:px-8 transition-colors duration-200"
     >
       <div className="max-w-7xl mx-auto">
         <ScrollReveal>
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-12">
             <div>
-              <p className="nuvro-kicker text-[#2046F0] mb-4">
+              <p className="nuvro-kicker text-[var(--card-accent-text)] mb-4">
                 {lang === 'es' ? 'Proyectos curados' : 'Curated engineering work'}
               </p>
-              <h2 className="font-display-nuvro text-[clamp(2.6rem,5.5vw,4.8rem)] text-[#121212] mb-3">
+              <h2 className="font-display-nuvro text-[clamp(2.6rem,5.5vw,4.8rem)] text-[var(--paper-text)] mb-3">
                 {lang === 'es' ? (
                   <>
-                    PRODUCTOS IA, CRM &amp;{' '}
-                    <span className="text-[#2046F0]">SISTEMAS EN VIVO.</span>
+                    SISTEMAS FULL-STACK,{' '}
+                    <span className="text-[#2046F0]">IA &amp; PRODUCCIÓN.</span>
                   </>
                 ) : (
                   <>
-                    AI PRODUCTS, CRM &amp;{' '}
-                    <span className="text-[#2046F0]">LIVE SYSTEMS.</span>
+                    FULL-STACK SYSTEMS,{' '}
+                    <span className="text-[#2046F0]">AI &amp; PRODUCTION.</span>
                   </>
                 )}
               </h2>
-              <p className="text-base sm:text-lg text-[#4A4A46] max-w-2xl leading-relaxed">
+              <p className="text-base sm:text-lg text-[var(--paper-muted)] max-w-2xl leading-relaxed">
                 {lang === 'es'
-                  ? 'Selección de 6 proyectos reales en producción: motores media con Docker/FFmpeg, IA multimodal con renderizado cliente-side, CRM SaaS y sitios comerciales con dominio propio.'
-                  : 'Focused 6-project selection spanning Docker/FFmpeg media tools, multimodal AI with $0-GPU client rendering, SaaS CRM, and real client deployments.'}
+                  ? 'Selección de 6 proyectos reales encabezada por NUVRO CRM & Facturación Electrónica (13,300+ LOC), motores media con Docker/FFmpeg, IA multimodal, CRM SaaS y comercio digital.'
+                  : 'Curated 6-project showcase led by NUVRO CRM & Electronic Invoicing (13,300+ LOC), Docker/FFmpeg media tooling, multimodal AI, SaaS CRM, and brand e-commerce.'}
               </p>
             </div>
 
@@ -255,10 +288,10 @@ export default function Projects() {
                     type="button"
                     aria-pressed={active}
                     onClick={() => setFilter(option.id)}
-                    className={`px-4 py-2.5 min-h-[44px] text-xs sm:text-sm font-bold border-3 border-[#121212] transition-all cursor-pointer whitespace-nowrap ${
+                    className={`px-4 py-2.5 min-h-[44px] text-xs sm:text-sm font-bold border-3 border-[var(--card-border)] transition-all cursor-pointer whitespace-nowrap ${
                       active
-                        ? 'bg-[#FFC83D] text-[#121212] shadow-[4px_4px_0_#121212] -translate-y-0.5'
-                        : 'bg-[#FFFFFF] text-[#121212] hover:bg-[#ECECE8]'
+                        ? 'bg-[#FFC83D] text-[#121212] shadow-[4px_4px_0_var(--card-shadow)] -translate-y-0.5'
+                        : 'bg-[var(--card-bg)] text-[var(--paper-text)] hover:bg-[var(--card-muted-bg)]'
                     }`}
                   >
                     {option.label}
@@ -286,15 +319,23 @@ export default function Projects() {
         </div>
       </div>
 
-      {/* Torn Edge into Build Lab Dark Canvas */}
+      {/* Torn Edge into Build Lab Canvas */}
       <div className="absolute left-0 right-0 bottom-0 translate-y-px">
-        <TornEdge fill="#0D1017" fiber="#121212" seed={61} />
+        <TornEdge
+          fill="var(--lab-bg)"
+          fiber="var(--card-border)"
+          seed={61}
+        />
       </div>
 
-      <ProjectModal
-        project={selectedProject}
-        onClose={() => setSelectedProject(null)}
-      />
+      {selectedProject && (
+        <Suspense fallback={null}>
+          <ProjectModal
+            project={selectedProject}
+            onClose={() => setSelectedProject(null)}
+          />
+        </Suspense>
+      )}
     </section>
   );
 }

@@ -15,17 +15,17 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative bg-paper-grain py-20 md:py-28 px-4 sm:px-6 lg:px-8"
+      className="relative bg-paper-grain py-20 md:py-28 px-4 sm:px-6 lg:px-8 transition-colors duration-200"
     >
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Editorial Copy Column */}
           <div className="lg:col-span-7 min-w-0">
             <ScrollReveal>
-              <p className="nuvro-kicker text-[#2046F0] mb-5">
+              <p className="nuvro-kicker text-[var(--card-accent-text)] mb-5">
                 {lang === 'es' ? 'Sobre mí' : 'About me'}
               </p>
-              <h2 className="font-display-nuvro text-[clamp(2.6rem,5.5vw,4.7rem)] text-[#121212] mb-6 max-w-2xl">
+              <h2 className="font-display-nuvro text-[clamp(2.6rem,5.5vw,4.7rem)] text-[var(--paper-text)] mb-6 max-w-2xl">
                 {lang === 'es' ? (
                   <>
                     NO SOLO DISEÑO WEBS.{' '}
@@ -39,7 +39,7 @@ export default function About() {
                 )}
               </h2>
 
-              <div className="space-y-5 text-base sm:text-lg text-[#2C2C28] leading-relaxed max-w-2xl">
+              <div className="space-y-5 text-base sm:text-lg text-[var(--paper-soft)] leading-relaxed max-w-2xl">
                 {lang === 'es' ? (
                   <>
                     <p>
@@ -55,7 +55,7 @@ export default function About() {
                     </p>
                     <p>
                       También soy fundador de{' '}
-                      <strong className="font-bold text-[#121212]">
+                      <strong className="font-bold text-[var(--paper-text)]">
                         NUVRO ENGINEER
                       </strong>
                       , estudio desde el cual diseño y despliego soluciones
@@ -77,7 +77,7 @@ export default function About() {
                     </p>
                     <p>
                       I am also the founder of{' '}
-                      <strong className="font-bold text-[#121212]">
+                      <strong className="font-bold text-[var(--paper-text)]">
                         NUVRO ENGINEER
                       </strong>
                       , building digital products and business web solutions
@@ -89,54 +89,54 @@ export default function About() {
 
               {/* Technical Pillars */}
               <div className="mt-10 grid sm:grid-cols-3 gap-5 sm:gap-4">
-                <div className="bg-[#FFFFFF] border-3 border-[#121212] shadow-[4px_4px_0_#121212] p-4">
+                <div className="bg-[var(--card-bg)] border-3 border-[var(--card-border)] shadow-[4px_4px_0_var(--card-shadow)] p-4">
                   <Code2
                     size={20}
-                    className="text-[#2046F0] mb-2"
+                    className="text-[var(--card-accent-text)] mb-2"
                     aria-hidden="true"
                   />
-                  <h3 className="font-bold text-sm text-[#121212] mb-1">
+                  <h3 className="font-bold text-sm text-[var(--paper-text)] mb-1">
                     {lang === 'es'
                       ? 'Ingeniería Frontend & Full-Stack'
                       : 'Frontend & Full-Stack Engineering'}
                   </h3>
-                  <p className="text-xs text-[#4A4A46] leading-relaxed">
+                  <p className="text-xs text-[var(--paper-muted)] leading-relaxed">
                     {lang === 'es'
                       ? 'Código modular en React, TypeScript y servicios Docker/FastAPI.'
                       : 'Modular React, TypeScript, and containerized FastAPI services.'}
                   </p>
                 </div>
 
-                <div className="bg-[#FFFFFF] border-3 border-[#121212] shadow-[4px_4px_0_#121212] p-4">
+                <div className="bg-[var(--card-bg)] border-3 border-[var(--card-border)] shadow-[4px_4px_0_var(--card-shadow)] p-4">
                   <Layers
                     size={20}
-                    className="text-[#2046F0] mb-2"
+                    className="text-[var(--card-accent-text)] mb-2"
                     aria-hidden="true"
                   />
-                  <h3 className="font-bold text-sm text-[#121212] mb-1">
+                  <h3 className="font-bold text-sm text-[var(--paper-text)] mb-1">
                     {lang === 'es'
                       ? 'Producto, CRM & Flujos'
                       : 'Product, CRM & Automation'}
                   </h3>
-                  <p className="text-xs text-[#4A4A46] leading-relaxed">
+                  <p className="text-xs text-[var(--paper-muted)] leading-relaxed">
                     {lang === 'es'
                       ? 'Herramientas reales para prospectos, medios y operación diaria.'
                       : 'Practical tools for lead pipelines, media prep, and operations.'}
                   </p>
                 </div>
 
-                <div className="bg-[#FFFFFF] border-3 border-[#121212] shadow-[4px_4px_0_#121212] p-4">
+                <div className="bg-[var(--card-bg)] border-3 border-[var(--card-border)] shadow-[4px_4px_0_var(--card-shadow)] p-4">
                   <MapPin
                     size={20}
-                    className="text-[#2046F0] mb-2"
+                    className="text-[var(--card-accent-text)] mb-2"
                     aria-hidden="true"
                   />
-                  <h3 className="font-bold text-sm text-[#121212] mb-1">
+                  <h3 className="font-bold text-sm text-[var(--paper-text)] mb-1">
                     {lang === 'es'
                       ? 'Desde Costa Rica'
                       : 'Based in Costa Rica'}
                   </h3>
-                  <p className="text-xs text-[#4A4A46] leading-relaxed">
+                  <p className="text-xs text-[var(--paper-muted)] leading-relaxed">
                     {lang === 'es'
                       ? 'Palmares, Alajuela · Disponible para trabajo remoto.'
                       : 'UTC-6 timezone · Available for remote engineering teams.'}
@@ -149,9 +149,9 @@ export default function About() {
           {/* Right Column: Editorial Profile Card + Code Spec */}
           <div className="lg:col-span-5 min-w-0">
             <ScrollReveal delay={0.1}>
-              <div className="comic-panel-light bg-[#F7F7F4] overflow-hidden">
+              <div className="comic-panel-light bg-[var(--card-surface)] overflow-hidden">
                 {/* Top Strip */}
-                <div className="bg-[#121212] text-[#F7F7F4] px-5 py-3 flex items-center justify-between gap-3">
+                <div className="bg-[var(--modal-bar-bg)] text-[var(--modal-bar-text)] px-5 py-3 flex items-center justify-between gap-3">
                   <span className="font-mono text-xs font-bold tracking-wider uppercase text-[#FFC83D]">
                     {lang === 'es'
                       ? 'Perfil de Ingeniería'
@@ -165,7 +165,7 @@ export default function About() {
                 {/* Portrait + Factual Profile */}
                 <div className="p-5 sm:p-6 space-y-5">
                   <div className="grid grid-cols-1 sm:grid-cols-12 gap-4 items-center">
-                    <div className="sm:col-span-5 max-w-[180px] sm:max-w-none aspect-[4/5] bg-[#121212] border-3 border-[#121212] overflow-hidden">
+                    <div className="sm:col-span-5 max-w-[180px] sm:max-w-none aspect-[4/5] bg-[#121212] border-3 border-[var(--card-border)] overflow-hidden">
                       {!imgError ? (
                         <img
                           src={PORTRAIT_URL}
@@ -176,6 +176,7 @@ export default function About() {
                           }
                           className="w-full h-full object-cover"
                           loading="lazy"
+                          decoding="async"
                           referrerPolicy="no-referrer"
                           onError={() => setImgError(true)}
                         />
@@ -195,10 +196,10 @@ export default function About() {
                       <span className="inline-block px-2 py-0.5 bg-[#FFC83D] text-[#121212] border-2 border-[#121212] font-mono text-[11px] font-bold uppercase">
                         {lang === 'es' ? 'Fundador · NUVRO' : 'Founder · NUVRO'}
                       </span>
-                      <h3 className="font-display-nuvro text-3xl text-[#121212]">
+                      <h3 className="font-display-nuvro text-3xl text-[var(--paper-text)]">
                         Anderson Agüero Lara
                       </h3>
-                      <p className="text-sm text-[#4A4A46] leading-snug">
+                      <p className="text-sm text-[var(--paper-muted)] leading-snug">
                         Software Developer &amp; Digital Product Builder · Costa
                         Rica (UTC-6).
                       </p>
@@ -206,7 +207,7 @@ export default function About() {
                         href={PROFILE_LINKS.nuvroSite}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-xs font-bold text-[#2046F0] hover:underline pt-1"
+                        className="inline-flex items-center gap-1 text-xs font-bold text-[var(--card-accent-text)] hover:underline pt-1"
                       >
                         nuvroenginer.site
                         <ArrowUpRight size={14} aria-hidden="true" />
@@ -215,8 +216,8 @@ export default function About() {
                   </div>
 
                   {/* Factual Code Block */}
-                  <div className="bg-[#121212] text-[#F7F7F4] p-4 border-3 border-[#121212] font-mono text-xs leading-relaxed overflow-x-auto">
-                    <div className="text-[#9AA2B4] mb-1.5">
+                  <div className="bg-[var(--lab-card-inner)] text-[var(--lab-text)] p-4 border-3 border-[var(--card-border)] font-mono text-xs leading-relaxed overflow-x-auto">
+                    <div className="text-[var(--lab-subtle)] mb-1.5">
                       profile.manifest.json
                     </div>
                     <pre>
@@ -252,9 +253,13 @@ export default function About() {
         </div>
       </div>
 
-      {/* Bottom Torn Edge transition into Projects (#F7F7F4) */}
+      {/* Bottom Torn Edge transition into Projects */}
       <div className="absolute left-0 right-0 bottom-0 translate-y-px">
-        <TornEdge fill="#F7F7F4" fiber="#121212" seed={43} />
+        <TornEdge
+          fill="var(--paper-torn-bg)"
+          fiber="var(--card-border)"
+          seed={43}
+        />
       </div>
     </section>
   );

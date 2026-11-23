@@ -21,18 +21,18 @@ export default function Certifications() {
   return (
     <section
       id="certifications"
-      className="relative scroll-mt-20 bg-paper-torn py-20 md:py-28 px-4 sm:px-6 lg:px-8"
+      className="relative scroll-mt-20 bg-paper-torn py-20 md:py-28 px-4 sm:px-6 lg:px-8 transition-colors duration-200"
     >
       <div className="max-w-7xl mx-auto">
         <ScrollReveal>
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12">
             <div>
-              <p className="nuvro-kicker text-[#2046F0] mb-4">
+              <p className="nuvro-kicker text-[var(--card-accent-text)] mb-4">
                 {lang === 'es'
                   ? 'Certificaciones verificadas'
                   : 'Verified Credentials'}
               </p>
-              <h2 className="font-display-nuvro text-[clamp(2.6rem,5.5vw,4.8rem)] text-[#121212] mb-3 max-w-3xl">
+              <h2 className="font-display-nuvro text-[clamp(2.6rem,5.5vw,4.8rem)] text-[var(--paper-text)] mb-3 max-w-3xl">
                 {lang === 'es' ? (
                   <>
                     INGLÉS C1 &amp;{' '}
@@ -49,7 +49,7 @@ export default function Certifications() {
                   </>
                 )}
               </h2>
-              <p className="text-base sm:text-lg text-[#4A4A46] max-w-2xl leading-relaxed">
+              <p className="text-base sm:text-lg text-[var(--paper-muted)] max-w-2xl leading-relaxed">
                 {lang === 'es'
                   ? 'Certificación internacional de inglés EF SET C1 Avanzado y los 6 cursos oficiales completados en Anthropic Education (Jun 2026).'
                   : 'Official EF SET C1 Advanced English certification and 6 verified technical courses completed via Anthropic Education (Jun 2026).'}
@@ -61,12 +61,12 @@ export default function Certifications() {
         <div className="grid lg:grid-cols-12 gap-6 items-stretch">
           {/* Card 1: EF SET C1 Verified Certificate */}
           <ScrollReveal className="lg:col-span-5">
-            <article className="comic-panel-light bg-[#FFFFFF] h-full flex flex-col justify-between p-6 border-3 border-[#121212]">
+            <article className="comic-panel-light h-full flex flex-col justify-between p-6">
               <div>
                 <div className="flex items-start justify-between gap-4 mb-5">
                   <div
                     aria-hidden="true"
-                    className="w-12 h-12 shrink-0 border-3 border-[#121212] shadow-[3px_3px_0_#121212] bg-[#2046F0] text-[#FFFFFF] flex items-center justify-center"
+                    className="w-12 h-12 shrink-0 border-3 border-[var(--card-border)] shadow-[3px_3px_0_var(--card-shadow)] bg-[#2046F0] text-[#FFFFFF] flex items-center justify-center"
                   >
                     <Languages size={22} />
                   </div>
@@ -76,20 +76,20 @@ export default function Certifications() {
                   </span>
                 </div>
 
-                <div className="font-mono text-xs font-bold uppercase tracking-wider text-[#2046F0] mb-1">
+                <div className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--card-accent-text)] mb-1">
                   {EF_SET_CERT.provider} · {EF_SET_CERT.date}
                 </div>
 
-                <h3 className="font-display-nuvro text-3xl text-[#121212] mb-3">
+                <h3 className="font-display-nuvro text-3xl text-[var(--paper-text)] mb-3">
                   {pick(EF_SET_CERT.title)}
                 </h3>
 
-                <p className="text-sm text-[#4A4A46] leading-relaxed mb-5">
+                <p className="text-sm text-[var(--paper-muted)] leading-relaxed mb-5">
                   {pick(EF_SET_CERT.readingNote)}
                 </p>
               </div>
 
-              <div className="pt-4 border-t-2 border-[#121212]/10">
+              <div className="pt-4 border-t-2 border-[var(--card-divider)]">
                 <a
                   href={EF_SET_CERT.credentialUrl}
                   target="_blank"
@@ -107,21 +107,21 @@ export default function Certifications() {
 
           {/* Card 2: Compact 6-Course Anthropic Education Card */}
           <ScrollReveal delay={0.08} className="lg:col-span-7">
-            <article className="comic-panel-light bg-[#FFFFFF] h-full flex flex-col justify-between p-6 border-3 border-[#121212]">
+            <article className="comic-panel-light h-full flex flex-col justify-between p-6">
               <div>
                 <div className="flex flex-wrap items-start justify-between gap-4 mb-5">
                   <div className="flex items-center gap-3">
                     <div
                       aria-hidden="true"
-                      className="w-12 h-12 shrink-0 border-3 border-[#121212] shadow-[3px_3px_0_#121212] bg-[#121212] text-[#FFC83D] flex items-center justify-center font-mono text-xs font-extrabold"
+                      className="w-12 h-12 shrink-0 border-3 border-[var(--card-border)] shadow-[3px_3px_0_var(--card-shadow)] bg-[#121212] text-[#FFC83D] flex items-center justify-center font-mono text-xs font-extrabold"
                     >
                       <BookOpenCheck size={21} />
                     </div>
                     <div>
-                      <div className="font-mono text-xs font-bold uppercase tracking-wider text-[#2046F0]">
+                      <div className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--card-accent-text)]">
                         {ANTHROPIC_EDUCATION_META.provider}
                       </div>
-                      <h3 className="font-display-nuvro text-3xl text-[#121212] leading-none">
+                      <h3 className="font-display-nuvro text-3xl text-[var(--paper-text)] leading-none">
                         {lang === 'es'
                           ? '6 Cursos Verificados · IA & Agentes'
                           : '6 Verified Courses · AI & Agents'}
@@ -139,21 +139,21 @@ export default function Certifications() {
                   {ANTHROPIC_COURSES.map((course, idx) => (
                     <div
                       key={course.id}
-                      className="p-3 bg-[#F7F7F4] border-2 border-[#121212]/20 flex items-start gap-2.5"
+                      className="p-3 bg-[var(--card-surface)] border-2 border-[var(--card-border)]/20 flex items-start gap-2.5"
                     >
                       <CheckCircle2
                         size={15}
-                        className="text-[#2046F0] shrink-0 mt-0.5"
+                        className="text-[var(--card-accent-text)] shrink-0 mt-0.5"
                         aria-hidden="true"
                       />
                       <div className="min-w-0">
-                        <div className="font-bold text-xs sm:text-sm text-[#121212] leading-snug">
-                          <span className="font-mono text-[11px] text-[#2046F0] mr-1">
+                        <div className="font-bold text-xs sm:text-sm text-[var(--paper-text)] leading-snug">
+                          <span className="font-mono text-[11px] text-[var(--card-accent-text)] mr-1">
                             0{idx + 1}.
                           </span>
                           {course.title}
                         </div>
-                        <p className="text-[11px] text-[#4A4A46] leading-snug mt-0.5">
+                        <p className="text-[11px] text-[var(--paper-muted)] leading-snug mt-0.5">
                           {pick(course.focus)}
                         </p>
                       </div>
@@ -162,14 +162,15 @@ export default function Certifications() {
                 </div>
               </div>
 
-              <div className="pt-4 mt-5 border-t-2 border-[#121212]/10 flex flex-wrap items-center justify-between gap-2 font-mono text-[11px] text-[#4A4A46]">
+              <div className="pt-4 mt-5 border-t-2 border-[var(--card-divider)] flex flex-wrap items-center justify-between gap-2 font-mono text-[11px] text-[var(--paper-muted)]">
                 <span>
                   {lang === 'es'
                     ? 'Currículo completado: Claude API, MCP, Claude Code & Agent Skills'
                     : 'Completed curriculum: Claude API, MCP, Claude Code & Agent Skills'}
                 </span>
-                <span className="font-bold text-[#121212]">
-                  {ANTHROPIC_EDUCATION_META.courseCount}/6 · {ANTHROPIC_EDUCATION_META.date}
+                <span className="font-bold text-[var(--paper-text)]">
+                  {ANTHROPIC_EDUCATION_META.courseCount}/6 ·{' '}
+                  {ANTHROPIC_EDUCATION_META.date}
                 </span>
               </div>
             </article>
@@ -177,9 +178,13 @@ export default function Certifications() {
         </div>
       </div>
 
-      {/* Torn Edge into NUVRO Blue Bridge Section */}
+      {/* Torn Edge into NUVRO Bridge Section */}
       <div className="absolute left-0 right-0 bottom-0 translate-y-px">
-        <TornEdge fill="#2046F0" fiber="#121212" seed={127} />
+        <TornEdge
+          fill="var(--bridge-bg)"
+          fiber="var(--card-border)"
+          seed={127}
+        />
       </div>
     </section>
   );

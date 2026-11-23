@@ -105,17 +105,17 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="scroll-mt-20 bg-paper-grain py-20 md:py-28 px-4 sm:px-6 lg:px-8"
+      className="scroll-mt-20 bg-paper-grain py-20 md:py-28 px-4 sm:px-6 lg:px-8 transition-colors duration-200"
     >
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-start">
           {/* Left Column: Channels */}
           <div className="lg:col-span-6 min-w-0">
             <ScrollReveal>
-              <p className="nuvro-kicker text-[#2046F0] mb-4">
+              <p className="nuvro-kicker text-[var(--card-accent-text)] mb-4">
                 {lang === 'es' ? 'Contacto' : 'Contact'}
               </p>
-              <h2 className="font-display-nuvro text-[clamp(2.8rem,6vw,5rem)] text-[#121212] mb-5">
+              <h2 className="font-display-nuvro text-[clamp(2.8rem,6vw,5rem)] text-[var(--paper-text)] mb-5">
                 {lang === 'es' ? (
                   <>
                     ¿CONSTRUIMOS ALGO{' '}
@@ -128,7 +128,7 @@ export default function Contact() {
                   </>
                 )}
               </h2>
-              <p className="text-base sm:text-lg text-[#2C2C28] leading-relaxed max-w-lg mb-8">
+              <p className="text-base sm:text-lg text-[var(--paper-soft)] leading-relaxed max-w-lg mb-8">
                 {lang === 'es'
                   ? 'Disponible para trabajo remoto full-stack / frontend y proyectos técnicos con clientes. Conversemos por el canal que prefirás.'
                   : 'Available for remote full-stack / frontend roles and technical client engagements. Reach out via your preferred channel.'}
@@ -149,7 +149,7 @@ export default function Contact() {
                   >
                     <div className="flex items-center justify-between gap-2">
                       <span
-                        className="w-10 h-10 border-2 border-[#121212] flex items-center justify-center"
+                        className="w-10 h-10 border-2 border-[var(--card-border)] flex items-center justify-center"
                         style={{
                           backgroundColor: channel.tone,
                           color:
@@ -160,15 +160,15 @@ export default function Contact() {
                       </span>
                       <ArrowUpRight
                         size={18}
-                        className="text-[#4A4A46] group-hover:text-[#2046F0] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+                        className="text-[var(--paper-muted)] group-hover:text-[var(--card-accent-text)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
                         aria-hidden="true"
                       />
                     </div>
                     <div>
-                      <div className="font-mono text-[11px] font-bold uppercase tracking-wider text-[#4A4A46] mb-1">
+                      <div className="font-mono text-[11px] font-bold uppercase tracking-wider text-[var(--paper-muted)] mb-1">
                         {channel.label}
                       </div>
-                      <div className="font-bold text-sm sm:text-base text-[#121212] break-words">
+                      <div className="font-bold text-sm sm:text-base text-[var(--paper-text)] break-words">
                         {channel.value}
                       </div>
                     </div>
@@ -181,7 +181,7 @@ export default function Contact() {
                   href={PROFILE_LINKS.nuvroSite}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 font-mono text-xs font-bold text-[#121212] hover:text-[#2046F0] transition-colors"
+                  className="inline-flex items-center gap-2 font-mono text-xs font-bold text-[var(--paper-text)] hover:text-[var(--card-accent-text)] transition-colors"
                 >
                   <Building2 size={15} aria-hidden="true" />
                   <span>
@@ -198,12 +198,12 @@ export default function Contact() {
           {/* Right Column: Working Web3Forms Form */}
           <div className="lg:col-span-6 min-w-0">
             <ScrollReveal delay={0.1}>
-              <div className="comic-panel-light bg-[#FFFFFF] p-6 sm:p-8">
-                <div className="flex items-center justify-between gap-4 pb-4 mb-6 border-b-3 border-[#121212]">
-                  <h3 className="font-display-nuvro text-3xl text-[#121212]">
+              <div className="comic-panel-light p-6 sm:p-8">
+                <div className="flex items-center justify-between gap-4 pb-4 mb-6 border-b-3 border-[var(--card-border)]">
+                  <h3 className="font-display-nuvro text-3xl text-[var(--paper-text)]">
                     {lang === 'es' ? 'Enviame un mensaje' : 'Send a message'}
                   </h3>
-                  <span className="font-mono text-xs font-bold text-[#2046F0]">
+                  <span className="font-mono text-xs font-bold text-[var(--card-accent-text)]">
                     {lang === 'es' ? 'Respuesta directa' : 'Direct reply'}
                   </span>
                 </div>
@@ -212,7 +212,7 @@ export default function Contact() {
                   <div>
                     <label
                       htmlFor="contact-name"
-                      className="block font-mono text-xs font-bold uppercase tracking-wider text-[#121212] mb-2"
+                      className="block font-mono text-xs font-bold uppercase tracking-wider text-[var(--paper-text)] mb-2"
                     >
                       {lang === 'es' ? 'Nombre' : 'Name'}
                     </label>
@@ -224,14 +224,14 @@ export default function Contact() {
                       value={formData.name}
                       onChange={handleChange}
                       placeholder={lang === 'es' ? 'Tu nombre' : 'Your name'}
-                      className="w-full min-h-[46px] px-4 py-2.5 bg-[#F7F7F4] text-[#121212] border-3 border-[#121212] placeholder-[#4A4A46]/60 focus:bg-[#FFFFFF]"
+                      className="w-full min-h-[46px] px-4 py-2.5 bg-[var(--card-surface)] text-[var(--paper-text)] border-3 border-[var(--card-border)] placeholder-[var(--paper-muted)]/60 focus:bg-[var(--card-bg)]"
                     />
                   </div>
 
                   <div>
                     <label
                       htmlFor="contact-email"
-                      className="block font-mono text-xs font-bold uppercase tracking-wider text-[#121212] mb-2"
+                      className="block font-mono text-xs font-bold uppercase tracking-wider text-[var(--paper-text)] mb-2"
                     >
                       {lang === 'es' ? 'Correo electrónico' : 'Email address'}
                     </label>
@@ -245,14 +245,14 @@ export default function Contact() {
                       placeholder={
                         lang === 'es' ? 'tu@correo.com' : 'you@company.com'
                       }
-                      className="w-full min-h-[46px] px-4 py-2.5 bg-[#F7F7F4] text-[#121212] border-3 border-[#121212] placeholder-[#4A4A46]/60 focus:bg-[#FFFFFF]"
+                      className="w-full min-h-[46px] px-4 py-2.5 bg-[var(--card-surface)] text-[var(--paper-text)] border-3 border-[var(--card-border)] placeholder-[var(--paper-muted)]/60 focus:bg-[var(--card-bg)]"
                     />
                   </div>
 
                   <div>
                     <label
                       htmlFor="contact-message"
-                      className="block font-mono text-xs font-bold uppercase tracking-wider text-[#121212] mb-2"
+                      className="block font-mono text-xs font-bold uppercase tracking-wider text-[var(--paper-text)] mb-2"
                     >
                       {lang === 'es' ? 'Mensaje' : 'Message'}
                     </label>
@@ -268,7 +268,7 @@ export default function Contact() {
                           ? 'Contame sobre tu equipo, rol remoto o proyecto...'
                           : 'Tell me about your team, remote role, or technical project...'
                       }
-                      className="w-full px-4 py-3 bg-[#F7F7F4] text-[#121212] border-3 border-[#121212] placeholder-[#4A4A46]/60 focus:bg-[#FFFFFF] resize-y"
+                      className="w-full px-4 py-3 bg-[var(--card-surface)] text-[var(--paper-text)] border-3 border-[var(--card-border)] placeholder-[var(--paper-muted)]/60 focus:bg-[var(--card-bg)] resize-y"
                     />
                   </div>
 

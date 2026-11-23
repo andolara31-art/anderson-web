@@ -2,11 +2,87 @@ import type { ProjectItem } from '../types';
 
 export const PROJECTS: ProjectItem[] = [
   {
+    id: 'nuvro-crm-hacienda',
+    title: 'NUVRO CRM & FACTURACIÓN ELECTRÓNICA',
+    subtitle: {
+      es: 'Sistema Full-Stack · 13,300+ LOC · Hacienda Costa Rica',
+      en: 'Full-Stack Sales OS · 13,300+ LOC · Costa Rica Hacienda E-Invoicing',
+    },
+    category: {
+      es: 'Sistema Full-Stack · 13,300+ LOC',
+      en: 'Full-Stack System · 13,300+ LOC',
+    },
+    filterGroup: 'productos',
+    nature: 'producto',
+    natureLabel: {
+      es: 'Sistema Full-Stack',
+      en: 'Full-Stack OS',
+    },
+    shortDescription: {
+      es: 'Sistema operativo comercial con React 19, TypeScript y Supabase (Auth/DB): prospección en Google Maps, scoring de leads, señales de dolor, panel de analítica, generación automática de propuestas y contratos PDF (jsPDF / pdfjs-dist) y facturación electrónica de Hacienda Costa Rica con XML y firma digital XAdES-EPES (xadesjs + node-forge) en Vercel Serverless.',
+      en: '13,300+ LOC full-stack sales OS built with React 19, TypeScript, and Supabase (Auth/DB) featuring Google Maps lead discovery, lead scoring, analytics, automated PDF proposal/contract generation (jsPDF/pdfjs-dist), and Costa Rica Hacienda electronic invoicing with XML + XAdES-EPES digital signing (xadesjs + node-forge) on Vercel Serverless.',
+    },
+    problem: {
+      es: 'Operar prospección comercial, propuestas PDF y facturación electrónica oficial de Hacienda (XML firmado con XAdES-EPES) en herramientas desconectadas genera fricción y errores manuales.',
+      en: 'Managing lead discovery, PDF contract workflows, and regulated Costa Rica Hacienda XML e-invoicing across disconnected tools creates manual errors and operational friction.',
+    },
+    solution: {
+      es: 'Plataforma unificada de 13,300+ líneas de código con Supabase Auth/DB, prospección vía Google Maps API, scoring + señales de dolor, analítica, motor PDF (jsPDF/pdfjs-dist) y firma criptográfica XAdES-EPES en Vercel Serverless.',
+      en: 'Unified 13,300+ LOC architecture combining Supabase Auth/DB, Google Maps API discovery, lead scoring & pain signals, analytics, PDF generation (jsPDF/pdfjs-dist), and XAdES-EPES XML signing on Vercel Serverless.',
+    },
+    architecturePoints: {
+      es: [
+        'Prospección y enriquecimiento desde Google Maps API con scoring automatizado y detección de señales de dolor.',
+        'Autenticación, control de roles y persistencia relacional en Supabase (Auth/DB) con panel de analítica comercial.',
+        'Generación y previsualización automatizada de propuestas comerciales y contratos PDF mediante jsPDF y pdfjs-dist.',
+        'Emisión XML para Hacienda Costa Rica con firma digital XAdES-EPES (xadesjs + node-forge) ejecutada en Vercel Serverless.',
+      ],
+      en: [
+        'Google Maps API lead discovery paired with automated lead scoring and pain-signal classification.',
+        'Supabase Auth & relational PostgreSQL persistence powering a real-time commercial analytics dashboard.',
+        'Automated PDF proposal and contract generation/rendering via jsPDF and pdfjs-dist.',
+        'Costa Rica Hacienda XML electronic invoicing with XAdES-EPES cryptographic signing (xadesjs + node-forge) on Vercel Serverless.',
+      ],
+    },
+    stack: {
+      es: [
+        'React 19',
+        'TypeScript',
+        'Supabase',
+        'Vercel Serverless',
+        'XAdES-EPES / Hacienda XML',
+        'Google Maps API',
+        'jsPDF',
+      ],
+      en: [
+        'React 19',
+        'TypeScript',
+        'Supabase',
+        'Vercel Serverless',
+        'XAdES-EPES / Hacienda XML',
+        'Google Maps API',
+        'jsPDF',
+      ],
+    },
+    previewId: 'nuvro-crm-hacienda',
+    passwordProtected: true,
+    accessLabel: {
+      es: 'Acceso privado',
+      en: 'Private access',
+    },
+    featured: true,
+    accentTone: 'blue',
+    note: {
+      es: 'Acceso privado restringido por contener datos comerciales reales, certificados criptográficos y facturación electrónica.',
+      en: 'Private production access restricted to protect live commercial data, cryptographic certificates, and electronic invoicing records.',
+    },
+  },
+  {
     id: 'nuvro-asset-studio',
     title: 'NUVRO ASSET STUDIO',
     subtitle: {
-      es: 'Estudio web de preparación de imágenes y descarga de video compatible con iPhone.',
-      en: 'Production web studio for batch image preparation and iPhone-ready video processing.',
+      es: 'Video Engine 3.0 + Image Studio en producción.',
+      en: 'Production Video Engine 3.0 + Batch Image Studio.',
     },
     category: {
       es: 'App web en vivo / Video Engine 3.0',
@@ -27,8 +103,8 @@ export const PROJECTS: ProjectItem[] = [
       en: 'Digital teams waste time preparing product image batches and dealing with iOS-incompatible video downloads or unvalidated utilities.',
     },
     solution: {
-      es: 'Frontend en React/TypeScript conectado a Vercel Serverless y un servicio Docker en Python (FastAPI) con yt-dlp, FFmpeg/ffprobe, protección SSRF y módulo de preparación de imágenes.',
-      en: 'React/TypeScript frontend wired to Vercel Serverless and a Dockerized Python (FastAPI) backend with yt-dlp, FFmpeg/ffprobe, SSRF security guards, and a batch image prep module.',
+      es: 'Frontend en React/TypeScript conectado a Vercel Serverless y un servicio Docker en Python (FastAPI) con yt-dlp, FFmpeg/ffprobe, protección SSRF y módulo Image Studio.',
+      en: 'React/TypeScript frontend wired to Vercel Serverless and a Dockerized Python (FastAPI) backend with yt-dlp, FFmpeg/ffprobe, SSRF security guards, and Image Studio.',
     },
     stack: {
       es: [
@@ -41,7 +117,7 @@ export const PROJECTS: ProjectItem[] = [
         'yt-dlp',
         'FFmpeg/ffprobe',
         'Seguridad SSRF',
-        'Preparación de imágenes',
+        'Image Studio',
       ],
       en: [
         'React',
@@ -53,7 +129,7 @@ export const PROJECTS: ProjectItem[] = [
         'yt-dlp',
         'FFmpeg/ffprobe',
         'SSRF Security',
-        'Batch Image Prep',
+        'Image Studio',
       ],
     },
     previewId: 'nuvro-asset-studio',
@@ -65,8 +141,8 @@ export const PROJECTS: ProjectItem[] = [
     id: 'nuvro-clips-ia',
     title: 'NUVRO CLIPS IA',
     subtitle: {
-      es: 'Recortador de videos verticales 9:16 con IA multimodal y renderizado en navegador.',
-      en: 'Multimodal AI 9:16 vertical video clipper with client-side browser rendering.',
+      es: 'Recortador multimodal de video 9:16 con renderizado en navegador.',
+      en: 'Multimodal 9:16 vertical video clipper with client-side browser rendering.',
     },
     category: {
       es: 'Producto IA · PWA',
@@ -138,8 +214,8 @@ export const PROJECTS: ProjectItem[] = [
     id: 'leadpilot-crm',
     title: 'LEADPILOT',
     subtitle: {
-      es: 'CRM SaaS en producción para centralizar prospectos y seguimiento comercial.',
-      en: 'Live SaaS CRM for centralizing leads and commercial follow-up workflows.',
+      es: 'CRM web SaaS en producción para centralizar prospectos.',
+      en: 'Live SaaS CRM web app for prospect management and follow-ups.',
     },
     category: {
       es: 'CRM Web SaaS / En vivo',
@@ -173,48 +249,11 @@ export const PROJECTS: ProjectItem[] = [
     accentTone: 'mint',
   },
   {
-    id: 'nuvro-fit',
-    title: 'NUVRO FIT',
-    subtitle: {
-      es: 'Plataforma e-commerce de marca con dominio propio en Costa Rica.',
-      en: 'Custom-domain fitness e-commerce storefront built for high-contrast browsing.',
-    },
-    category: {
-      es: 'E-commerce de marca / Dominio propio',
-      en: 'Brand E-Commerce / Custom Domain',
-    },
-    filterGroup: 'productos',
-    nature: 'producto',
-    natureLabel: {
-      es: 'Plataforma en vivo',
-      en: 'Live Storefront',
-    },
-    shortDescription: {
-      es: 'Plataforma e-commerce de marca con dominio propio enfocada en suplementación deportiva, ropa fitness y experiencia de compra directa.',
-      en: 'Custom-domain brand e-commerce platform focused on sports supplementation, fitness apparel, and direct product navigation.',
-    },
-    problem: {
-      es: 'Presentar una línea fitness con identidad visual propia, catálogo claro y conversión directa sin plantillas genéricas.',
-      en: 'Launching a fitness brand with a distinct identity, clear catalog browsing, and direct conversion without generic templates.',
-    },
-    solution: {
-      es: 'Tienda web responsive de alto contraste con jerarquía orientada a producto, despliegue en dominio propio y flujo ágil de consultas.',
-      en: 'High-contrast responsive storefront deployed on a custom domain with product-first hierarchy and fast inquiry routing.',
-    },
-    stack: {
-      es: ['React', 'TypeScript', 'Tailwind CSS', 'Vercel'],
-      en: ['React', 'TypeScript', 'Tailwind CSS', 'Vercel'],
-    },
-    previewId: 'nuvro-fit',
-    liveUrl: 'https://www.nuvro.shop',
-    accentTone: 'mint',
-  },
-  {
     id: 'fumigadora-dds',
     title: 'FUMIGADORA DDS',
     subtitle: {
-      es: 'Sitio comercial en producción para cliente real con cobertura en las 7 provincias.',
-      en: 'Production client website covering nationwide 24/7 pest-control operations.',
+      es: 'Sitio comercial en producción para cliente real (7 provincias CR).',
+      en: 'Production commercial website for a real client across 7 provinces.',
     },
     category: {
       es: 'Cliente real / Producción 24/7',
@@ -247,51 +286,56 @@ export const PROJECTS: ProjectItem[] = [
     accentTone: 'coral',
   },
   {
-    id: 'nuvro-engineer-kiss-by-may',
-    title: 'NUVRO ENGINEER + KISS BY MAY',
+    id: 'nuvro-fit-engineer',
+    title: 'NUVRO FIT / NUVRO ENGINEER',
     subtitle: {
-      es: 'Agencia de software fundada y caso real de catálogo digital (656 productos).',
-      en: 'Founded web agency & live 656-SKU digital catalog commercial case study.',
+      es: 'E-commerce propio, agencia fundada y catálogo Kiss by May (656 productos).',
+      en: 'Brand e-commerce, founded studio & 656-SKU Kiss by May digital catalog.',
     },
     category: {
-      es: 'Agencia fundada & Caso real (656 SKUs)',
-      en: 'Founded Studio & Client Case (656 SKUs)',
+      es: 'E-commerce & Caso real (656 SKUs)',
+      en: 'E-Commerce & Client Case (656 SKUs)',
     },
     filterGroup: 'casos',
     nature: 'empresa',
     natureLabel: {
-      es: 'Agencia & Caso real',
-      en: 'Agency & Case Study',
+      es: 'E-commerce & Agencia',
+      en: 'E-Commerce & Studio',
     },
     shortDescription: {
-      es: 'Agencia de desarrollo fundada en Costa Rica y caso real de presencia comercial junto al catálogo digital estructurado de 656 productos para Kiss by May.',
-      en: 'Founded software studio in Costa Rica paired with a real commercial case study featuring a structured 656-product digital catalog for Kiss by May.',
+      es: 'Plataforma e-commerce NUVRO FIT (nuvro.shop) junto al estudio NUVRO ENGINEER y el caso real de identidad y catálogo digital estructurado de 656 productos para Kiss by May.',
+      en: 'NUVRO FIT brand e-commerce platform (nuvro.shop) paired with NUVRO ENGINEER studio and the Kiss by May visual system & 656-product digital catalog case study.',
     },
     problem: {
-      es: 'Negocios locales requerían una presencia web profesional y catálogos extensos (656 ítems con precios en colones) fáciles de consultar desde móvil.',
-      en: 'Local businesses needed professional web architecture and large inventories (656 priced SKUs) formatted for instant mobile browsing.',
+      es: 'Unificar comercio digital con dominio propio y brindar a negocios locales presencia web profesional más catálogos extensos (656 ítems) optimizados para móvil y WhatsApp.',
+      en: 'Building a custom-domain storefront alongside a web studio delivering structured large-scale catalogs (656 SKUs) optimized for mobile and WhatsApp.',
     },
     solution: {
-      es: 'Plataforma web de NUVRO ENGINEER con identidad propia, demostraciones interactivas y despliegue del caso real de catálogo e identidad comercial Kiss by May.',
-      en: 'Custom NUVRO ENGINEER platform with interactive demos plus delivery of the Kiss by May visual system and 656-item digital catalog.',
+      es: 'Tienda web NUVRO FIT de alto contraste en nuvro.shop, ecosistema multipágina NUVRO ENGINEER y despliegue del catálogo comercial de 656 productos de Kiss by May.',
+      en: 'High-contrast NUVRO FIT storefront at nuvro.shop, the multi-page NUVRO ENGINEER platform, and delivery of the 656-SKU Kiss by May digital catalog.',
     },
     stack: {
-      es: ['React', 'TypeScript', 'Tailwind CSS', 'Vite', 'Arquitectura UI'],
-      en: ['React', 'TypeScript', 'Tailwind CSS', 'Vite', 'UI Architecture'],
+      es: ['React', 'TypeScript', 'Tailwind CSS', 'Vite', 'Catálogo 656 SKUs'],
+      en: ['React', 'TypeScript', 'Tailwind CSS', 'Vite', '656-SKU Catalog'],
     },
     image: 'https://www.nuvroenginer.site/assets/brand/nuvro-og-marca-v2.jpg',
     imageFit: 'contain',
     imageAlt: {
-      es: 'NUVRO ENGINEER — Agencia fundada y caso real Kiss by May',
-      en: 'NUVRO ENGINEER — Founded studio and Kiss by May case study',
+      es: 'NUVRO FIT y NUVRO ENGINEER — E-commerce y caso Kiss by May',
+      en: 'NUVRO FIT & NUVRO ENGINEER — E-commerce and Kiss by May case study',
     },
-    liveUrl: 'https://www.nuvroenginer.site',
+    liveUrl: 'https://www.nuvro.shop',
+    secondaryUrl: 'https://www.nuvroenginer.site',
+    secondaryLabel: {
+      es: 'NUVRO ENGINEER',
+      en: 'NUVRO ENGINEER',
+    },
     repoUrl: 'https://github.com/andolara31-art/nuvroengineer-',
     featured: true,
-    accentTone: 'blue',
+    accentTone: 'mint',
     note: {
-      es: 'Incluye el caso publicado en nuvroenginer.site/casos/kiss-by-may con catálogo digital de 656 productos.',
-      en: 'Includes the published case study at nuvroenginer.site/casos/kiss-by-may featuring a 656-product digital catalog.',
+      es: 'Incluye e-commerce en nuvro.shop y el caso real Kiss by May (656 productos) en nuvroenginer.site/casos/kiss-by-may.',
+      en: 'Includes NUVRO FIT e-commerce at nuvro.shop and the 656-SKU Kiss by May case study at nuvroenginer.site/casos/kiss-by-may.',
     },
   },
 ];

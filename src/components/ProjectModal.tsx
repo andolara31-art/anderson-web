@@ -42,18 +42,18 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
   return (
     <div
-      className="fixed inset-0 z-[80] flex items-center justify-center p-4 sm:p-6 bg-[#0B0D12]/85 backdrop-blur-sm"
+      className="fixed inset-0 z-[80] flex items-center justify-center p-4 sm:p-6 bg-[var(--modal-backdrop)] backdrop-blur-sm"
       role="dialog"
       aria-modal="true"
       aria-labelledby="project-modal-title"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-[#F7F7F4] text-[#121212] border-4 border-[#121212] shadow-[10px_10px_0_#2046F0]"
+        className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-[var(--modal-bg)] text-[var(--paper-text)] border-4 border-[var(--card-border)] shadow-[10px_10px_0_#2046F0]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Top Bar */}
-        <div className="sticky top-0 z-20 bg-[#121212] text-[#F7F7F4] px-5 py-3.5 border-b-4 border-[#121212] flex items-center justify-between gap-4">
+        <div className="sticky top-0 z-20 bg-[var(--modal-bar-bg)] text-[var(--modal-bar-text)] px-5 py-3.5 border-b-4 border-[var(--card-border)] flex items-center justify-between gap-4">
           <div className="flex flex-wrap items-center gap-2.5 min-w-0">
             <span className="px-2 py-0.5 bg-[#FFC83D] text-[#121212] font-mono text-[11px] font-bold uppercase">
               {pick(project.natureLabel)}
@@ -80,7 +80,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
         {/* Media / Visual Composition */}
         <div className="p-5 sm:p-8 space-y-6">
           {project.image && !imgFailed ? (
-            <div className="border-3 border-[#121212] bg-[#0E1117] overflow-hidden shadow-[5px_5px_0_#121212]">
+            <div className="border-3 border-[var(--card-border)] bg-[var(--preview-img-frame)] overflow-hidden shadow-[5px_5px_0_var(--card-shadow)]">
               <img
                 src={project.image}
                 alt={project.imageAlt ? pick(project.imageAlt) : project.title}
@@ -94,9 +94,9 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               />
             </div>
           ) : (
-            <div className="border-3 border-[#121212] overflow-hidden shadow-[5px_5px_0_#121212] min-h-[220px]">
+            <div className="border-3 border-[var(--card-border)] overflow-hidden shadow-[5px_5px_0_var(--card-shadow)] min-h-[220px]">
               <ProjectPreview
-                previewId={project.previewId ?? 'nuvro-clips-ia'}
+                previewId={project.previewId ?? 'nuvro-crm-hacienda'}
                 lang={lang}
                 compact={false}
               />
@@ -107,35 +107,35 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           <div>
             <h3
               id="project-modal-title"
-              className="font-display-nuvro text-4xl sm:text-5xl text-[#121212] mb-1.5"
+              className="font-display-nuvro text-4xl sm:text-5xl text-[var(--paper-text)] mb-1.5"
             >
               {project.title}
             </h3>
             {project.subtitle && (
-              <p className="font-mono text-xs sm:text-sm font-bold text-[#2046F0] mb-3">
+              <p className="font-mono text-xs sm:text-sm font-bold text-[var(--card-accent-text)] mb-3">
                 {pick(project.subtitle)}
               </p>
             )}
-            <p className="text-base sm:text-lg text-[#2C2C28] leading-relaxed">
+            <p className="text-base sm:text-lg text-[var(--paper-soft)] leading-relaxed">
               {pick(project.shortDescription)}
             </p>
           </div>
 
           {/* Problem & Solution */}
           <div className="grid md:grid-cols-2 gap-4">
-            <div className="bg-[#FFFFFF] border-3 border-[#121212] p-5">
-              <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-[#2046F0] mb-2">
+            <div className="bg-[var(--card-bg)] border-3 border-[var(--card-border)] p-5">
+              <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--card-accent-text)] mb-2">
                 {lang === 'es' ? 'Problema que aborda' : 'Problem addressed'}
               </h4>
-              <p className="text-sm text-[#2C2C28] leading-relaxed">
+              <p className="text-sm text-[var(--paper-soft)] leading-relaxed">
                 {pick(project.problem)}
               </p>
             </div>
-            <div className="bg-[#FFFFFF] border-3 border-[#121212] p-5">
-              <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-[#2046F0] mb-2">
+            <div className="bg-[var(--card-bg)] border-3 border-[var(--card-border)] p-5">
+              <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--card-accent-text)] mb-2">
                 {lang === 'es' ? 'Solución desarrollada' : 'Built solution'}
               </h4>
-              <p className="text-sm text-[#2C2C28] leading-relaxed">
+              <p className="text-sm text-[var(--paper-soft)] leading-relaxed">
                 {pick(project.solution)}
               </p>
             </div>
@@ -143,19 +143,19 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
           {/* Technical Architecture Breakdown */}
           {archPoints && archPoints.length > 0 && (
-            <div className="bg-[#121212] text-[#F7F7F4] border-3 border-[#121212] p-5 space-y-3">
-              <div className="inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-[#FFC83D]">
+            <div className="bg-[var(--lab-card-bg)] text-[var(--lab-text)] border-3 border-[var(--card-border)] p-5 space-y-3">
+              <div className="inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-[var(--tone-yellow)]">
                 <Cpu size={15} aria-hidden="true" />
                 {lang === 'es'
                   ? 'Arquitectura técnica implementada'
                   : 'Implemented Technical Architecture'}
               </div>
-              <ul className="space-y-2 text-sm text-[#D6D8DF]">
+              <ul className="space-y-2 text-sm text-[var(--lab-muted)]">
                 {archPoints.map((point) => (
                   <li key={point} className="flex items-start gap-2.5">
                     <span
                       aria-hidden="true"
-                      className="w-2 h-2 mt-2 bg-[#5EDBB0] shrink-0"
+                      className="w-2 h-2 mt-2 bg-[#5EDBB0] border border-[#121212] shrink-0"
                     />
                     <span>{point}</span>
                   </li>
@@ -165,16 +165,19 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           )}
 
           {/* Stack & Access Note */}
-          <div className="bg-[#ECECE8] border-3 border-[#121212] p-4 space-y-2">
-            <div className="font-mono text-xs font-bold uppercase tracking-wider text-[#121212]">
+          <div className="bg-[var(--card-muted-bg)] border-3 border-[var(--card-border)] p-4 space-y-2">
+            <div className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--paper-text)]">
               {lang === 'es' ? 'Stack tecnológico' : 'Technical stack'}
             </div>
-            <div className="flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-xs sm:text-sm text-[#2C2C28]">
+            <div className="flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-xs sm:text-sm text-[var(--paper-soft)]">
               {stackItems.map((tech, idx) => (
                 <React.Fragment key={tech}>
                   <span className="font-semibold">{tech}</span>
                   {idx < stackItems.length - 1 && (
-                    <span aria-hidden="true" className="text-[#2046F0]">
+                    <span
+                      aria-hidden="true"
+                      className="text-[var(--card-accent-text)]"
+                    >
                       ·
                     </span>
                   )}
@@ -182,11 +185,11 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               ))}
             </div>
             {project.note && (
-              <p className="text-xs text-[#121212] font-medium pt-2 border-t border-[#121212]/15 flex items-start gap-2">
+              <p className="text-xs text-[var(--paper-text)] font-medium pt-2 border-t border-[var(--card-divider)] flex items-start gap-2">
                 {project.passwordProtected && (
                   <Lock
                     size={14}
-                    className="text-[#2046F0] shrink-0 mt-0.5"
+                    className="text-[var(--card-accent-text)] shrink-0 mt-0.5"
                     aria-hidden="true"
                   />
                 )}
@@ -217,6 +220,17 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                 <ArrowUpRight size={17} aria-hidden="true" />
               </a>
             )}
+            {project.secondaryUrl && project.secondaryLabel && (
+              <a
+                href={project.secondaryUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="brand-btn"
+              >
+                {pick(project.secondaryLabel)}
+                <ArrowUpRight size={17} aria-hidden="true" />
+              </a>
+            )}
             {project.repoUrl && (
               <a
                 href={project.repoUrl}
@@ -231,7 +245,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             <button
               type="button"
               onClick={onClose}
-              className="ml-auto font-mono text-xs font-bold uppercase tracking-wider text-[#121212] hover:text-[#2046F0] underline underline-offset-4 py-2 px-1 cursor-pointer"
+              className="ml-auto font-mono text-xs font-bold uppercase tracking-wider text-[var(--paper-text)] hover:text-[var(--card-accent-text)] underline underline-offset-4 py-2 px-1 cursor-pointer"
             >
               {lang === 'es' ? 'Cerrar ficha' : 'Close'}
             </button>

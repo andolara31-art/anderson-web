@@ -58,16 +58,16 @@ export default function Stack() {
   return (
     <section
       id="stack"
-      className="relative scroll-mt-20 bg-paper-grain py-20 md:py-28 px-4 sm:px-6 lg:px-8"
+      className="relative scroll-mt-20 bg-paper-grain py-20 md:py-28 px-4 sm:px-6 lg:px-8 transition-colors duration-200"
     >
       <div className="max-w-7xl mx-auto">
         <ScrollReveal>
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-12">
             <div>
-              <p className="nuvro-kicker text-[#2046F0] mb-4">
+              <p className="nuvro-kicker text-[var(--card-accent-text)] mb-4">
                 {lang === 'es' ? 'Stack tecnológico' : 'Technical Stack'}
               </p>
-              <h2 className="font-display-nuvro text-[clamp(2.6rem,5.5vw,4.8rem)] text-[#121212] mb-3">
+              <h2 className="font-display-nuvro text-[clamp(2.6rem,5.5vw,4.8rem)] text-[var(--paper-text)] mb-3">
                 {lang === 'es' ? (
                   <>
                     LAS HERRAMIENTAS DETRÁS{' '}
@@ -80,7 +80,7 @@ export default function Stack() {
                   </>
                 )}
               </h2>
-              <p className="text-base sm:text-lg text-[#4A4A46] max-w-2xl leading-relaxed">
+              <p className="text-base sm:text-lg text-[var(--paper-muted)] max-w-2xl leading-relaxed">
                 {lang === 'es'
                   ? 'Organizado por área técnica y nivel real de aplicación: uso profesional diario, implementación en proyectos y exploración continua.'
                   : 'Organized by engineering discipline and hands-on depth across production apps, deployed projects, and continuous R&D.'}
@@ -105,10 +105,10 @@ export default function Stack() {
                     type="button"
                     aria-pressed={active}
                     onClick={() => setLevelFilter(option)}
-                    className={`px-3.5 py-2 min-h-[42px] text-xs font-bold border-3 border-[#121212] transition-all cursor-pointer whitespace-nowrap ${
+                    className={`px-3.5 py-2 min-h-[42px] text-xs font-bold border-3 border-[var(--card-border)] transition-all cursor-pointer whitespace-nowrap ${
                       active
                         ? 'bg-[#121212] text-[#FFC83D] shadow-[4px_4px_0_#2046F0]'
-                        : 'bg-[#FFFFFF] text-[#121212] hover:bg-[#F7F7F4]'
+                        : 'bg-[var(--card-bg)] text-[var(--paper-text)] hover:bg-[var(--card-surface)]'
                     }`}
                   >
                     {LEVEL_LABELS[option][lang]}
@@ -134,17 +134,17 @@ export default function Stack() {
               <ScrollReveal key={category.id} delay={idx * 0.06}>
                 <div className="comic-panel-light h-full flex flex-col">
                   {/* Category Header */}
-                  <div className="p-5 sm:p-6 border-b-3 border-[#121212] bg-[#F7F7F4] flex items-start justify-between gap-4">
+                  <div className="p-5 sm:p-6 border-b-3 border-[var(--card-border)] bg-[var(--card-surface)] flex items-start justify-between gap-4">
                     <div>
-                      <h3 className="font-display-nuvro text-3xl text-[#121212] mb-1">
+                      <h3 className="font-display-nuvro text-3xl text-[var(--paper-text)] mb-1">
                         {pick(category.title)}
                       </h3>
-                      <p className="text-xs sm:text-sm text-[#4A4A46]">
+                      <p className="text-xs sm:text-sm text-[var(--paper-muted)]">
                         {pick(category.subtitle)}
                       </p>
                     </div>
                     <span
-                      className="w-11 h-11 shrink-0 border-3 border-[#121212] shadow-[3px_3px_0_#121212] flex items-center justify-center text-[#121212]"
+                      className="w-11 h-11 shrink-0 border-3 border-[var(--card-border)] shadow-[3px_3px_0_var(--card-shadow)] flex items-center justify-center text-[#121212]"
                       style={{ backgroundColor: ACCENT_BG[category.accent] }}
                     >
                       <span
@@ -160,17 +160,17 @@ export default function Stack() {
                   </div>
 
                   {/* Items List */}
-                  <ul className="divide-y-2 divide-[#121212]/10 p-5 sm:p-6 flex-1">
+                  <ul className="divide-y-2 divide-[var(--card-divider)] p-5 sm:p-6 flex-1">
                     {filteredItems.map((item) => (
                       <li
                         key={item.name}
                         className="py-3.5 first:pt-0 last:pb-0 flex flex-col sm:flex-row sm:items-center justify-between gap-2"
                       >
                         <div>
-                          <div className="font-bold text-base text-[#121212]">
+                          <div className="font-bold text-base text-[var(--paper-text)]">
                             {item.name}
                           </div>
-                          <div className="text-xs text-[#4A4A46] leading-relaxed">
+                          <div className="text-xs text-[var(--paper-muted)] leading-relaxed">
                             {pick(item.context)}
                           </div>
                         </div>
@@ -191,7 +191,11 @@ export default function Stack() {
 
       {/* Torn Edge into Certifications */}
       <div className="absolute left-0 right-0 bottom-0 translate-y-px">
-        <TornEdge fill="#F7F7F4" fiber="#121212" seed={103} />
+        <TornEdge
+          fill="var(--paper-torn-bg)"
+          fiber="var(--card-border)"
+          seed={103}
+        />
       </div>
     </section>
   );

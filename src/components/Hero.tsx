@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { motion, useReducedMotion } from 'motion/react';
 import {
   ArrowDown,
   ArrowUpRight,
@@ -12,6 +11,7 @@ import {
 } from 'lucide-react';
 import TornEdge from './TornEdge';
 import { useLanguage } from '../context/LanguageContext';
+import { useTheme } from '../context/ThemeContext';
 import { PROFILE_LINKS } from '../data/profile';
 import type { LocalizedText } from '../types';
 
@@ -22,7 +22,7 @@ interface SystemNode {
   tech: string;
   detail: LocalizedText;
   payload: LocalizedText;
-  tone: string;
+  toneVar: string;
 }
 
 const SYSTEM_NODES: SystemNode[] = [
@@ -50,7 +50,7 @@ const SYSTEM_NODES: SystemNode[] = [
   "render": "HTML5 Canvas + MediaRecorder ($0 GPU)"
 }`,
     },
-    tone: '#2046F0',
+    toneVar: 'var(--tone-blue)',
   },
   {
     id: 'api',
@@ -76,33 +76,33 @@ const SYSTEM_NODES: SystemNode[] = [
   "security": "SSRF protection + batch processing"
 }`,
     },
-    tone: '#FFC83D',
+    toneVar: 'var(--tone-yellow)',
   },
   {
     id: 'crm',
-    label: { es: '03. SaaS & Datos', en: '03. SaaS & Data' },
+    label: { es: '03. Sales OS & Hacienda', en: '03. Sales OS & E-Invoicing' },
     role: {
-      es: 'CRM & Persistencia Cloud',
-      en: 'CRM & Cloud Persistence',
+      es: '13,300+ LOC · XML XAdES-EPES',
+      en: '13,300+ LOC · XAdES-EPES XML',
     },
-    tech: 'Supabase · Vercel Blob · SQL',
+    tech: 'Supabase · Google Maps · jsPDF · node-forge',
     detail: {
-      es: 'Organización de prospectos en LeadPilot SaaS, almacenamiento con Vercel Blob y flujos comerciales ordenados en producción.',
-      en: 'Structured prospect tracking in LeadPilot SaaS, Vercel Blob media storage, and live commercial pipelines.',
+      es: 'Sistema operativo comercial con prospección Google Maps, scoring, PDFs automáticos y facturación electrónica Hacienda CR firmada con XAdES-EPES en Vercel Serverless.',
+      en: '13,300+ LOC Sales OS with Google Maps lead discovery, lead scoring, PDF contracts, and Hacienda Costa Rica XML + XAdES-EPES digital signing on Vercel Serverless.',
     },
     payload: {
       es: `{
-  "modulo": "saas-data-layer",
-  "producto": "https://leadpilot-pi.vercel.app",
-  "persistencia": "Supabase / PostgreSQL + Vercel Blob"
+  "modulo": "nuvro-crm-hacienda",
+  "escala": "13,300+ LOC · React 19 + Supabase",
+  "facturacion": "XML Hacienda CR + XAdES-EPES (node-forge)"
 }`,
       en: `{
-  "module": "saas-data-layer",
-  "product": "https://leadpilot-pi.vercel.app",
-  "persistence": "Supabase / PostgreSQL + Vercel Blob"
+  "module": "nuvro-crm-hacienda",
+  "scale": "13,300+ LOC · React 19 + Supabase",
+  "invoicing": "Costa Rica Hacienda XML + XAdES-EPES"
 }`,
     },
-    tone: '#5EDBB0',
+    toneVar: 'var(--tone-mint)',
   },
   {
     id: 'ai',
@@ -128,13 +128,13 @@ const SYSTEM_NODES: SystemNode[] = [
   "protocols": ["Tool Use", "MCP", "Anthropic Education"]
 }`,
     },
-    tone: '#FF5A4E',
+    toneVar: 'var(--tone-coral)',
   },
 ];
 
 export default function Hero() {
-  const prefersReduced = useReducedMotion();
   const { lang, pick } = useLanguage();
+  const { theme } = useTheme();
   const [activeTab, setActiveTab] = useState<'nodos' | 'codigo' | 'terminal'>(
     'nodos',
   );
@@ -159,11 +159,13 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative bg-ink-canvas tech-grid-dark overflow-hidden pt-10 md:pt-16 pb-20 md:pb-24"
+      className="relative bg-ink-canvas tech-grid-dark overflow-hidden pt-10 md:pt-16 pb-20 md:pb-24 transition-colors duration-200"
     >
       <div
         aria-hidden="true"
-        className="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-[#2046F0]/15 blur-[110px] pointer-events-none"
+        className={`absolute -top-24 -left-24 w-96 h-96 rounded-full blur-[110px] pointer-events-none ${
+          theme === 'clean-paper' ? 'bg-[#2046F0]/10' : 'bg-[#2046F0]/15'
+        }`}
       />
       <div
         aria-hidden="true"
@@ -173,12 +175,7 @@ export default function Hero() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           {/* Left Column: Editorial Identity */}
-          <motion.div
-            className="lg:col-span-6 min-w-0"
-            initial={prefersReduced ? false : { opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-          >
+          <div className="lg:col-span-6 min-w-0 hero-enter">
             <div className="mb-6 flex flex-wrap items-center gap-3">
               <span className="brand-sticker">
                 {lang === 'es'
@@ -187,9 +184,9 @@ export default function Hero() {
               </span>
             </div>
 
-            <h1 className="font-display-nuvro text-[clamp(3rem,11vw,6.8rem)] leading-[0.94] tracking-[0.01em] text-[#F7F7F4] mb-5">
+            <h1 className="font-display-nuvro text-[clamp(3rem,11vw,6.8rem)] leading-[0.94] tracking-[0.01em] text-[var(--hero-text)] mb-5">
               <span className="block">ANDERSON</span>
-              <span className="block text-[#F7F7F4] relative">
+              <span className="block text-[var(--hero-text)] relative">
                 AGÜERO LARA
                 <span
                   aria-hidden="true"
@@ -198,17 +195,17 @@ export default function Hero() {
               </span>
             </h1>
 
-            <p className="font-mono text-sm sm:text-base font-bold uppercase tracking-wider text-[#5EDBB0] mb-3">
+            <p className="font-mono text-sm sm:text-base font-bold uppercase tracking-wider text-[var(--hero-accent)] mb-3">
               Frontend / Full-Stack Developer | AI Implementation
             </p>
 
-            <p className="text-lg sm:text-xl font-semibold text-[#FFC83D] mb-4 max-w-xl leading-snug">
+            <p className="text-lg sm:text-xl font-semibold text-[var(--hero-highlight)] mb-4 max-w-xl leading-snug">
               {lang === 'es'
                 ? 'Desarrollo software. Construyo productos. Implemento inteligencia artificial.'
                 : 'Building production web apps, SaaS tools, and multimodal AI workflows.'}
             </p>
 
-            <p className="text-base sm:text-lg text-[#C9CDD8] mb-8 max-w-xl leading-relaxed">
+            <p className="text-base sm:text-lg text-[var(--hero-muted)] mb-8 max-w-xl leading-relaxed">
               {lang === 'es'
                 ? 'Creo aplicaciones en producción con React, Next.js y TypeScript, backends con Docker/FastAPI e integraciones reales con Gemini y Claude API.'
                 : 'I ship production React, Next.js & TypeScript products, Docker/FastAPI media backends, and real-world Gemini & Claude API integrations.'}
@@ -233,7 +230,7 @@ export default function Hero() {
                 href={PROFILE_LINKS.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 min-h-[48px] px-4 py-2.5 border-2 border-white/25 bg-[#171B24] hover:border-[#FFC83D] hover:text-[#FFC83D] text-[#F7F7F4] text-sm font-mono font-bold transition-colors w-full sm:w-auto"
+                className="inline-flex items-center justify-center gap-2 min-h-[48px] px-4 py-2.5 border-2 border-[var(--hero-panel-border)] bg-[var(--hero-panel-bg)] hover:border-[#2046F0] hover:text-[var(--hero-accent)] text-[var(--hero-text)] text-sm font-mono font-bold transition-colors w-full sm:w-auto"
               >
                 <Linkedin size={17} aria-hidden="true" />
                 LinkedIn
@@ -241,7 +238,7 @@ export default function Hero() {
               </a>
             </div>
 
-            <div className="mt-8 pt-6 border-t border-white/15 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-mono text-[#AEB5C4]">
+            <div className="mt-8 pt-6 border-t border-[var(--hero-panel-border)] flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-mono text-[var(--hero-subtle)]">
               <span>ANDERSON.AL</span>
               <span aria-hidden="true">·</span>
               <span>
@@ -252,31 +249,26 @@ export default function Hero() {
               <span aria-hidden="true">·</span>
               <span>EF SET C1 · Anthropic Education</span>
             </div>
-          </motion.div>
+          </div>
 
           {/* Right Column: Interactive Developer Environment Composition */}
-          <motion.div
-            className="lg:col-span-6 min-w-0 relative"
-            initial={prefersReduced ? false : { opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
-          >
+          <div className="lg:col-span-6 min-w-0 relative hero-enter-delayed">
             <div className="flex items-center justify-between px-1 mb-2">
-              <span className="font-mono text-xs text-[#FFC83D]">
+              <span className="font-mono text-xs font-semibold text-[var(--tone-yellow)]">
                 {lang === 'es'
                   ? '→ Seleccioná un módulo para inspeccionar el stack'
                   : '→ Select a module to inspect architecture'}
               </span>
             </div>
 
-            <div className="relative bg-[#141822] border-4 border-[#121212] shadow-[10px_10px_0_#2046F0] overflow-hidden">
+            <div className="relative bg-[var(--hero-window-bg)] border-4 border-[var(--card-border)] shadow-[10px_10px_0_#2046F0] overflow-hidden">
               {/* Editor Window Top Bar */}
-              <div className="bg-[#0B0E14] border-b-3 border-[#121212] px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+              <div className="bg-[var(--hero-window-bar)] border-b-3 border-[var(--card-border)] px-4 py-3 flex flex-wrap items-center justify-between gap-3">
                 <div className="flex items-center gap-2" aria-hidden="true">
                   <span className="w-3 h-3 bg-[#FF5A4E] border border-[#121212]" />
                   <span className="w-3 h-3 bg-[#FFC83D] border border-[#121212]" />
                   <span className="w-3 h-3 bg-[#5EDBB0] border border-[#121212]" />
-                  <span className="ml-2 font-mono text-xs text-[#9AA2B4]">
+                  <span className="ml-2 font-mono text-xs text-[var(--hero-subtle)]">
                     anderson.workspace
                   </span>
                 </div>
@@ -313,7 +305,7 @@ export default function Hero() {
                       className={`px-2.5 py-1 text-xs font-mono font-bold border-2 transition-colors cursor-pointer whitespace-nowrap ${
                         activeTab === tab.id
                           ? 'bg-[#FFC83D] text-[#121212] border-[#121212]'
-                          : 'bg-[#1B202C] text-[#C9CDD8] border-white/15 hover:border-[#2046F0]'
+                          : 'bg-[var(--hero-panel-bg)] text-[var(--hero-muted)] border-[var(--hero-panel-border)] hover:border-[#2046F0]'
                       }`}
                     >
                       {tab.label}
@@ -329,6 +321,9 @@ export default function Hero() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       {SYSTEM_NODES.map((node) => {
                         const isSelected = node.id === activeNode.id;
+                        const activeLabelColor =
+                          theme === 'clean-paper' ? '#FFC83D' : '#2046F0';
+
                         return (
                           <button
                             key={node.id}
@@ -337,15 +332,17 @@ export default function Hero() {
                             aria-pressed={isSelected}
                             className={`w-full h-full text-left p-3.5 border-3 transition-all cursor-pointer ${
                               isSelected
-                                ? 'bg-[#F7F7F4] text-[#121212] border-[#121212] shadow-[4px_4px_0_#FFC83D]'
-                                : 'bg-[#1B202C] text-[#F7F7F4] border-[#2A3142] hover:border-[#2046F0]'
+                                ? 'bg-[var(--hero-active-bg)] text-[var(--hero-active-text)] border-[var(--card-border)] shadow-[4px_4px_0_#FFC83D]'
+                                : 'bg-[var(--hero-panel-bg)] text-[var(--hero-text)] border-[var(--hero-panel-border)] hover:border-[#2046F0]'
                             }`}
                           >
                             <div className="flex items-center justify-between gap-2 mb-1.5">
                               <span
                                 className="inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider"
                                 style={{
-                                  color: isSelected ? '#2046F0' : node.tone,
+                                  color: isSelected
+                                    ? activeLabelColor
+                                    : node.toneVar,
                                 }}
                               >
                                 {getNodeIcon(node.id)}
@@ -354,14 +351,18 @@ export default function Hero() {
                             </div>
                             <p
                               className={`text-sm font-bold leading-snug ${
-                                isSelected ? 'text-[#121212]' : 'text-[#F7F7F4]'
+                                isSelected
+                                  ? 'text-[var(--hero-active-text)]'
+                                  : 'text-[var(--hero-text)]'
                               }`}
                             >
                               {pick(node.role)}
                             </p>
                             <p
                               className={`font-mono text-[11px] mt-1 ${
-                                isSelected ? 'text-[#4A4A46]' : 'text-[#9AA2B4]'
+                                isSelected
+                                  ? 'text-[var(--hero-active-muted)]'
+                                  : 'text-[var(--hero-subtle)]'
                               }`}
                             >
                               {node.tech}
@@ -371,20 +372,20 @@ export default function Hero() {
                       })}
                     </div>
 
-                    <div className="bg-[#0B0E14] border-2 border-[#2A3142] p-4">
+                    <div className="bg-[var(--hero-window-bar)] border-2 border-[var(--hero-panel-border)] p-4">
                       <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                        <span className="font-mono text-xs font-bold text-[#5EDBB0] uppercase tracking-wider">
+                        <span className="font-mono text-xs font-bold text-[var(--hero-accent)] uppercase tracking-wider">
                           {lang === 'es' ? 'Nodo activo:' : 'Active node:'}{' '}
                           {pick(activeNode.label)}
                         </span>
-                        <span className="font-mono text-[11px] text-[#9AA2B4]">
+                        <span className="font-mono text-[11px] text-[var(--hero-subtle)]">
                           {activeNode.tech}
                         </span>
                       </div>
-                      <p className="text-sm text-[#D6D8DF] leading-relaxed mb-3">
+                      <p className="text-sm text-[var(--hero-muted)] leading-relaxed mb-3">
                         {pick(activeNode.detail)}
                       </p>
-                      <pre className="font-mono text-xs text-[#C9CDD8] bg-[#141822] p-3 border border-white/10 overflow-x-auto leading-relaxed">
+                      <pre className="font-mono text-xs text-[var(--hero-muted)] bg-[var(--hero-window-bg)] p-3 border border-[var(--hero-panel-border)] overflow-x-auto leading-relaxed">
                         <code>{pick(activeNode.payload)}</code>
                       </pre>
                     </div>
@@ -392,11 +393,11 @@ export default function Hero() {
                 )}
 
                 {activeTab === 'codigo' && (
-                  <div className="bg-[#0B0E14] border-2 border-[#2A3142] p-4 font-mono text-xs sm:text-[13px] leading-relaxed overflow-x-auto">
-                    <div className="text-[#9AA2B4] mb-2">
+                  <div className="bg-[var(--hero-window-bar)] border-2 border-[var(--hero-panel-border)] p-4 font-mono text-xs sm:text-[13px] leading-relaxed overflow-x-auto">
+                    <div className="text-[var(--hero-subtle)] mb-2">
                       src/architecture/anderson.ts
                     </div>
-                    <pre className="text-[#F7F7F4]">
+                    <pre className="text-[var(--hero-text)]">
                       <code>
                         {lang === 'es'
                           ? `export const engineerProfile = {
@@ -437,40 +438,42 @@ export default function Hero() {
                 )}
 
                 {activeTab === 'terminal' && (
-                  <div className="bg-[#0B0E14] border-2 border-[#2A3142] p-4 font-mono text-xs sm:text-[13px] leading-relaxed space-y-2.5">
-                    <div className="flex items-center gap-2 text-[#5EDBB0]">
+                  <div className="bg-[var(--hero-window-bar)] border-2 border-[var(--hero-panel-border)] p-4 font-mono text-xs sm:text-[13px] leading-relaxed space-y-2.5">
+                    <div className="flex items-center gap-2 text-[var(--hero-accent)]">
                       <Terminal size={14} aria-hidden="true" />
                       <span>anderson@nuvro:~/ecosistema</span>
                     </div>
-                    <p className="text-[#F7F7F4]">
+                    <p className="text-[var(--hero-text)] font-semibold">
                       $ inspect --production nuvro-stack
                     </p>
-                    <p className="text-[#C9CDD8]">
+                    <p className="text-[var(--hero-muted)]">
                       → asset-studio:{' '}
-                      <span className="text-[#FFC83D]">
+                      <span className="text-[var(--tone-yellow)] font-bold">
                         nuvro-asset-studio.vercel.app
                       </span>{' '}
                       (React · FastAPI · Docker · FFmpeg)
                     </p>
-                    <p className="text-[#C9CDD8]">
+                    <p className="text-[var(--hero-muted)]">
                       → clips-ia:{' '}
-                      <span className="text-[#FF5A4E]">NUVRO CLIPS IA</span>{' '}
+                      <span className="text-[var(--tone-coral)] font-bold">
+                        NUVRO CLIPS IA
+                      </span>{' '}
                       (Next.js 16 · Gemini Files API · Canvas 9:16 PWA)
                     </p>
-                    <p className="text-[#C9CDD8]">
+                    <p className="text-[var(--hero-muted)]">
                       → live-crm:{' '}
-                      <span className="text-[#5EDBB0]">
+                      <span className="text-[var(--tone-mint)] font-bold">
                         leadpilot-pi.vercel.app
                       </span>{' '}
                       (Next.js · Supabase)
                     </p>
-                    <p className="text-[#C9CDD8]">
+                    <p className="text-[var(--hero-muted)]">
                       → live-domains:{' '}
-                      <span className="text-[#FFC83D]">
+                      <span className="text-[var(--tone-yellow)] font-bold">
                         nuvro.shop · fumigadoradds.com · nuvroenginer.site
                       </span>
                     </p>
-                    <p className="text-[#5EDBB0]">
+                    <p className="text-[var(--hero-accent)] font-semibold">
                       {lang === 'es'
                         ? 'Listo para equipos remotos e implementación IA.'
                         : 'Ready for remote engineering teams & AI builds.'}
@@ -479,9 +482,9 @@ export default function Hero() {
                 )}
 
                 {/* Bottom Quick Bridge Strip */}
-                <div className="mt-4 pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-3">
-                  <div className="text-xs text-[#C9CDD8]">
-                    <span className="font-mono text-[#FFC83D] font-bold">
+                <div className="mt-4 pt-4 border-t border-[var(--hero-panel-border)] flex flex-wrap items-center justify-between gap-3">
+                  <div className="text-xs text-[var(--hero-muted)]">
+                    <span className="font-mono text-[var(--tone-yellow)] font-bold">
                       NUVRO ENGINEER
                     </span>{' '}
                     ·{' '}
@@ -493,7 +496,7 @@ export default function Hero() {
                     href={PROFILE_LINKS.nuvroSite}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 font-mono text-xs font-bold text-[#F7F7F4] hover:text-[#FFC83D] transition-colors"
+                    className="inline-flex items-center gap-1.5 font-mono text-xs font-bold text-[var(--hero-text)] hover:text-[var(--hero-accent)] transition-colors"
                   >
                     nuvroenginer.site
                     <ArrowUpRight size={14} aria-hidden="true" />
@@ -501,13 +504,17 @@ export default function Hero() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
 
       {/* Signature NUVRO Torn Paper Transition into About Section */}
       <div className="absolute left-0 right-0 bottom-0 z-10">
-        <TornEdge fill="#ECECE8" fiber="#F7F7F4" seed={17} />
+        <TornEdge
+          fill="var(--hero-torn-fill)"
+          fiber="var(--hero-torn-fiber)"
+          seed={17}
+        />
       </div>
     </section>
   );

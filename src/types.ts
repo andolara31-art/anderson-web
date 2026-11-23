@@ -21,10 +21,10 @@ export type ProjectCategoryFilter =
   | 'casos';
 
 export type ProjectPreviewId =
+  | 'nuvro-crm-hacienda'
   | 'nuvro-asset-studio'
   | 'nuvro-clips-ia'
   | 'leadpilot-crm'
-  | 'nuvro-fit'
   | 'fumigadora-dds';
 
 export interface ProjectItem {
@@ -45,6 +45,9 @@ export interface ProjectItem {
   imageAlt?: LocalizedText;
   previewId?: ProjectPreviewId;
   liveUrl?: string;
+  secondaryUrl?: string;
+  secondaryLabel?: LocalizedText;
+  accessLabel?: LocalizedText;
   passwordProtected?: boolean;
   repoUrl?: string;
   featured?: boolean;
