@@ -4,6 +4,10 @@ export const PROJECTS: ProjectItem[] = [
   {
     id: 'nuvro-asset-studio',
     title: 'NUVRO ASSET STUDIO',
+    subtitle: {
+      es: 'Estudio web de preparación de imágenes y descarga de video compatible con iPhone.',
+      en: 'Production web studio for batch image preparation and iPhone-ready video processing.',
+    },
     category: {
       es: 'App web en vivo / Video Engine 3.0',
       en: 'Live Web App / Video Engine 3.0',
@@ -58,8 +62,85 @@ export const PROJECTS: ProjectItem[] = [
     accentTone: 'yellow',
   },
   {
+    id: 'nuvro-clips-ia',
+    title: 'NUVRO CLIPS IA',
+    subtitle: {
+      es: 'Recortador de videos verticales 9:16 con IA multimodal y renderizado en navegador.',
+      en: 'Multimodal AI 9:16 vertical video clipper with client-side browser rendering.',
+    },
+    category: {
+      es: 'Producto IA · PWA',
+      en: 'AI Product · PWA',
+    },
+    filterGroup: 'productos',
+    nature: 'producto',
+    natureLabel: {
+      es: 'Producto IA · PWA',
+      en: 'AI Product · PWA',
+    },
+    shortDescription: {
+      es: 'Aplicación full-stack (Next.js 16, React 19, TypeScript) que sube videos largos directo desde el móvil a Gemini Files API (evitando el límite de 4.5 MB de Vercel), detecta momentos virales con subtítulos por frases y renderiza clips 9:16 en el navegador con HTML5 Canvas y MediaRecorder (costo $0 de GPU). Incluye Vercel Blob, gestión de campañas y publicación multiplataforma vía API.',
+      en: 'Full-stack Next.js 16 / React 19 / TypeScript PWA that uploads long videos directly from mobile browsers to the Gemini Files API (bypassing Vercel\'s 4.5 MB cap), detects viral moments with phrase-level captions, and renders 9:16 clips client-side via HTML5 Canvas + MediaRecorder ($0 cloud GPU cost), with Vercel Blob storage, campaign tools, and multi-platform API publishing.',
+    },
+    problem: {
+      es: 'Subir videos largos desde móvil suele chocar contra el límite de 4.5 MB en funciones serverless y depender de servidores GPU encarece el renderizado de clips verticales.',
+      en: 'Uploading long mobile videos hits Vercel\'s 4.5 MB serverless payload ceiling, while cloud GPU transcoding makes vertical clip rendering expensive.',
+    },
+    solution: {
+      es: 'Carga directa cliente → Gemini Files API, análisis multimodal con detección de momentos virales y subtítulos por frases, renderizado local 9:16 mediante HTML5 Canvas + MediaRecorder ($0 GPU), Vercel Blob, gestión de campañas y publicación vía API.',
+      en: 'Direct browser-to-Gemini Files API upload, multimodal viral-moment & phrase-caption detection, $0 GPU client-side 9:16 rendering with HTML5 Canvas + MediaRecorder, Vercel Blob storage, campaign management, and multi-platform API publishing.',
+    },
+    architecturePoints: {
+      es: [
+        'Ingesta directa móvil → Gemini Files API sin pasar por el payload de 4.5 MB de Vercel.',
+        'IA multimodal para detectar fragmentos virales con marcas de tiempo y subtítulos por frases.',
+        'Renderizado 9:16 100% en navegador con HTML5 Canvas + MediaRecorder (costo $0 de GPU).',
+        'Almacenamiento con Vercel Blob, gestión de campañas, publicación multiplataforma vía API e instalable como PWA.',
+      ],
+      en: [
+        'Direct mobile-to-Gemini Files API upload bypassing Vercel\'s 4.5 MB serverless payload cap.',
+        'Multimodal AI detection of high-retention moments with phrase-level synchronized captions.',
+        'Client-side 9:16 video rendering via HTML5 Canvas + MediaRecorder ($0 cloud GPU cost).',
+        'Vercel Blob persistence, campaign manager, multi-platform API publishing, and installable PWA.',
+      ],
+    },
+    stack: {
+      es: [
+        'Next.js 16',
+        'React 19',
+        'TypeScript',
+        'Gemini Files API',
+        'Canvas / MediaRecorder',
+        'Vercel Blob',
+        'PWA',
+      ],
+      en: [
+        'Next.js 16',
+        'React 19',
+        'TypeScript',
+        'Gemini Files API',
+        'Canvas / MediaRecorder',
+        'Vercel Blob',
+        'PWA',
+      ],
+    },
+    previewId: 'nuvro-clips-ia',
+    liveUrl: 'https://app-six-psi-64.vercel.app/',
+    passwordProtected: true,
+    featured: true,
+    accentTone: 'coral',
+    note: {
+      es: 'Acceso en vivo protegido por contraseña para resguardar credenciales de API (Gemini y publicación).',
+      en: 'Live deployment is password-protected to safeguard API credentials (Gemini & publishing keys).',
+    },
+  },
+  {
     id: 'leadpilot-crm',
     title: 'LEADPILOT',
+    subtitle: {
+      es: 'CRM SaaS en producción para centralizar prospectos y seguimiento comercial.',
+      en: 'Live SaaS CRM for centralizing leads and commercial follow-up workflows.',
+    },
     category: {
       es: 'CRM Web SaaS / En vivo',
       en: 'Live SaaS CRM',
@@ -92,44 +173,12 @@ export const PROJECTS: ProjectItem[] = [
     accentTone: 'mint',
   },
   {
-    id: 'nuvro-crm',
-    title: 'NUVRO CRM',
-    category: {
-      es: 'Arquitectura interna / Flujos CRM',
-      en: 'Internal Architecture / CRM Workflows',
-    },
-    filterGroup: 'productos',
-    nature: 'arquitectura',
-    natureLabel: {
-      es: 'Arquitectura interna',
-      en: 'Internal Architecture',
-    },
-    shortDescription: {
-      es: 'Arquitectura interna de gestión de prospectos y flujos comerciales diseñada para unificar captura web, calificación y automatización.',
-      en: 'Internal lead-management architecture and commercial workflow system engineered to unify web intake, qualification, and automation.',
-    },
-    problem: {
-      es: 'Unificar la captura desde formularios web, reglas de calificación y trazabilidad operativa bajo contratos de datos estrictos.',
-      en: 'Unifying multi-channel web form capture, lead scoring rules, and operational traceability under strict typed contracts.',
-    },
-    solution: {
-      es: 'Diseño modular orientado a eventos con esquemas TypeScript, estados de seguimiento y conectores webhook preparados para integrarse con herramientas operativas.',
-      en: 'Event-driven modular architecture featuring typed TypeScript schemas, pipeline state machines, and webhook connectors.',
-    },
-    stack: {
-      es: ['TypeScript', 'React', 'PostgreSQL', 'Webhooks / APIs'],
-      en: ['TypeScript', 'React', 'PostgreSQL', 'Webhooks / APIs'],
-    },
-    previewId: 'nuvro-crm',
-    accentTone: 'blue',
-    note: {
-      es: 'Sistema de arquitectura interna de NUVRO ENGINEER documentado a nivel de módulos y flujo de datos.',
-      en: 'Internal NUVRO ENGINEER system architecture documented at the module and data-flow level.',
-    },
-  },
-  {
     id: 'nuvro-fit',
     title: 'NUVRO FIT',
+    subtitle: {
+      es: 'Plataforma e-commerce de marca con dominio propio en Costa Rica.',
+      en: 'Custom-domain fitness e-commerce storefront built for high-contrast browsing.',
+    },
     category: {
       es: 'E-commerce de marca / Dominio propio',
       en: 'Brand E-Commerce / Custom Domain',
@@ -163,6 +212,10 @@ export const PROJECTS: ProjectItem[] = [
   {
     id: 'fumigadora-dds',
     title: 'FUMIGADORA DDS',
+    subtitle: {
+      es: 'Sitio comercial en producción para cliente real con cobertura en las 7 provincias.',
+      en: 'Production client website covering nationwide 24/7 pest-control operations.',
+    },
     category: {
       es: 'Cliente real / Producción 24/7',
       en: 'Real Client / Production Site',
@@ -196,6 +249,10 @@ export const PROJECTS: ProjectItem[] = [
   {
     id: 'nuvro-engineer-kiss-by-may',
     title: 'NUVRO ENGINEER + KISS BY MAY',
+    subtitle: {
+      es: 'Agencia de software fundada y caso real de catálogo digital (656 productos).',
+      en: 'Founded web agency & live 656-SKU digital catalog commercial case study.',
+    },
     category: {
       es: 'Agencia fundada & Caso real (656 SKUs)',
       en: 'Founded Studio & Client Case (656 SKUs)',

@@ -28,47 +28,47 @@ interface SystemNode {
 const SYSTEM_NODES: SystemNode[] = [
   {
     id: 'frontend',
-    label: { es: '01. Frontend & UI', en: '01. Frontend & UI' },
+    label: { es: '01. Frontend & PWA', en: '01. Frontend & PWA' },
     role: {
-      es: 'Interfaz y experiencia de usuario',
-      en: 'Interfaces & user experience',
+      es: 'Next.js 16, React 19 & Canvas UI',
+      en: 'Next.js 16, React 19 & Canvas UI',
     },
-    tech: 'React · TypeScript · Tailwind CSS',
+    tech: 'React 19 · Next.js 16 · TypeScript',
     detail: {
-      es: 'Componentes accesibles, diseño editorial responsive y sistemas visuales propios como NUVRO ENGINEER y NUVRO ASSET STUDIO.',
-      en: 'Accessible components, responsive editorial layouts, and custom design systems powering NUVRO ENGINEER and NUVRO ASSET STUDIO.',
+      es: 'Interfaces web rápidas, PWAs móviles y renderizado 9:16 client-side con HTML5 Canvas y MediaRecorder en NUVRO CLIPS IA.',
+      en: 'Fast web apps, mobile PWAs, and $0-GPU client-side 9:16 rendering via HTML5 Canvas + MediaRecorder in NUVRO CLIPS IA.',
     },
     payload: {
       es: `{
-  "modulo": "frontend-system",
-  "stack": ["React 19", "TypeScript", "Tailwind"],
-  "enfoque": "velocidad, claridad y mobile-first"
+  "modulo": "nuvro-clips-ia",
+  "stack": ["Next.js 16", "React 19", "TypeScript", "PWA"],
+  "render": "HTML5 Canvas + MediaRecorder ($0 GPU)"
 }`,
       en: `{
-  "module": "frontend-system",
-  "stack": ["React 19", "TypeScript", "Tailwind"],
-  "focus": "speed, clarity, and mobile-first"
+  "module": "nuvro-clips-ia",
+  "stack": ["Next.js 16", "React 19", "TypeScript", "PWA"],
+  "render": "HTML5 Canvas + MediaRecorder ($0 GPU)"
 }`,
     },
     tone: '#2046F0',
   },
   {
     id: 'api',
-    label: { es: '02. Media & APIs', en: '02. Media & APIs' },
+    label: { es: '02. Media & Docker', en: '02. Media & Docker' },
     role: {
       es: 'Serverless, Docker & Python FastAPI',
       en: 'Serverless, Docker & Python FastAPI',
     },
     tech: 'FastAPI · FFmpeg · Vercel Serverless',
     detail: {
-      es: 'Motor Video Engine 3.0 en NUVRO ASSET STUDIO con yt-dlp, FFmpeg/ffprobe, protección SSRF y procesamiento por lotes.',
+      es: 'Motor Video Engine 3.0 en NUVRO ASSET STUDIO con yt-dlp, FFmpeg/ffprobe, protección SSRF y preparación de imágenes por lotes.',
       en: 'Video Engine 3.0 in NUVRO ASSET STUDIO combining yt-dlp, FFmpeg/ffprobe, SSRF protection, and batch asset prep.',
     },
     payload: {
       es: `{
   "modulo": "nuvro-asset-studio",
   "runtime": ["Vercel Serverless", "Docker", "Python FastAPI"],
-  "seguridad": "validación anti-SSRF + procesamiento por lotes"
+  "seguridad": "validación anti-SSRF + preparación por lotes"
 }`,
       en: `{
   "module": "nuvro-asset-studio",
@@ -80,26 +80,26 @@ const SYSTEM_NODES: SystemNode[] = [
   },
   {
     id: 'crm',
-    label: { es: '03. CRM & Datos', en: '03. CRM & Data' },
+    label: { es: '03. SaaS & Datos', en: '03. SaaS & Data' },
     role: {
-      es: 'Organización comercial',
-      en: 'Commercial operations',
+      es: 'CRM & Persistencia Cloud',
+      en: 'CRM & Cloud Persistence',
     },
-    tech: 'Next.js · Supabase · SQL · LeadPilot',
+    tech: 'Supabase · Vercel Blob · SQL',
     detail: {
-      es: 'Estructuración de prospectos, catálogos comerciales y seguimiento operativo ordenado en aplicaciones web en vivo.',
-      en: 'Structured prospect tracking, commercial catalogs, and operational workflows deployed in live web applications.',
+      es: 'Organización de prospectos en LeadPilot SaaS, almacenamiento con Vercel Blob y flujos comerciales ordenados en producción.',
+      en: 'Structured prospect tracking in LeadPilot SaaS, Vercel Blob media storage, and live commercial pipelines.',
     },
     payload: {
       es: `{
-  "modulo": "commercial-data",
+  "modulo": "saas-data-layer",
   "producto": "https://leadpilot-pi.vercel.app",
-  "persistencia": "PostgreSQL / Supabase"
+  "persistencia": "Supabase / PostgreSQL + Vercel Blob"
 }`,
       en: `{
-  "module": "commercial-data",
+  "module": "saas-data-layer",
   "product": "https://leadpilot-pi.vercel.app",
-  "persistence": "PostgreSQL / Supabase"
+  "persistence": "Supabase / PostgreSQL + Vercel Blob"
 }`,
     },
     tone: '#5EDBB0',
@@ -108,24 +108,24 @@ const SYSTEM_NODES: SystemNode[] = [
     id: 'ai',
     label: { es: '04. IA Aplicada', en: '04. Applied AI' },
     role: {
-      es: 'Asistencia y flujos inteligentes',
-      en: 'Intelligent workflows & RAG',
+      es: 'Gemini Files API, Claude & MCP',
+      en: 'Gemini Files API, Claude & MCP',
     },
-    tech: 'Claude · Gemini · RAG',
+    tech: 'Gemini · Claude API · MCP',
     detail: {
-      es: 'Integración práctica de modelos de lenguaje para automatizar tareas, contenido estructurado y prototipos funcionales.',
-      en: 'Practical LLM integration for task automation, structured generation, and reliable engineering workflows.',
+      es: 'Carga directa móvil a Gemini Files API (evitando el límite de 4.5 MB de Vercel), detección multimodal y flujos con Claude + MCP.',
+      en: 'Direct mobile uploads to Gemini Files API (bypassing Vercel 4.5 MB cap), multimodal highlight detection, and Claude + MCP.',
     },
     payload: {
       es: `{
-  "modulo": "ai-integration",
-  "modelos": ["Claude", "Gemini", "ChatGPT"],
-  "foco": "RAG, agentes y productividad real"
+  "modulo": "ai-implementation",
+  "modelos": ["Gemini Files API", "Claude API"],
+  "protocolos": ["Tool Use", "MCP", "Anthropic Education"]
 }`,
       en: `{
-  "module": "ai-integration",
-  "models": ["Claude", "Gemini", "ChatGPT"],
-  "focus": "RAG, agents, and real productivity"
+  "module": "ai-implementation",
+  "models": ["Gemini Files API", "Claude API"],
+  "protocols": ["Tool Use", "MCP", "Anthropic Education"]
 }`,
     },
     tone: '#FF5A4E',
@@ -183,11 +183,11 @@ export default function Hero() {
               <span className="brand-sticker">
                 {lang === 'es'
                   ? 'Costa Rica · Remoto & Proyectos Técnicos'
-                  : 'Costa Rica · Remote Engineering & Product Builder'}
+                  : 'Costa Rica · Remote Engineering & AI Builder'}
               </span>
             </div>
 
-            <h1 className="font-display-nuvro text-[clamp(3rem,11vw,6.8rem)] leading-[0.94] tracking-[0.01em] text-[#F7F7F4] mb-6">
+            <h1 className="font-display-nuvro text-[clamp(3rem,11vw,6.8rem)] leading-[0.94] tracking-[0.01em] text-[#F7F7F4] mb-5">
               <span className="block">ANDERSON</span>
               <span className="block text-[#F7F7F4] relative">
                 AGÜERO LARA
@@ -198,16 +198,20 @@ export default function Hero() {
               </span>
             </h1>
 
-            <p className="text-lg sm:text-xl md:text-2xl font-semibold text-[#FFC83D] mb-4 max-w-xl leading-snug">
+            <p className="font-mono text-sm sm:text-base font-bold uppercase tracking-wider text-[#5EDBB0] mb-3">
+              Frontend / Full-Stack Developer | AI Implementation
+            </p>
+
+            <p className="text-lg sm:text-xl font-semibold text-[#FFC83D] mb-4 max-w-xl leading-snug">
               {lang === 'es'
-                ? 'Desarrollo software. Construyo productos. Integro inteligencia artificial.'
-                : 'Full-stack software developer building production web apps, media tools & applied AI.'}
+                ? 'Desarrollo software. Construyo productos. Implemento inteligencia artificial.'
+                : 'Building production web apps, SaaS tools, and multimodal AI workflows.'}
             </p>
 
             <p className="text-base sm:text-lg text-[#C9CDD8] mb-8 max-w-xl leading-relaxed">
               {lang === 'es'
-                ? 'Creo aplicaciones web en producción, herramientas comerciales, servicios con Docker/FastAPI y automatizaciones listas para resolver problemas reales.'
-                : 'I ship production React & TypeScript applications, commercial tools, Docker/FastAPI backends, and practical automation workflows.'}
+                ? 'Creo aplicaciones en producción con React, Next.js y TypeScript, backends con Docker/FastAPI e integraciones reales con Gemini y Claude API.'
+                : 'I ship production React, Next.js & TypeScript products, Docker/FastAPI media backends, and real-world Gemini & Claude API integrations.'}
             </p>
 
             <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3.5">
@@ -246,7 +250,7 @@ export default function Hero() {
                   : 'Founder of NUVRO ENGINEER'}
               </span>
               <span aria-hidden="true">·</span>
-              <span>React · TypeScript · FastAPI · Docker</span>
+              <span>EF SET C1 · Anthropic Education</span>
             </div>
           </motion.div>
 
@@ -397,36 +401,34 @@ export default function Hero() {
                         {lang === 'es'
                           ? `export const engineerProfile = {
   nombre: "Anderson Agüero Lara",
-  marca: "ANDERSON.AL",
-  empresaFundada: "NUVRO ENGINEER",
-  ubicacion: "Costa Rica (Disponible remoto)",
+  rol: "Frontend / Full-Stack Developer | AI Implementation",
+  ubicacion: "Costa Rica (UTC-6 · Remoto)",
+  ingles: "EF SET C1 Avanzado",
   especialidad: [
-    "React + TypeScript + Vite",
-    "Vercel Serverless + Docker + Python (FastAPI)",
-    "CRM, procesamiento media y automatización",
-    "Inteligencia artificial aplicada",
+    "React 19 + Next.js 16 + TypeScript",
+    "Gemini Files API + Canvas / MediaRecorder",
+    "Docker + Python (FastAPI) + FFmpeg",
   ],
-  enProduccion: [
-    "https://nuvro-asset-studio.vercel.app",
-    "https://www.nuvroenginer.site",
-    "https://leadpilot-pi.vercel.app",
+  productos: [
+    "NUVRO ASSET STUDIO",
+    "NUVRO CLIPS IA",
+    "LEADPILOT",
   ],
 } as const;`
                           : `export const engineerProfile = {
   name: "Anderson Agüero Lara",
-  brand: "ANDERSON.AL",
-  foundedStudio: "NUVRO ENGINEER",
-  location: "Costa Rica (Remote-ready)",
+  role: "Frontend / Full-Stack Developer | AI Implementation",
+  location: "Costa Rica (UTC-6 · Remote-ready)",
+  english: "EF SET C1 Advanced",
   specialties: [
-    "React + TypeScript + Vite",
-    "Vercel Serverless + Docker + Python (FastAPI)",
-    "CRM tooling, media pipelines & automation",
-    "Applied AI engineering",
+    "React 19 + Next.js 16 + TypeScript",
+    "Gemini Files API + Canvas / MediaRecorder",
+    "Docker + Python (FastAPI) + FFmpeg",
   ],
-  liveProducts: [
-    "https://nuvro-asset-studio.vercel.app",
-    "https://www.nuvroenginer.site",
-    "https://leadpilot-pi.vercel.app",
+  products: [
+    "NUVRO ASSET STUDIO",
+    "NUVRO CLIPS IA",
+    "LEADPILOT",
   ],
 } as const;`}
                       </code>
@@ -451,25 +453,27 @@ export default function Hero() {
                       (React · FastAPI · Docker · FFmpeg)
                     </p>
                     <p className="text-[#C9CDD8]">
-                      → flagship-site:{' '}
-                      <span className="text-[#5EDBB0]">nuvroenginer.site</span>{' '}
-                      (React · TypeScript · Tailwind)
+                      → clips-ia:{' '}
+                      <span className="text-[#FF5A4E]">NUVRO CLIPS IA</span>{' '}
+                      (Next.js 16 · Gemini Files API · Canvas 9:16 PWA)
                     </p>
                     <p className="text-[#C9CDD8]">
                       → live-crm:{' '}
-                      <span className="text-[#FFC83D]">
+                      <span className="text-[#5EDBB0]">
                         leadpilot-pi.vercel.app
                       </span>{' '}
                       (Next.js · Supabase)
                     </p>
                     <p className="text-[#C9CDD8]">
-                      → brand-commerce:{' '}
-                      <span className="text-[#5EDBB0]">nuvro.shop</span> (NUVRO FIT)
+                      → live-domains:{' '}
+                      <span className="text-[#FFC83D]">
+                        nuvro.shop · fumigadoradds.com · nuvroenginer.site
+                      </span>
                     </p>
                     <p className="text-[#5EDBB0]">
                       {lang === 'es'
-                        ? 'Listo para equipos remotos y proyectos técnicos.'
-                        : 'Ready for remote engineering roles & technical builds.'}
+                        ? 'Listo para equipos remotos e implementación IA.'
+                        : 'Ready for remote engineering teams & AI builds.'}
                     </p>
                   </div>
                 )}

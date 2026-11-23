@@ -4,10 +4,11 @@ import {
   Database,
   Dumbbell,
   Film,
-  GitBranch,
   Image as ImageIcon,
-  Layers,
+  Lock,
+  Scissors,
   ShieldCheck,
+  Sparkles,
 } from 'lucide-react';
 import type { Language, ProjectPreviewId } from '../types';
 
@@ -80,6 +81,67 @@ export default function ProjectPreview({
         </div>
       );
 
+    case 'nuvro-clips-ia':
+      return (
+        <div
+          className={`w-full h-full ${pad} flex flex-col justify-between bg-[#140E1A] text-[#F7F7F4]`}
+        >
+          <div className="flex items-center justify-between gap-2">
+            <span className="inline-flex items-center gap-1.5 font-mono text-[10px] sm:text-[11px] font-bold text-[#FF5A4E]">
+              <Scissors size={13} aria-hidden="true" />
+              NUVRO CLIPS IA · 9:16 STUDIO
+            </span>
+            <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-[#FFC83D] text-[#121212] font-mono text-[9px] font-extrabold uppercase">
+              <Lock size={10} aria-hidden="true" />
+              PWA · $0 GPU
+            </span>
+          </div>
+
+          <div className="grid grid-cols-12 gap-2.5 my-2 items-stretch">
+            {/* 9:16 Vertical Render Frame */}
+            <div className="col-span-4 bg-[#1F1729] border-2 border-[#FF5A4E] p-2 flex flex-col justify-between">
+              <div className="flex items-center justify-between font-mono text-[8px] text-[#FFC83D]">
+                <span>9:16</span>
+                <span>CANVAS</span>
+              </div>
+              <div className="my-1.5 space-y-1">
+                <div className="h-1.5 w-4/5 bg-white/30" />
+                <div className="px-1 py-0.5 bg-[#FFC83D] text-[#121212] font-mono text-[8px] font-extrabold text-center">
+                  VIRAL CLIP
+                </div>
+              </div>
+              <div className="h-1 w-full bg-[#FF5A4E]" />
+            </div>
+
+            {/* Pipeline Nodes */}
+            <div className="col-span-8 flex flex-col justify-between gap-1.5 font-mono text-[9px]">
+              <div className="bg-[#1E1928] border border-white/15 px-2.5 py-1.5 flex items-center justify-between gap-2">
+                <span className="inline-flex items-center gap-1 text-[#5EDBB0] font-bold">
+                  <Sparkles size={11} aria-hidden="true" />
+                  Gemini Files API
+                </span>
+                <span className="text-[#AEB5C4]">&gt;4.5MB Direct</span>
+              </div>
+              <div className="bg-[#1E1928] border border-white/15 px-2.5 py-1.5 flex items-center justify-between gap-2">
+                <span className="text-[#FFC83D] font-bold">MediaRecorder</span>
+                <span className="text-[#AEB5C4]">Browser Render</span>
+              </div>
+              <div className="bg-[#1E1928] border border-white/15 px-2.5 py-1.5 flex items-center justify-between gap-2">
+                <span className="text-[#FF5A4E] font-bold">Vercel Blob</span>
+                <span className="text-[#AEB5C4]">Multi-API Publish</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex items-center justify-between gap-2 font-mono text-[10px] text-[#AEB5C4] border-t border-white/10 pt-2">
+            <span>Next.js 16 · React 19 · TS</span>
+            <span className="text-[#FF5A4E] font-bold">
+              {lang === 'es' ? 'Demo protegida' : 'Protected Live App'}
+            </span>
+          </div>
+        </div>
+      );
+
     case 'leadpilot-crm':
       return (
         <div
@@ -132,54 +194,6 @@ export default function ProjectPreview({
             <span>Next.js · TypeScript · Supabase</span>
             <span className="text-[#5EDBB0] font-bold">
               leadpilot-pi.vercel.app
-            </span>
-          </div>
-        </div>
-      );
-
-    case 'nuvro-crm':
-      return (
-        <div
-          className={`w-full h-full ${pad} flex flex-col justify-between bg-[#0B1020] text-[#F7F7F4]`}
-        >
-          <div className="flex items-center justify-between gap-2">
-            <span className="inline-flex items-center gap-1.5 font-mono text-[10px] sm:text-[11px] font-bold text-[#FFC83D]">
-              <GitBranch size={13} aria-hidden="true" />
-              NUVRO CRM · CORE SPEC
-            </span>
-            <span className="px-2 py-0.5 bg-[#2046F0] text-[#FFFFFF] font-mono text-[9px] font-bold uppercase">
-              {lang === 'es' ? 'ARQUITECTURA' : 'ARCHITECTURE'}
-            </span>
-          </div>
-
-          <div className="my-2.5 flex items-center justify-between gap-1.5 font-mono text-[9px]">
-            <div className="flex-1 bg-[#141D35] border border-[#2046F0] p-2">
-              <div className="text-[#5EDBB0] font-bold mb-1">01. INTAKE</div>
-              <div className="text-[#C9CDD8]">Webhook / Form</div>
-            </div>
-            <span aria-hidden="true" className="text-[#FFC83D] font-bold">
-              →
-            </span>
-            <div className="flex-1 bg-[#141D35] border border-[#FFC83D]/70 p-2">
-              <div className="text-[#FFC83D] font-bold mb-1">02. STATE</div>
-              <div className="text-[#C9CDD8]">Typed Leads</div>
-            </div>
-            <span aria-hidden="true" className="text-[#FFC83D] font-bold">
-              →
-            </span>
-            <div className="flex-1 bg-[#141D35] border border-white/20 p-2">
-              <div className="text-[#FF5A4E] font-bold mb-1">03. SYNC</div>
-              <div className="text-[#C9CDD8]">API / Ops</div>
-            </div>
-          </div>
-
-          <div className="flex items-center justify-between gap-2 font-mono text-[10px] text-[#AEB5C4] border-t border-white/10 pt-2">
-            <span className="inline-flex items-center gap-1">
-              <Layers size={11} aria-hidden="true" />
-              TypeScript · PostgreSQL · Webhooks
-            </span>
-            <span className="text-[#FFC83D] font-bold">
-              {lang === 'es' ? 'Flujo interno' : 'Internal Core'}
             </span>
           </div>
         </div>

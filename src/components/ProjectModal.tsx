@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ArrowUpRight, Github, X } from 'lucide-react';
+import { ArrowUpRight, Cpu, Github, Lock, X } from 'lucide-react';
 import type { ProjectItem } from '../types';
 import { useLanguage } from '../context/LanguageContext';
 import ProjectPreview from './ProjectPreview';
@@ -36,6 +36,9 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
   if (!project) return null;
 
   const stackItems = pickList(project.stack);
+  const archPoints = project.architecturePoints
+    ? pickList(project.architecturePoints)
+    : null;
 
   return (
     <div
@@ -93,7 +96,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           ) : (
             <div className="border-3 border-[#121212] overflow-hidden shadow-[5px_5px_0_#121212] min-h-[220px]">
               <ProjectPreview
-                previewId={project.previewId ?? 'nuvro-crm'}
+                previewId={project.previewId ?? 'nuvro-clips-ia'}
                 lang={lang}
                 compact={false}
               />
@@ -104,10 +107,15 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           <div>
             <h3
               id="project-modal-title"
-              className="font-display-nuvro text-4xl sm:text-5xl text-[#121212] mb-3"
+              className="font-display-nuvro text-4xl sm:text-5xl text-[#121212] mb-1.5"
             >
               {project.title}
             </h3>
+            {project.subtitle && (
+              <p className="font-mono text-xs sm:text-sm font-bold text-[#2046F0] mb-3">
+                {pick(project.subtitle)}
+              </p>
+            )}
             <p className="text-base sm:text-lg text-[#2C2C28] leading-relaxed">
               {pick(project.shortDescription)}
             </p>
@@ -133,12 +141,33 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             </div>
           </div>
 
-          {/* Stack & Transparency Note */}
+          {/* Technical Architecture Breakdown */}
+          {archPoints && archPoints.length > 0 && (
+            <div className="bg-[#121212] text-[#F7F7F4] border-3 border-[#121212] p-5 space-y-3">
+              <div className="inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-[#FFC83D]">
+                <Cpu size={15} aria-hidden="true" />
+                {lang === 'es'
+                  ? 'Arquitectura técnica implementada'
+                  : 'Implemented Technical Architecture'}
+              </div>
+              <ul className="space-y-2 text-sm text-[#D6D8DF]">
+                {archPoints.map((point) => (
+                  <li key={point} className="flex items-start gap-2.5">
+                    <span
+                      aria-hidden="true"
+                      className="w-2 h-2 mt-2 bg-[#5EDBB0] shrink-0"
+                    />
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Stack & Access Note */}
           <div className="bg-[#ECECE8] border-3 border-[#121212] p-4 space-y-2">
             <div className="font-mono text-xs font-bold uppercase tracking-wider text-[#121212]">
-              {lang === 'es'
-                ? 'Stack tecnológico'
-                : 'Technical stack'}
+              {lang === 'es' ? 'Stack tecnológico' : 'Technical stack'}
             </div>
             <div className="flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-xs sm:text-sm text-[#2C2C28]">
               {stackItems.map((tech, idx) => (
@@ -153,8 +182,15 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               ))}
             </div>
             {project.note && (
-              <p className="text-xs text-[#4A4A46] pt-2 border-t border-[#121212]/15">
-                {pick(project.note)}
+              <p className="text-xs text-[#121212] font-medium pt-2 border-t border-[#121212]/15 flex items-start gap-2">
+                {project.passwordProtected && (
+                  <Lock
+                    size={14}
+                    className="text-[#2046F0] shrink-0 mt-0.5"
+                    aria-hidden="true"
+                  />
+                )}
+                <span>{pick(project.note)}</span>
               </p>
             )}
           </div>
@@ -168,7 +204,16 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                 rel="noopener noreferrer"
                 className="brand-btn brand-btn-yellow"
               >
-                {lang === 'es' ? 'Visitar sitio en vivo' : 'Open live site'}
+                {project.passwordProtected && (
+                  <Lock size={15} aria-hidden="true" />
+                )}
+                {project.passwordProtected
+                  ? lang === 'es'
+                    ? 'Abrir app (con contraseña)'
+                    : 'Open app (password-protected)'
+                  : lang === 'es'
+                    ? 'Visitar sitio en vivo'
+                    : 'Open live site'}
                 <ArrowUpRight size={17} aria-hidden="true" />
               </a>
             )}

@@ -13,8 +13,7 @@ export interface LocalizedList {
 export type ProjectNature =
   | 'empresa'
   | 'producto'
-  | 'caso-real'
-  | 'arquitectura';
+  | 'caso-real';
 
 export type ProjectCategoryFilter =
   | 'todos'
@@ -23,14 +22,15 @@ export type ProjectCategoryFilter =
 
 export type ProjectPreviewId =
   | 'nuvro-asset-studio'
+  | 'nuvro-clips-ia'
   | 'leadpilot-crm'
-  | 'nuvro-crm'
   | 'nuvro-fit'
   | 'fumigadora-dds';
 
 export interface ProjectItem {
   id: string;
   title: string;
+  subtitle?: LocalizedText;
   category: LocalizedText;
   filterGroup: Exclude<ProjectCategoryFilter, 'todos'>;
   nature: ProjectNature;
@@ -38,12 +38,14 @@ export interface ProjectItem {
   shortDescription: LocalizedText;
   problem: LocalizedText;
   solution: LocalizedText;
+  architecturePoints?: LocalizedList;
   stack: LocalizedList;
   image?: string;
   imageFit?: 'cover' | 'contain';
   imageAlt?: LocalizedText;
   previewId?: ProjectPreviewId;
   liveUrl?: string;
+  passwordProtected?: boolean;
   repoUrl?: string;
   featured?: boolean;
   accentTone: 'blue' | 'yellow' | 'mint' | 'coral';
@@ -83,11 +85,19 @@ export interface LabModule {
   accent: 'blue' | 'yellow' | 'mint' | 'coral';
 }
 
-export interface CertificationItem {
+export interface EfSetCertification {
   id: string;
-  institution: 'IBM' | 'Microsoft' | 'Meta' | 'Google';
+  provider: 'EF SET';
+  title: LocalizedText;
+  level: string;
+  score: string;
+  readingNote: LocalizedText;
+  date: string;
+  credentialUrl: string;
+}
+
+export interface AnthropicCourseItem {
+  id: string;
   title: string;
   focus: LocalizedText;
-  credentialUrl?: string;
-  note: LocalizedText;
 }

@@ -11,11 +11,11 @@ export const TECH_CATEGORIES: TechCategory[] = [
     accent: 'blue',
     items: [
       {
-        name: 'React',
+        name: 'React 19 & Next.js 16',
         levelKey: 'professional',
         context: {
-          es: 'Arquitectura principal en NUVRO ASSET STUDIO, NUVRO ENGINEER y apps web',
-          en: 'Core architecture across NUVRO ASSET STUDIO, NUVRO ENGINEER, and web apps',
+          es: 'Arquitectura principal en NUVRO ASSET STUDIO, NUVRO CLIPS IA y LeadPilot',
+          en: 'Core architecture across NUVRO ASSET STUDIO, NUVRO CLIPS IA, and LeadPilot',
         },
       },
       {
@@ -35,19 +35,19 @@ export const TECH_CATEGORIES: TechCategory[] = [
         },
       },
       {
-        name: 'JavaScript',
-        levelKey: 'professional',
+        name: 'HTML5 Canvas & MediaRecorder',
+        levelKey: 'projects',
         context: {
-          es: 'Lógica cliente, manipulación DOM y utilidades web',
-          en: 'Client-side logic, DOM workflows, and browser utilities',
+          es: 'Renderizado de video 9:16 cliente-side a costo $0 de GPU en NUVRO CLIPS IA',
+          en: 'Client-side 9:16 video rendering at $0 cloud GPU cost in NUVRO CLIPS IA',
         },
       },
       {
-        name: 'HTML & CSS',
+        name: 'PWA & Web Performance',
         levelKey: 'professional',
         context: {
-          es: 'HTML semántico, SVG procedural, animaciones CSS y accesibilidad',
-          en: 'Semantic HTML, procedural SVGs, CSS motion, and accessibility',
+          es: 'Aplicaciones web instalables, carga móvil y accesibilidad semántica',
+          en: 'Installable web apps, mobile speed optimization, and semantic accessibility',
         },
       },
     ],
@@ -70,18 +70,18 @@ export const TECH_CATEGORIES: TechCategory[] = [
         },
       },
       {
-        name: 'APIs REST / Vercel Serverless',
+        name: 'Vercel Serverless & Vercel Blob',
         levelKey: 'projects',
         context: {
-          es: 'Endpoints serverless, validación SSRF, formularios y webhooks',
-          en: 'Serverless routes, SSRF guards, form pipelines, and webhooks',
+          es: 'Rutas serverless, validación SSRF, almacenamiento de medios y webhooks',
+          en: 'Serverless routes, SSRF protection, media blob storage, and webhooks',
         },
       },
       {
         name: 'Supabase / SQL',
         levelKey: 'projects',
         context: {
-          es: 'Modelado relacional, almacenamiento y respaldo para LeadPilot y apps web',
+          es: 'Modelado relacional, autenticación y respaldo para LeadPilot y apps web',
           en: 'Relational modeling, storage, and persistence for LeadPilot and web apps',
         },
       },
@@ -89,8 +89,8 @@ export const TECH_CATEGORIES: TechCategory[] = [
         name: 'Docker & Node.js',
         levelKey: 'projects',
         context: {
-          es: 'Servicios contenedorizados, entornos de build y scripting',
-          en: 'Containerized backend services, build pipelines, and tooling scripts',
+          es: 'Servicios contenedorizados, entornos de build y tooling full-stack',
+          en: 'Containerized backend services, build pipelines, and full-stack tooling',
         },
       },
     ],
@@ -99,25 +99,25 @@ export const TECH_CATEGORIES: TechCategory[] = [
     id: 'ai-automation',
     title: { es: 'IA y automatización', en: 'AI & Automation' },
     subtitle: {
-      es: 'Integración práctica de modelos, procesamiento por lotes y flujos operativos.',
-      en: 'Practical LLM workflows, batch pipelines, and operational automation.',
+      es: 'Integración práctica de modelos multimodales, MCP y flujos operativos.',
+      en: 'Practical multimodal LLM integration, MCP workflows, and automation.',
     },
     accent: 'yellow',
     items: [
       {
-        name: 'Claude / Gemini / ChatGPT',
+        name: 'Gemini Files API & Claude API',
         levelKey: 'professional',
         context: {
-          es: 'Asistencia técnica, generación estructurada y diseño de prompts',
-          en: 'Engineering workflows, structured outputs, and prompt architecture',
+          es: 'Análisis de video largo en NUVRO CLIPS IA, JSON estructurado y tool use',
+          en: 'Long-video analysis in NUVRO CLIPS IA, structured outputs, and tool use',
         },
       },
       {
-        name: 'Integración de modelos IA',
+        name: 'Anthropic MCP & Agent Skills',
         levelKey: 'projects',
         context: {
-          es: 'Prototipos LLM, flujos RAG y automatización de contenido comercial',
-          en: 'LLM prototypes, RAG workflows, and commercial content automation',
+          es: 'Conexión estandarizada de herramientas y flujos agénticos (Anthropic Education)',
+          en: 'Standardized Model Context Protocol integrations and agentic workflows',
         },
       },
       {
@@ -129,11 +129,11 @@ export const TECH_CATEGORIES: TechCategory[] = [
         },
       },
       {
-        name: 'Flujos de automatización',
+        name: 'Publicación multiplataforma & APIs',
         levelKey: 'projects',
         context: {
-          es: 'Conexión de formularios web, captura de leads y rutas a WhatsApp',
-          en: 'Connecting web forms, lead capture, and structured WhatsApp handoffs',
+          es: 'Gestión de campañas, webhooks y automatización comercial vía API',
+          en: 'Campaign tooling, webhooks, and multi-platform API publishing',
         },
       },
     ],
@@ -216,90 +216,90 @@ export const BUILD_LAB_MODULES: LabModule[] = [
     accent: 'yellow',
   },
   {
-    id: 'api-integrations',
+    id: 'ai-agents',
     code: 'LAB-02',
     title: {
-      es: 'Integraciones de APIs y Webhooks',
-      en: 'API & Webhook Integrations',
+      es: 'IA Multimodal & Renderizado en Navegador',
+      en: 'Multimodal AI & Client-Side Rendering',
     },
     statusKey: 'implemented',
     summary: {
-      es: 'Conexión entre sitios web, endpoints serverless, formularios estructurados y canales de atención directa.',
-      en: 'Connecting web interfaces, serverless endpoints, structured forms, and direct customer messaging channels.',
+      es: 'Arquitectura híbrida en NUVRO CLIPS IA: subida directa móvil → Gemini Files API (evitando el límite de 4.5 MB de Vercel) y renderizado 9:16 con HTML5 Canvas + MediaRecorder.',
+      en: 'Hybrid pipeline in NUVRO CLIPS IA: direct mobile upload to Gemini Files API (bypassing Vercel\'s 4.5 MB cap) plus $0-GPU 9:16 rendering with HTML5 Canvas + MediaRecorder.',
     },
-    technologies: ['REST APIs', 'Vercel Serverless', 'Webhooks'],
+    technologies: ['Next.js 16', 'Gemini Files API', 'Canvas / MediaRecorder', 'Vercel Blob'],
     details: {
       es: [
-        'Recepción y validación de formularios web con feedback en tiempo real',
-        'Generación de mensajes prellenados y estructurados para WhatsApp',
-        'Consumo seguro de endpoints y activos desde frontend tipado',
+        'Ingesta directa de video largo desde móvil sin saturar payloads serverless',
+        'Detección multimodal de momentos virales y subtítulos sincronizados por frases',
+        'Renderizado 9:16 client-side a costo $0 de GPU en la nube y publicación vía API',
       ],
       en: [
-        'Real-time form submission, validation, and user feedback',
-        'Structured pre-filled WhatsApp handoff payloads',
-        'Type-safe REST consumption and serverless proxy routing',
+        'Direct long-video ingestion from mobile browsers bypassing serverless payload limits',
+        'Multimodal highlight detection with phrase-level synchronized captions',
+        'Zero-GPU cloud cost 9:16 rendering in-browser plus multi-platform API publishing',
       ],
     },
     architectureNote: {
-      es: 'Implementado activamente en el ecosistema NUVRO ENGINEER y este portafolio.',
-      en: 'Actively running across NUVRO ENGINEER products and this portfolio.',
+      es: 'Implementado en NUVRO CLIPS IA (PWA) con acceso protegido por contraseña para resguardar credenciales de API.',
+      en: 'Implemented in NUVRO CLIPS IA (PWA) with password-protected live access to safeguard API keys.',
     },
-    accent: 'blue',
+    accent: 'coral',
   },
   {
-    id: 'ai-agents',
+    id: 'api-integrations',
     code: 'LAB-03',
     title: {
-      es: 'Aplicaciones con IA y Agentes',
-      en: 'Applied AI & Agentic Systems',
+      es: 'Integraciones de APIs, MCP y Webhooks',
+      en: 'APIs, MCP & Webhook Integrations',
     },
-    statusKey: 'experimenting',
+    statusKey: 'implemented',
     summary: {
-      es: 'Exploración de arquitecturas RAG, flujos agénticos y asistentes especializados conectados a conocimiento real de negocio.',
-      en: 'Designing RAG pipelines, agentic workflows, and specialized assistants grounded in real business data.',
+      es: 'Conexión entre aplicaciones web, endpoints serverless, almacenamiento Blob/Supabase y canales de publicación o atención directa.',
+      en: 'Connecting web interfaces, serverless endpoints, Blob/Supabase storage, and external publishing or messaging APIs.',
     },
-    technologies: ['Claude', 'Gemini', 'RAG / Context'],
+    technologies: ['REST APIs', 'Vercel Serverless', 'MCP / Tool Use'],
     details: {
       es: [
-        'Diseño de prompts estructurados con salida verificable y sin alucinaciones',
-        'Rutas de calificación inicial de consultas comerciales',
-        'Patrones RAG y flujos agénticos (formación IBM RAG & Agentic AI)',
+        'Publicación multiplataforma vía API y gestión de campañas digitales',
+        'Recepción y validación de formularios web con feedback en tiempo real',
+        'Estandarización de herramientas con Model Context Protocol (MCP)',
       ],
       en: [
-        'Structured prompt contracts designed for verifiable, deterministic outputs',
-        'Lead-qualification and customer triage workflows',
-        'RAG and multi-step agent patterns (IBM RAG & Agentic AI foundation)',
+        'Multi-platform API publishing and digital campaign tooling',
+        'Real-time form submission, validation, and user feedback',
+        'Tool and resource orchestration following Model Context Protocol (MCP)',
       ],
     },
     architectureNote: {
-      es: 'Estado: investigación aplicada y diseño de casos de uso reales para equipos remotos y pymes.',
-      en: 'Status: applied R&D focused on practical automation for remote teams and SMBs.',
+      es: 'Implementado activamente en el ecosistema NUVRO y este portafolio.',
+      en: 'Actively running across NUVRO products and this portfolio.',
     },
-    accent: 'mint',
+    accent: 'blue',
   },
   {
     id: 'commercial-tools',
     code: 'LAB-04',
     title: {
-      es: 'Herramientas comerciales y CRM',
-      en: 'Commercial Tools & CRM',
+      es: 'Herramientas comerciales y CRM SaaS',
+      en: 'Commercial Tools & SaaS CRM',
     },
     statusKey: 'implemented',
     summary: {
-      es: 'Interfaces enfocadas en ordenar prospectos, presentar propuestas y dar visibilidad a procesos comerciales diarios.',
-      en: 'Focused interfaces built to organize leads, structure proposals, and keep daily commercial pipelines visible.',
+      es: 'Interfaces enfocadas en ordenar prospectos, gestionar campañas y dar visibilidad a procesos comerciales diarios.',
+      en: 'Focused interfaces built to organize leads, manage campaigns, and keep daily commercial pipelines visible.',
     },
     technologies: ['Next.js', 'React', 'TypeScript', 'Supabase'],
     details: {
       es: [
-        'LeadPilot como aplicación web en vivo para organización de prospectos',
+        'LeadPilot como aplicación SaaS en vivo para organización de prospectos',
         'Tableros por estado con seguimiento comercial sin fricción',
-        'Formularios guiados que filtran requerimientos antes de cotizar',
+        'Flujos estructurados orientados a conversión real en producción',
       ],
       en: [
-        'LeadPilot live web application for structured prospect management',
+        'LeadPilot live SaaS web application for structured prospect management',
         'Stage-based pipeline views with low-friction follow-up tracking',
-        'Guided intake flows to scope requirements before quoting',
+        'Structured workflows built for real-world commercial conversion',
       ],
     },
     architectureNote: {
@@ -317,27 +317,27 @@ export const BUILD_LAB_MODULES: LabModule[] = [
     },
     statusKey: 'domain',
     summary: {
-      es: 'Estructuración de datos heterogéneos (catálogos, menús, especificaciones) en esquemas TypeScript limpios y mantenibles.',
-      en: 'Transforming messy inventories, menus, and specs into clean, strictly typed TypeScript data structures.',
+      es: 'Estructuración de datos heterogéneos (catálogos, medios, campañas) en esquemas TypeScript limpios y mantenibles.',
+      en: 'Transforming messy inventories, media assets, and campaigns into clean, strictly typed TypeScript data structures.',
     },
     technologies: ['TypeScript', 'SQL', 'Typed Schemas'],
     details: {
       es: [
         'Separación estricta entre capas de datos, lógica y presentación UI',
         'Catálogos extensos (como 656 ítems en Kiss by May) organizados para lectura clara',
-        'Validación de entradas de usuario antes de procesar o enviar',
+        'Validación de entradas de usuario y URLs antes de procesar o enviar',
       ],
       en: [
         'Clear separation between data schemas, business logic, and UI components',
         'Large catalogs (656 SKUs in Kiss by May) structured for fast mobile browsing',
-        'Input sanitization and schema checks prior to API execution',
+        'Strict input and URL validation prior to API execution',
       ],
     },
     architectureNote: {
       es: 'Principio: los datos limpios hacen que la interfaz escale sin deuda técnica.',
       en: 'Principle: clean data contracts allow interfaces to scale without tech debt.',
     },
-    accent: 'coral',
+    accent: 'mint',
   },
   {
     id: 'experimental-ui',

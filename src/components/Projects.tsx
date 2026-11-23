@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowUpRight, Eye, Github } from 'lucide-react';
+import { ArrowUpRight, Eye, Github, Lock } from 'lucide-react';
 import { PROJECTS } from '../data/projects';
 import type { ProjectCategoryFilter, ProjectItem } from '../types';
 import ScrollReveal from './ScrollReveal';
@@ -53,7 +53,7 @@ function ProjectCard({
           />
         ) : (
           <ProjectPreview
-            previewId={project.previewId ?? 'nuvro-crm'}
+            previewId={project.previewId ?? 'nuvro-clips-ia'}
             lang={lang}
           />
         )}
@@ -90,18 +90,24 @@ function ProjectCard({
             </span>
           </div>
 
-          <h3 className="font-display-nuvro text-3xl text-[#121212] mb-2.5">
+          <h3 className="font-display-nuvro text-3xl text-[#121212] mb-1">
             {project.title}
           </h3>
 
-          <p className="text-sm sm:text-base text-[#2C2C28] leading-relaxed mb-4">
+          {project.subtitle && (
+            <p className="text-xs font-semibold text-[#2046F0] mb-2.5 leading-snug">
+              {pick(project.subtitle)}
+            </p>
+          )}
+
+          <p className="text-sm text-[#2C2C28] leading-relaxed mb-4">
             {pick(project.shortDescription)}
           </p>
 
           {/* Compact Problem / Solution teaser */}
           <div className="text-xs text-[#4A4A46] bg-[#ECECE8] border-2 border-[#121212]/20 p-3 mb-4 leading-relaxed">
             <strong className="text-[#121212]">
-              {lang === 'es' ? 'Solución:' : 'Solution:'}
+              {lang === 'es' ? 'Arquitectura:' : 'Architecture:'}
             </strong>{' '}
             {pick(project.solution)}
           </div>
@@ -137,9 +143,18 @@ function ProjectCard({
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 px-3 py-2 min-h-[42px] border-2 border-[#121212] bg-[#FFFFFF] hover:bg-[#FFC83D] text-[#121212] text-xs font-bold transition-colors"
+              className="inline-flex items-center gap-1.5 px-3 py-2 min-h-[42px] border-2 border-[#121212] bg-[#FFFFFF] hover:bg-[#FFC83D] text-[#121212] text-xs font-bold transition-colors"
             >
-              {lang === 'es' ? 'Ver en vivo' : 'Live demo'}
+              {project.passwordProtected && (
+                <Lock size={12} aria-hidden="true" className="text-[#4A4A46]" />
+              )}
+              {project.passwordProtected
+                ? lang === 'es'
+                  ? 'Acceso protegido'
+                  : 'Protected app'
+                : lang === 'es'
+                  ? 'Ver en vivo'
+                  : 'Live demo'}
               <ArrowUpRight size={14} aria-hidden="true" />
             </a>
           )}
@@ -176,12 +191,12 @@ export default function Projects() {
     lang === 'es'
       ? [
           { id: 'todos', label: 'Todos (6)' },
-          { id: 'productos', label: 'Plataformas & SaaS' },
+          { id: 'productos', label: 'Plataformas & IA' },
           { id: 'casos', label: 'Clientes & Agencia' },
         ]
       : [
           { id: 'todos', label: 'All (6)' },
-          { id: 'productos', label: 'Platforms & SaaS' },
+          { id: 'productos', label: 'Platforms & AI' },
           { id: 'casos', label: 'Clients & Studio' },
         ];
 
@@ -205,20 +220,20 @@ export default function Projects() {
               <h2 className="font-display-nuvro text-[clamp(2.6rem,5.5vw,4.8rem)] text-[#121212] mb-3">
                 {lang === 'es' ? (
                   <>
-                    PRODUCTOS, CRM &amp;{' '}
+                    PRODUCTOS IA, CRM &amp;{' '}
                     <span className="text-[#2046F0]">SISTEMAS EN VIVO.</span>
                   </>
                 ) : (
                   <>
-                    PRODUCTS, CRM &amp;{' '}
+                    AI PRODUCTS, CRM &amp;{' '}
                     <span className="text-[#2046F0]">LIVE SYSTEMS.</span>
                   </>
                 )}
               </h2>
               <p className="text-base sm:text-lg text-[#4A4A46] max-w-2xl leading-relaxed">
                 {lang === 'es'
-                  ? 'Selección de 6 proyectos reales orientados a producto, arquitectura CRM, procesamiento media e implementaciones comerciales con dominio propio.'
-                  : 'Focused 6-project selection covering live web products, SaaS CRM tooling, media processing backends, and real client deployments.'}
+                  ? 'Selección de 6 proyectos reales en producción: motores media con Docker/FFmpeg, IA multimodal con renderizado cliente-side, CRM SaaS y sitios comerciales con dominio propio.'
+                  : 'Focused 6-project selection spanning Docker/FFmpeg media tools, multimodal AI with $0-GPU client rendering, SaaS CRM, and real client deployments.'}
               </p>
             </div>
 
